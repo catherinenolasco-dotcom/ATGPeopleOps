@@ -1,19 +1,13 @@
-# ATG People Ops Starter Kit
+# People Operations Experience and Sample Approaches
 
-An interactive, single-file web page showing how I would approach global People Operations at Auction Technology Group: a fit map to the job posting, compliance calendar and audit, automation, an AskPeople portal, a new hire app prototype, an operational scorecard, an annual roadmap, and employee experience ideas.
+A single-page interactive site: my People Operations experience, plus sample approaches to talk through for the Director, Global HR Operations role at Auction Technology Group.
 
-Built by Cat Nolasco.
+All sample data and dates are illustrative, not ATG data.
 
-## View it
+## Publish with GitHub Pages
 
-Open `index.html` in any browser. There is no build step and no dependencies (fonts load from Google Fonts if online).
+1. Create a new repository and upload `index.html` and `README.md`.
+2. Go to Settings, then Pages. Under Source choose "Deploy from a branch", pick `main` and `/ (root)`, and save.
+3. After a minute the site is live at `https://<your-username>.github.io/<repo-name>/`.
 
-## Notes
-
-- Everything is in one file, `index.html`: HTML, CSS and JavaScript.
-- Figures that did not come from ATG or from my own work are labeled as sample data, illustrations or proposals.
-- No ATG logos or photography are used.
-
-## Host it free with GitHub Pages
-
-Settings, Pages, Source: "Deploy from a branch", Branch: `main`, folder `/ (root)`.
+Deep links work, for example `#fit`, `#aibuilds`, and `#newhire`.
