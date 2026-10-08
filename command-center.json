@@ -1,0 +1,165 @@
+{
+  "updated": "2026-10-08T23:20:57.168Z",
+  "hires": 14,
+  "approvals": 9,
+  "queue": [
+    {
+      "severity": "crit",
+      "team": "Talent Acquisition",
+      "region": "UK",
+      "title": "Offer signed: submit the new hire form",
+      "detail": "Senior role, start in 3 weeks",
+      "due": "Today",
+      "agent": "Onboarding agent",
+      "next": "Submit the employee action form so onboarding, right-to-work, and payroll steps start.",
+      "decision": "Offer terms stay with the TA team and the hiring manager."
+    },
+    {
+      "severity": "crit",
+      "team": "People Ops",
+      "region": "US",
+      "title": "Leave case needs routing",
+      "detail": "Restricted queue, details not shown here",
+      "due": "Today",
+      "agent": "AskPeople agent",
+      "next": "Route to the restricted leave queue owner and confirm the response window.",
+      "decision": "A trained person handles every leave and accommodation case."
+    },
+    {
+      "severity": "warn",
+      "team": "Compliance",
+      "region": "US",
+      "title": "I-9 section 2 due in 2 business days",
+      "detail": "3 new hires",
+      "due": "In 2 days",
+      "agent": "Immigration agent",
+      "next": "Complete the document review with each hire and log it before the deadline.",
+      "decision": "People Ops reviews every document, with counsel for any question."
+    },
+    {
+      "severity": "warn",
+      "team": "Payroll and Benefits",
+      "region": "MX",
+      "title": "Pre-payroll check has 4 open changes",
+      "detail": "Pay period closes tomorrow",
+      "due": "Tomorrow",
+      "agent": "Payroll agent",
+      "next": "Confirm or reject each change, then release the checklist to the payroll owner.",
+      "decision": "The payroll owner approves before anything is paid."
+    },
+    {
+      "severity": "warn",
+      "team": "Compliance",
+      "region": "UK",
+      "title": "Right-to-work check not logged",
+      "detail": "1 starter next week",
+      "due": "In 3 days",
+      "agent": "Immigration agent",
+      "next": "Complete and log the check before the first day.",
+      "decision": "A person in People Ops completes the check."
+    },
+    {
+      "severity": "warn",
+      "team": "Payroll and Benefits",
+      "region": "EU",
+      "title": "Bonus run variance above threshold",
+      "detail": "Review before approval",
+      "due": "In 4 days",
+      "agent": "Insights agent",
+      "next": "Compare against the approved plan and explain any gap to Finance.",
+      "decision": "Finance and the payroll owner approve the run."
+    },
+    {
+      "severity": "info",
+      "team": "Talent Acquisition",
+      "region": "US",
+      "title": "Welcome notes ready to review",
+      "detail": "3 starters next week",
+      "due": "In 3 days",
+      "agent": "Onboarding agent",
+      "next": "Add a personal line to each draft, then send.",
+      "decision": "The manager and the TA team approve and send."
+    },
+    {
+      "severity": "info",
+      "team": "Payroll and Benefits",
+      "region": "UK",
+      "title": "Enrollment reminder draft ready",
+      "detail": "Window opens next week",
+      "due": "In 5 days",
+      "agent": "Benefits agent",
+      "next": "Check dates and plan names against the carrier packet.",
+      "decision": "The benefits owner approves every message."
+    },
+    {
+      "severity": "info",
+      "team": "People Ops",
+      "region": "US",
+      "title": "Work authorization expiry in 30 days",
+      "detail": "1 employee, counts only",
+      "due": "In 6 days",
+      "agent": "Immigration agent",
+      "next": "Start the extension conversation with the employee and the manager.",
+      "decision": "People Ops, with counsel where needed, handles it."
+    }
+  ],
+  "timeline": [
+    [
+      "Day 1",
+      "Pay period closes",
+      "Payroll and Benefits, MX"
+    ],
+    [
+      "Day 3",
+      "First day for 3 starters",
+      "Talent Acquisition, US"
+    ],
+    [
+      "Day 5",
+      "Enrollment window opens",
+      "Payroll and Benefits, UK"
+    ],
+    [
+      "Day 9",
+      "Quarterly filing review",
+      "Compliance, US"
+    ],
+    [
+      "Day 14",
+      "Monthly headcount report",
+      "People Ops, all regions"
+    ]
+  ],
+  "agents": [
+    [
+      "👋",
+      "Onboarding",
+      58
+    ],
+    [
+      "📥",
+      "AskPeople",
+      52
+    ],
+    [
+      "💵",
+      "Payroll",
+      34
+    ],
+    [
+      "🩺",
+      "Benefits",
+      29
+    ],
+    [
+      "🛂",
+      "Immigration",
+      21
+    ],
+    [
+      "📊",
+      "Insights",
+      18
+    ]
+  ]
+}

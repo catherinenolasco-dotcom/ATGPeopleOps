@@ -100,6 +100,57 @@ nav.tabs .tsubs .tgrp button { flex: none; white-space: nowrap; }
 nav.tabs .tsubs .tgrp[hidden] { display: none; }
 nav.tabs .tgrp[hidden] { display: none; }
 
+/* people team command center */
+.cc-bar { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; justify-content: space-between; background: var(--panel); border-radius: 14px; padding: 10px 14px; }
+.cc-st { display: flex; gap: 10px; align-items: flex-start; font-size: 12.5px; color: var(--ink2); min-width: 0; }
+.cc-st b { color: var(--ink); } .cc-st small { display: block; color: var(--muted); font-size: 11.5px; }
+.cc-dot { flex: none; width: 10px; height: 10px; border-radius: 50%; background: var(--warn); margin-top: 4px; } .cc-dot.on { background: var(--good); box-shadow: 0 0 0 4px var(--good-wash); }
+.cc-ctl { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.cc-auto { font-size: 12px; color: var(--ink2); display: inline-flex; gap: 6px; align-items: center; cursor: pointer; }
+.cc-rf { font: 600 12.5px var(--f-body); background: var(--accent); color: #fff; border: 0; border-radius: 99px; padding: 8px 16px; cursor: pointer; } .cc-rf:disabled { opacity: .6; cursor: default; }
+.cc-k { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; }
+.cc-k div { background: var(--panel); border-radius: 16px; padding: 12px 14px; display: grid; gap: 2px; border-top: 4px solid var(--kc, var(--accent)); }
+.cc-k b { font: 300 30px/1.1 var(--f-display); color: var(--ink); font-variant-numeric: tabular-nums; }
+.cc-k span { font-size: 12px; color: var(--muted); }
+.cc-f { display: flex; flex-wrap: wrap; gap: 6px; }
+.cc-f button { font: 600 12.5px var(--f-body); border: 1px solid var(--line); background: var(--surface); color: var(--ink2); border-radius: 99px; padding: 6px 13px; cursor: pointer; }
+.cc-f button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+.cc-main { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 16px; align-items: start; }
+.cc-side { display: grid; gap: 16px; min-width: 0; }
+.cc-card h3 { margin: 0 0 4px; font-size: 15px; }
+.cc-card .sub2 { margin: 0 0 12px; font-size: 12.5px; color: var(--muted); }
+.cc-q { display: grid; gap: 8px; }
+.cc-i { display: grid; grid-template-columns: 10px 1fr auto; gap: 10px; align-items: center; text-align: left; width: 100%; font: inherit; color: inherit; background: var(--panel); border: 2px solid transparent; border-radius: 14px; padding: 10px 12px; cursor: pointer; }
+.cc-i:hover { border-color: var(--line2, var(--line)); }
+.cc-i[aria-expanded="true"] { border-color: var(--accent); }
+.cc-i .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--sc); }
+.cc-i .tx { display: grid; gap: 1px; min-width: 0; font-size: 13px; font-weight: 600; color: var(--ink); }
+.cc-i .tx small { font-weight: 400; font-size: 11.5px; color: var(--muted); }
+.cc-i .du { font: 600 11.5px var(--f-body); color: var(--ink2); white-space: nowrap; }
+.cc-d { background: var(--accent-wash); border-radius: 14px; padding: 12px 14px; display: grid; gap: 8px; font-size: 13px; margin: -2px 0 2px; }
+.cc-d h4 { margin: 0; font: 700 10.5px var(--f-body); letter-spacing: .07em; text-transform: uppercase; color: var(--accent-ink); }
+.cc-d p { margin: 2px 0 0; color: var(--ink2); }
+.cc-d .dec { background: var(--warn-wash); color: var(--warn); border-radius: 10px; padding: 8px 10px; font-size: 12.5px; }
+.cc-d .dec b { color: var(--warn); }
+.cc-empty { color: var(--muted); font-size: 13px; padding: 14px; text-align: center; }
+.cc-tl { display: grid; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.cc-tl li { display: grid; grid-template-columns: 62px 1fr; gap: 10px; align-items: start; font-size: 13px; }
+.cc-tl .dy { font: 700 11px var(--f-body); letter-spacing: .04em; text-transform: uppercase; background: var(--accent-wash); color: var(--accent-ink); border-radius: 8px; padding: 4px 6px; text-align: center; }
+.cc-tl small { display: block; color: var(--muted); font-size: 11.5px; }
+.cc-ag { display: grid; gap: 8px; }
+.cc-ag > div { display: grid; grid-template-columns: 26px 1fr 34px; gap: 8px; align-items: center; font-size: 12.5px; }
+.cc-ag .bar { height: 8px; background: var(--line); border-radius: 99px; overflow: hidden; margin-top: 3px; }
+.cc-ag .bar i { display: block; height: 100%; background: var(--accent); border-radius: 99px; }
+.cc-ag .n { font: 600 12px var(--f-body); text-align: right; font-variant-numeric: tabular-nums; }
+.cc-rg { display: grid; grid-template-columns: repeat(auto-fit, minmax(70px, 1fr)); gap: 8px; }
+.cc-rg div { background: var(--panel); border-radius: 12px; padding: 8px; text-align: center; border-bottom: 4px solid var(--rc); }
+.cc-rg b { display: block; font-size: 13px; } .cc-rg span { font-size: 11px; color: var(--muted); }
+.cc-flow { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.cc-flow div { background: var(--panel); border-radius: 14px; padding: 12px 14px; position: relative; font-size: 12.5px; color: var(--ink2); }
+.cc-flow div:not(:last-child)::after { content: "\2192"; position: absolute; right: -10px; top: 50%; transform: translateY(-50%); color: var(--accent); font-weight: 700; z-index: 1; }
+.cc-flow b { display: block; color: var(--ink); font-size: 13px; margin-bottom: 2px; }
+@media (max-width: 860px) { .cc-main { grid-template-columns: 1fr; } .cc-flow { grid-template-columns: 1fr 1fr; } .cc-flow div::after { display: none; } }
+
 .heroviz { margin-top: 6px; display: grid; gap: 12px; }
 .hv-head { font-size: 13px; font-weight: 600; color: #fff; }
 .hv-wrap { overflow-x: auto; }
@@ -1044,7 +1095,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
       <div class="tgrp" data-g="me"><button role="tab" id="t-fit" aria-selected="true" data-tab="fit">Fit for the role</button><button role="tab" id="t-record" aria-selected="false" data-tab="record">Transformations I've led</button><button role="tab" id="t-action" aria-selected="false" data-tab="action">Employee action form</button><button role="tab" id="t-aibuilds" aria-selected="false" data-tab="aibuilds">AI builds</button><button role="tab" id="t-values" aria-selected="false" data-tab="values">Values in practice</button></div>
       <div class="tgrp" data-g="disc" hidden><button role="tab" id="t-discovery" aria-selected="false" data-tab="discovery">Discovery questions</button></div>
       <div class="tgrp" data-g="comp" hidden><button role="tab" id="t-calendar" aria-selected="false" data-tab="calendar">Compliance calendar</button><button role="tab" id="t-audit" aria-selected="false" data-tab="audit">Compliance audit</button><button role="tab" id="t-controls" aria-selected="false" data-tab="controls">Payroll and benefits controls</button></div>
-      <div class="tgrp" data-g="sys" hidden><button role="tab" id="t-automation" aria-selected="false" data-tab="automation">Automation roadmap</button><button role="tab" id="t-askpeople" aria-selected="false" data-tab="askpeople">AskPeople portal</button><button role="tab" id="t-agents" aria-selected="false" data-tab="agents">AI People Team</button></div>
+      <div class="tgrp" data-g="sys" hidden><button role="tab" id="t-automation" aria-selected="false" data-tab="automation">Automation roadmap</button><button role="tab" id="t-askpeople" aria-selected="false" data-tab="askpeople">AskPeople portal</button><button role="tab" id="t-agents" aria-selected="false" data-tab="agents">AI People Team</button><button role="tab" id="t-command" aria-selected="false" data-tab="command">People team command center</button></div>
       <div class="tgrp" data-g="data" hidden><button role="tab" id="t-dashboard" aria-selected="false" data-tab="dashboard">People Ops dashboard</button><button role="tab" id="t-plan" aria-selected="false" data-tab="plan">Sample first 90 days</button><button role="tab" id="t-roadmap" aria-selected="false" data-tab="roadmap">Annual roadmap</button></div>
       <div class="tgrp" data-g="exp" hidden><button role="tab" id="t-experience" aria-selected="false" data-tab="experience">Employee experience</button><button role="tab" id="t-newhire" aria-selected="false" data-tab="newhire">New hire app</button><button role="tab" id="t-manager" aria-selected="false" data-tab="manager">Manager app</button></div>
     </div>
@@ -1225,6 +1276,35 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
     </div>
   </section>
 
+
+  <!-- COMMAND CENTER -->
+  <section class="panel" id="p-command" role="tabpanel" aria-labelledby="t-command" hidden>
+    <div>
+      <h2>People team command center</h2>
+      <p class="sub">One screen to start the day: what needs a person, what is coming, and what the agents already handled. Select an item to see the next step and who decides.</p>
+    </div>
+    <div class="cc-bar"><div class="cc-st" id="cc-st" role="status" aria-live="polite"></div><div class="cc-ctl"><label class="cc-auto"><input type="checkbox" id="cc-au"> Auto-refresh every 5 min</label><button type="button" id="cc-rf" class="cc-rf">&#8635; Refresh</button></div></div>
+    <div class="cc-k" id="cc-k"></div>
+    <div class="cc-f" id="cc-f" role="group" aria-label="Filter by team"></div>
+    <div class="cc-main">
+      <div class="card cc-card">
+        <h3>Needs a person today</h3>
+        <p class="sub2" id="cc-sub"></p>
+        <div class="cc-q" id="cc-q"></div>
+      </div>
+      <div class="cc-side">
+        <div class="card cc-card"><h3>Next 14 days</h3><p class="sub2">Sample dates, to confirm with advisors.</p><ul class="cc-tl" id="cc-tl"></ul></div>
+        <div class="card cc-card"><h3>Handled by agents this week</h3><p class="sub2">Counts only. A person approves anything that changes a record.</p><div class="cc-ag" id="cc-ag"></div></div>
+        <div class="card cc-card"><h3>Open items by region</h3><p class="sub2">From the queue on the left.</p><div class="cc-rg" id="cc-rg"></div></div>
+      </div>
+    </div>
+    <div class="cc-flow" aria-label="How the command center works">
+      <div><b>1. Sources</b>HRIS, action form, payroll, AskPeople, compliance calendar.</div>
+      <div><b>2. Agents sort</b>They check, summarize, and flag. They never decide.</div>
+      <div><b>3. One view</b>Counts and statuses only. Personal details stay in the source systems.</div>
+      <div><b>4. People act</b>The right owner approves, fixes, or escalates.</div>
+    </div>
+  </section>
 
   <!-- ASKPEOPLE -->
   <section class="panel" id="p-askpeople" role="tabpanel" aria-labelledby="t-askpeople" hidden>
@@ -1957,7 +2037,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
   function opt(vals, first) { return (first ? '<option value="">' + first + '</option>' : '') + vals.map(function (v) { return '<option>' + esc(v) + '</option>'; }).join(''); }
 
   // ---------- tabs ----------
-  var tabs = ['discovery', 'fit', 'calendar', 'automation', 'action', 'askpeople', 'agents', 'aibuilds', 'dashboard', 'audit', 'controls', 'record', 'plan', 'roadmap', 'experience', 'newhire', 'manager', 'values'];
+  var tabs = ['discovery', 'fit', 'calendar', 'automation', 'action', 'askpeople', 'agents', 'command', 'aibuilds', 'dashboard', 'audit', 'controls', 'record', 'plan', 'roadmap', 'experience', 'newhire', 'manager', 'values'];
   function showTab(name) {
     if (tabs.indexOf(name) < 0) name = 'fit';
     tabs.forEach(function (t) {
@@ -2001,6 +2081,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
       controls: [['prop', PROPN], CONCEPT + ' Thresholds and owners are examples.'],
       automation: [['prop', PROPN], CONCEPT],
       askpeople: [['prop', PROPN], CONCEPT],
+      command: [['prop', PROPN], CONCEPT + ' Items, counts, and dates are sample data.'],
       agents: [['prop', PROPN], 'A personal build, not deployed at any employer. Tested against scenarios from my previous experience, using non-PII examples only. Not a description of ATG\'s tools.'],
       dashboard: [['prop', PROPN], CONCEPT + SYN + ' Only the headcount of 391 is publicly reported.'],
       plan: [['prop', PROPN], CONCEPT + LEGAL],
@@ -3184,7 +3265,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
 
   // ---------- fit for the role ----------
   (function () {
-    var TN = { discovery: 'Discovery questions', aibuilds: 'AI builds', askpeople: 'AskPeople portal', calendar: 'Compliance calendar', automation: 'Automation roadmap', action: 'Employee action form', agents: 'AI People Team', dashboard: 'People Ops dashboard', audit: 'Compliance audit', controls: 'Payroll and benefits controls', record: "Transformations I've led", plan: 'Sample first 90 days', roadmap: 'Annual roadmap', experience: 'Employee experience', values: 'Values in practice' };
+    var TN = { discovery: 'Discovery questions', aibuilds: 'AI builds', askpeople: 'AskPeople portal', calendar: 'Compliance calendar', automation: 'Automation roadmap', action: 'Employee action form', agents: 'AI People Team', command: 'People team command center', dashboard: 'People Ops dashboard', audit: 'Compliance audit', controls: 'Payroll and benefits controls', record: "Transformations I've led", plan: 'Sample first 90 days', roadmap: 'Annual roadmap', experience: 'Employee experience', values: 'Values in practice' };
     // requirement, proof tabs, what I bring (written for the hiring manager)
     var RQ = [
       ['Significant experience leading an HR Operations, People Operations or shared-services function', ['record', 'roadmap'], 'Thirteen years in People Operations, including leading the function at Ridecell and Prezent AI and supporting seven annual benefits and year-end cycles.'],
@@ -3765,6 +3846,71 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
   vp.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();go(cur+1)}else if(e.key==='ArrowLeft'){e.preventDefault();go(cur-1)}});
   window.addEventListener('resize',function(){vp.scrollTo({left:cur*vp.clientWidth})});
   mark(0);
+})();
+(function () {
+  var q = document.getElementById('cc-q'); if (!q) return;
+  // Where live data comes from. Edit command-center.json (same folder as index.html) and press Refresh.
+  var CFG = { url: 'command-center.json', every: 300000 };
+  var SC = { crit: 'var(--crit)', warn: 'var(--warn)', info: 'var(--accent)' };
+  var SAMPLE = {
+    updated: null, hires: 14, approvals: 9,
+    queue: [
+      { severity: 'crit', team: 'Talent Acquisition', region: 'UK', title: 'Offer signed: submit the new hire form', detail: 'Senior role, start in 3 weeks', due: 'Today', agent: 'Onboarding agent', next: 'Submit the employee action form so onboarding, right-to-work, and payroll steps start.', decision: 'Offer terms stay with the TA team and the hiring manager.' },
+      { severity: 'crit', team: 'People Ops', region: 'US', title: 'Leave case needs routing', detail: 'Restricted queue, details not shown here', due: 'Today', agent: 'AskPeople agent', next: 'Route to the restricted leave queue owner and confirm the response window.', decision: 'A trained person handles every leave and accommodation case.' },
+      { severity: 'warn', team: 'Compliance', region: 'US', title: 'I-9 section 2 due in 2 business days', detail: '3 new hires', due: 'In 2 days', agent: 'Immigration agent', next: 'Complete the document review with each hire and log it before the deadline.', decision: 'People Ops reviews every document, with counsel for any question.' },
+      { severity: 'warn', team: 'Payroll and Benefits', region: 'MX', title: 'Pre-payroll check has 4 open changes', detail: 'Pay period closes tomorrow', due: 'Tomorrow', agent: 'Payroll agent', next: 'Confirm or reject each change, then release the checklist to the payroll owner.', decision: 'The payroll owner approves before anything is paid.' },
+      { severity: 'warn', team: 'Compliance', region: 'UK', title: 'Right-to-work check not logged', detail: '1 starter next week', due: 'In 3 days', agent: 'Immigration agent', next: 'Complete and log the check before the first day.', decision: 'A person in People Ops completes the check.' },
+      { severity: 'warn', team: 'Payroll and Benefits', region: 'EU', title: 'Bonus run variance above threshold', detail: 'Review before approval', due: 'In 4 days', agent: 'Insights agent', next: 'Compare against the approved plan and explain any gap to Finance.', decision: 'Finance and the payroll owner approve the run.' },
+      { severity: 'info', team: 'Talent Acquisition', region: 'US', title: 'Welcome notes ready to review', detail: '3 starters next week', due: 'In 3 days', agent: 'Onboarding agent', next: 'Add a personal line to each draft, then send.', decision: 'The manager and the TA team approve and send.' },
+      { severity: 'info', team: 'Payroll and Benefits', region: 'UK', title: 'Enrollment reminder draft ready', detail: 'Window opens next week', due: 'In 5 days', agent: 'Benefits agent', next: 'Check dates and plan names against the carrier packet.', decision: 'The benefits owner approves every message.' },
+      { severity: 'info', team: 'People Ops', region: 'US', title: 'Work authorization expiry in 30 days', detail: '1 employee, counts only', due: 'In 6 days', agent: 'Immigration agent', next: 'Start the extension conversation with the employee and the manager.', decision: 'People Ops, with counsel where needed, handles it.' }
+    ],
+    timeline: [['Day 1', 'Pay period closes', 'Payroll and Benefits, MX'], ['Day 3', 'First day for 3 starters', 'Talent Acquisition, US'], ['Day 5', 'Enrollment window opens', 'Payroll and Benefits, UK'], ['Day 9', 'Quarterly filing review', 'Compliance, US'], ['Day 14', 'Monthly headcount report', 'People Ops, all regions']],
+    agents: [['\u{1F44B}', 'Onboarding', 58], ['\u{1F4E5}', 'AskPeople', 52], ['\u{1F4B5}', 'Payroll', 34], ['\u{1FA7A}', 'Benefits', 29], ['\u{1F6C2}', 'Immigration', 21], ['\u{1F4CA}', 'Insights', 18]]
+  };
+  var D = SAMPLE, live = false, note = 'Showing built-in sample data.', checked = null, f = 'All teams', open = -1, timer = null, busy = false;
+  function $(i) { return document.getElementById(i); }
+  function esc(x) { return String(x == null ? '' : x).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  function tm(d) { try { return d.toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }); } catch (e) { return String(d); } }
+  function valid(j) { return j && Array.isArray(j.queue) && j.queue.length && j.queue.every(function (x) { return x && typeof x.title === 'string'; }); }
+  function teams() { var t = ['All teams']; D.queue.forEach(function (x) { if (x.team && t.indexOf(x.team) < 0) t.push(x.team); }); return t; }
+  function draw() {
+    var T = teams(); if (T.indexOf(f) < 0) f = 'All teams';
+    var L = D.queue.map(function (x, i) { return [x, i]; }).filter(function (p) { return f === 'All teams' || p[0].team === f; });
+    var total = (D.agents || []).reduce(function (a, b) { return a + (+b[2] || 0); }, 0), max = Math.max.apply(null, (D.agents || []).map(function (a) { return +a[2] || 0; }).concat([1]));
+    var due = L.filter(function (p) { return /^(today|tomorrow)$/i.test(p[0].due || ''); }).length;
+    $('cc-k').innerHTML = [['' + L.length, 'items need a person' + (f === 'All teams' ? '' : ' (' + f + ')'), 'var(--crit)'], ['' + due, 'due today or tomorrow', 'var(--warn)'], ['' + L.filter(function (p) { return p[0].team === 'Compliance'; }).length, 'compliance items open', 'var(--accent)'], ['' + (D.hires == null ? '-' : D.hires), 'hires starting this month', 'var(--accent)'], ['' + (D.approvals == null ? '-' : D.approvals), 'approvals waiting', 'var(--warn)'], ['' + total, 'handled by agents this week', 'var(--good)']].map(function (k) { return '<div style="--kc:' + k[2] + '"><b>' + esc(k[0]) + '</b><span>' + esc(k[1]) + '</span></div>'; }).join('');
+    $('cc-f').innerHTML = T.map(function (t) { return '<button type="button" data-ccf="' + esc(t) + '" aria-pressed="' + (t === f) + '">' + esc(t) + '</button>'; }).join('');
+    $('cc-q').innerHTML = L.length ? L.map(function (p) {
+      var x = p[0], i = p[1], o = i === open;
+      return '<button type="button" class="cc-i" style="--sc:' + (SC[x.severity] || SC.info) + '" data-cci="' + i + '" aria-expanded="' + o + '"><span class="dot"></span><span class="tx">' + esc(x.title) + '<small>' + esc([x.team, x.region, x.detail].filter(Boolean).join(' · ')) + '</small></span><span class="du">' + esc(x.due) + '</span></button>' +
+        (o ? '<div class="cc-d">' + (x.next ? '<div><h4>Next step</h4><p>' + esc(x.next) + '</p></div>' : '') + (x.agent ? '<div><h4>Prepared by</h4><p>' + esc(x.agent) + '</p></div>' : '') + (x.decision ? '<div class="dec"><b>A person decides:</b> ' + esc(x.decision) + '</div>' : '') + '</div>' : '');
+    }).join('') : '<div class="cc-empty">Nothing waiting for this team.</div>';
+    $('cc-tl').innerHTML = (D.timeline || []).map(function (t) { return '<li><span class="dy">' + esc(t[0]) + '</span><span>' + esc(t[1]) + '<small>' + esc(t[2]) + '</small></span></li>'; }).join('');
+    $('cc-ag').innerHTML = (D.agents || []).map(function (a) { return '<div><span aria-hidden="true">' + esc(a[0]) + '</span><span>' + esc(a[1]) + '<div class="bar"><i style="width:' + Math.round((+a[2] || 0) / max * 100) + '%"></i></div></span><span class="n">' + esc(a[2]) + '</span></div>'; }).join('');
+    var R = []; D.queue.forEach(function (x) { if (x.region && R.indexOf(x.region) < 0) R.push(x.region); });
+    $('cc-rg').innerHTML = R.map(function (r) { var n = D.queue.filter(function (x) { return x.region === r; }).length, c = n >= 3 ? 'var(--warn)' : n === 2 ? 'var(--accent)' : 'var(--good)'; return '<div style="--rc:' + c + '"><b>' + esc(r) + '</b><span>' + n + ' open</span></div>'; }).join('');
+    var asof = D.updated ? new Date(D.updated) : null;
+    $('cc-st').innerHTML = '<span class="cc-dot' + (live ? ' on' : '') + '"></span><span><b>' + (live ? 'Live file' : 'Sample data') + '</b>' + (asof && !isNaN(asof) ? ' · data as of ' + esc(tm(asof)) : '') + (checked ? ' · checked ' + esc(tm(checked)) : '') + '<small>' + esc(note) + '</small></span>';
+  }
+  function load(manual) {
+    if (busy) return; busy = true; var b = $('cc-rf'); if (b) { b.disabled = true; b.textContent = 'Refreshing...'; }
+    var done = function () { busy = false; checked = new Date(); if (b) { b.disabled = false; b.textContent = '↻ Refresh'; } draw(); };
+    var u = CFG.url + (CFG.url.indexOf('?') < 0 ? '?' : '&') + 't=' + Date.now();
+    var p; try { p = fetch(u, { cache: 'no-store' }); } catch (e) { p = Promise.reject(e); }
+    p.then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (j) { if (!valid(j)) throw new Error('bad shape'); D = j; live = true; note = 'Loaded from ' + CFG.url + '. Edit that file and press Refresh.'; done(); })
+      .catch(function () { live = false; if (D === SAMPLE || !manual) { D = SAMPLE; } note = 'Could not load ' + CFG.url + ', so the built-in sample is shown. Host the page with that file beside it to go live.'; done(); });
+  }
+  function auto() { clearInterval(timer); if ($('cc-au') && $('cc-au').checked) timer = setInterval(function () { if (!document.hidden && !$('p-command').hidden) load(false); }, CFG.every); }
+  $('p-command').addEventListener('click', function (e) {
+    if (e.target.closest('#cc-rf')) { load(true); return; }
+    var b = e.target.closest('[data-ccf]'); if (b) { f = b.dataset.ccf; open = -1; draw(); return; }
+    var c = e.target.closest('[data-cci]'); if (c) { var i = +c.dataset.cci; open = open === i ? -1 : i; draw(); var n = document.querySelector('[data-cci="' + i + '"]'); if (n) n.focus({ preventScroll: true }); }
+  });
+  $('cc-au').addEventListener('change', auto);
+  window.addEventListener('hashchange', function () { if (location.hash === '#command') load(false); });
+  draw(); load(false);
 })();
 </script>
 </body></html>
