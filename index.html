@@ -3850,7 +3850,8 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
 (function () {
   var q = document.getElementById('cc-q'); if (!q) return;
   // Where live data comes from. Edit command-center.json (same folder as index.html) and press Refresh.
-  var CFG = { url: 'command-center.json', every: 300000 };
+  var CFG = { sheetId: '17iQUp72zbNCbUWhcfnobggEy_ocB_CrhE-wuFVyWzr4', url: 'command-center.json', every: 300000 };
+  try { var qs = new URLSearchParams(location.search).get('sheet'); if (qs) CFG.sheetId = qs; } catch (e) {}
   var SC = { crit: 'var(--crit)', warn: 'var(--warn)', info: 'var(--accent)' };
   var SAMPLE = {
     updated: null, hires: 14, approvals: 9,
@@ -3868,7 +3869,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
     timeline: [['Day 1', 'Pay period closes', 'Payroll and Benefits, MX'], ['Day 3', 'First day for 3 starters', 'Talent Acquisition, US'], ['Day 5', 'Enrollment window opens', 'Payroll and Benefits, UK'], ['Day 9', 'Quarterly filing review', 'Compliance, US'], ['Day 14', 'Monthly headcount report', 'People Ops, all regions']],
     agents: [['\u{1F44B}', 'Onboarding', 58], ['\u{1F4E5}', 'AskPeople', 52], ['\u{1F4B5}', 'Payroll', 34], ['\u{1FA7A}', 'Benefits', 29], ['\u{1F6C2}', 'Immigration', 21], ['\u{1F4CA}', 'Insights', 18]]
   };
-  var D = SAMPLE, live = false, note = 'Showing built-in sample data.', checked = null, f = 'All teams', open = -1, timer = null, busy = false;
+  var D = SAMPLE, src = 'Sample data', live = false, note = 'Showing built-in sample data.', checked = null, f = 'All teams', open = -1, timer = null, busy = false;
   function $(i) { return document.getElementById(i); }
   function esc(x) { return String(x == null ? '' : x).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
   function tm(d) { try { return d.toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }); } catch (e) { return String(d); } }
@@ -3891,16 +3892,30 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
     var R = []; D.queue.forEach(function (x) { if (x.region && R.indexOf(x.region) < 0) R.push(x.region); });
     $('cc-rg').innerHTML = R.map(function (r) { var n = D.queue.filter(function (x) { return x.region === r; }).length, c = n >= 3 ? 'var(--warn)' : n === 2 ? 'var(--accent)' : 'var(--good)'; return '<div style="--rc:' + c + '"><b>' + esc(r) + '</b><span>' + n + ' open</span></div>'; }).join('');
     var asof = D.updated ? new Date(D.updated) : null;
-    $('cc-st').innerHTML = '<span class="cc-dot' + (live ? ' on' : '') + '"></span><span><b>' + (live ? 'Live file' : 'Sample data') + '</b>' + (asof && !isNaN(asof) ? ' · data as of ' + esc(tm(asof)) : '') + (checked ? ' · checked ' + esc(tm(checked)) : '') + '<small>' + esc(note) + '</small></span>';
+    $('cc-st').innerHTML = '<span class="cc-dot' + (live ? ' on' : '') + '"></span><span><b>' + esc(src) + '</b>' + (asof && !isNaN(asof) ? ' · data as of ' + esc(tm(asof)) : '') + (checked ? ' · checked ' + esc(tm(checked)) : '') + '<small>' + esc(note) + '</small></span>';
   }
+  function parseCSV(t) { var r = [], row = [], c = '', i = 0, q = false, ch; for (; i < t.length; i++) { ch = t[i]; if (q) { if (ch === '"') { if (t[i + 1] === '"') { c += '"'; i++; } else q = false; } else c += ch; } else if (ch === '"') q = true; else if (ch === ',') { row.push(c); c = ''; } else if (ch === '\n' || ch === '\r') { if (ch === '\r' && t[i + 1] === '\n') i++; row.push(c); r.push(row); row = []; c = ''; } else c += ch; } if (c !== '' || row.length) { row.push(c); r.push(row); } return r; }
+  function fromSheet(txt) {
+    var R = parseCSV(txt); if (R.length < 2) throw new Error('empty'); var h = R[0].map(function (x) { return x.trim().toLowerCase(); }), ix = function (n) { return h.indexOf(n); };
+    var g = function (r, n) { var k = ix(n); return k < 0 ? '' : (r[k] || '').trim(); };
+    var o = { updated: null, hires: null, approvals: null, queue: [], timeline: [], agents: [] };
+    R.slice(1).forEach(function (r) {
+      var sec = g(r, 'section').toLowerCase(), v = g(r, 'value');
+      if (sec === 'queue' && g(r, 'title')) o.queue.push({ severity: g(r, 'severity').toLowerCase(), team: g(r, 'team'), region: g(r, 'region'), title: g(r, 'title'), detail: g(r, 'detail'), due: g(r, 'due'), agent: g(r, 'agent'), next: g(r, 'next step'), decision: g(r, 'person decides') });
+      else if (sec === 'timeline' && g(r, 'title')) o.timeline.push([g(r, 'due'), g(r, 'title'), g(r, 'detail')]);
+      else if (sec === 'agent' && g(r, 'title')) o.agents.push([g(r, 'detail'), g(r, 'title'), +v || 0]);
+      else if (sec === 'meta') { var k = g(r, 'title').toLowerCase(); if (k.indexOf('hires') === 0) o.hires = v; else if (k.indexOf('approvals') === 0) o.approvals = v; else if (k.indexOf('data as of') === 0) o.updated = v; }
+    });
+    return o;
+  }
+  function get(u, asText) { var p; try { p = fetch(u, { cache: 'no-store' }); } catch (e) { p = Promise.reject(e); } return p.then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return asText ? r.text() : r.json(); }); }
   function load(manual) {
     if (busy) return; busy = true; var b = $('cc-rf'); if (b) { b.disabled = true; b.textContent = 'Refreshing...'; }
-    var done = function () { busy = false; checked = new Date(); if (b) { b.disabled = false; b.textContent = '↻ Refresh'; } draw(); };
-    var u = CFG.url + (CFG.url.indexOf('?') < 0 ? '?' : '&') + 't=' + Date.now();
-    var p; try { p = fetch(u, { cache: 'no-store' }); } catch (e) { p = Promise.reject(e); }
-    p.then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-      .then(function (j) { if (!valid(j)) throw new Error('bad shape'); D = j; live = true; note = 'Loaded from ' + CFG.url + '. Edit that file and press Refresh.'; done(); })
-      .catch(function () { live = false; if (D === SAMPLE || !manual) { D = SAMPLE; } note = 'Could not load ' + CFG.url + ', so the built-in sample is shown. Host the page with that file beside it to go live.'; done(); });
+    var done = function () { busy = false; checked = new Date(); if (b) { b.disabled = false; b.textContent = '\u21BB Refresh'; } draw(); };
+    var t = '&t=' + Date.now();
+    var fromFile = function () { return get(CFG.url + '?t=' + Date.now()).then(function (j) { if (!valid(j)) throw new Error('bad shape'); D = j; live = true; src = 'Live file'; note = 'Loaded from ' + CFG.url + '. Edit that file and press Refresh.'; }); };
+    var chain = CFG.sheetId ? get('https://docs.google.com/spreadsheets/d/' + CFG.sheetId + '/gviz/tq?tqx=out:csv' + t, true).then(function (x) { var j = fromSheet(x); if (!valid(j)) throw new Error('bad sheet'); D = j; live = true; src = 'Google Sheet'; note = 'Loaded from the shared Google Sheet. Edit the sheet and press Refresh.'; }).catch(fromFile) : fromFile();
+    chain.catch(function () { live = false; src = 'Sample data'; D = SAMPLE; note = 'Could not reach the Google Sheet or ' + CFG.url + ', so the built-in sample is shown. Share the sheet as "Anyone with the link: Viewer" to go live.'; }).then(done);
   }
   function auto() { clearInterval(timer); if ($('cc-au') && $('cc-au').checked) timer = setInterval(function () { if (!document.hidden && !$('p-command').hidden) load(false); }, CFG.every); }
   $('p-command').addEventListener('click', function (e) {
