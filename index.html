@@ -77,6 +77,19 @@ h1 { font-family: var(--f-display); font-weight: 300; font-size: clamp(30px, 6vw
 .car-dots button { width: 10px; height: 10px; padding: 0; border-radius: 50%; border: 0; background: rgba(255,255,255,.35); cursor: pointer; }
 .car-dots button[aria-selected="true"] { background: #4db6ee; width: 26px; border-radius: 6px; }
 .car-n { font-size: 12px; color: var(--on-navy2); font-variant-numeric: tabular-nums; min-width: 38px; text-align: right; }
+.vn { position: relative; display: flex; justify-content: center; align-items: center; margin: 4px 0 2px; }
+.vn-c { width: 360px; height: 360px; border-radius: 50%; display: grid; align-content: center; justify-items: center; gap: 2px; padding: 24px 30px; flex: none; border: 2px solid var(--vc); background: color-mix(in srgb, var(--vc) 20%, transparent); text-align: center; }
+.vn-a { --vc: #6cc4f5; padding-right: 110px; } .vn-b { --vc: #f5b942; margin-left: -96px; padding-left: 110px; }
+.vn-c b { font-size: 21px; color: #fff; line-height: 1.1; } .vn-c em { font-style: normal; font: 600 11px var(--f-body); letter-spacing: .08em; text-transform: uppercase; color: var(--vc); }
+.vn-g { display: grid; grid-template-columns: 1fr 1fr; gap: 12px 10px; margin-top: 12px; width: 100%; }
+.vn-o { display: grid; justify-items: center; align-content: start; gap: 5px; text-align: center; }
+.vn-o i { font-style: normal; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; font-size: 20px; background: rgba(255,255,255,.92); box-shadow: 0 0 0 3px color-mix(in srgb, var(--vc, #ffffff) 55%, transparent); }
+.vn-o span { font: 600 10px/1.25 var(--f-body); letter-spacing: .06em; text-transform: uppercase; color: var(--on-navy); }
+.vn-m { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font: 700 11px var(--f-body); letter-spacing: .1em; text-transform: uppercase; color: #fff; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.4); border-radius: 99px; padding: 5px 11px; }
+.vn-both { display: grid; justify-items: center; gap: 8px; }
+.vn-both > b { font: 700 11px var(--f-body); letter-spacing: .1em; text-transform: uppercase; color: #fff; }
+.vn-g3 { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 26px; } .vn-g3 .vn-o { width: 110px; } .vn-g3 .vn-o i { --vc: #ffffff; }
+@media (max-width: 720px) { .vn { flex-direction: column; } .vn-c { width: min(320px, 100%); height: 320px; padding: 20px 22px; } .vn-a, .vn-b { padding-left: 22px; padding-right: 22px; } .vn-b { margin: -52px 0 0; } .vn-m { display: none; } .vn-c b { font-size: 19px; } .vn-o i { width: 38px; height: 38px; font-size: 18px; } .vn-g { gap: 8px; margin-top: 8px; } }
 @media (prefers-reduced-motion: no-preference) { .car-vp { scroll-behavior: smooth; } }
 @media (max-width: 520px) { .car-sl { min-height: 300px; } .car-n { display: none; } }
 .src { font-size: 11px; color: var(--on-navy2); opacity: .85; }
@@ -1052,6 +1065,15 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
             <div><b>391</b><span>employees (30 Sep 2025)</span></div>
           </div>
           <div class="src">Public company on the London Stock Exchange. Headcount from S&amp;P Global Market Intelligence. FY25 annual report is the latest official report.</div>
+        </div>
+        <div class="car-sl" id="car-s3b" aria-roledescription="slide">
+          <h2 class="car-h">Two companies, one way of working</h2>
+          <div class="vn" role="img" aria-label="Two overlapping circles. Ridecell, 7 years: 7 countries, about 100 employees, one HRIS, one set of handbooks. Prezent AI, 3 months: only US People employee, 4 countries, 3 AI builds, run in parallel. Carried across both: four-approval change form, documented I-9 process, handbooks.">
+            <div class="vn-c vn-a"><em>7 years</em><b>Ridecell</b><div class="vn-g"><div class="vn-o"><i aria-hidden="true">&#127757;</i><span>7 countries</span></div><div class="vn-o"><i aria-hidden="true">&#128101;</i><span>About 100 employees</span></div><div class="vn-o"><i aria-hidden="true">&#128450;&#65039;</i><span>One HRIS</span></div><div class="vn-o"><i aria-hidden="true">&#128216;</i><span>One set of handbooks</span></div></div></div>
+            <div class="vn-c vn-b"><em>3 months</em><b>Prezent AI</b><div class="vn-g"><div class="vn-o"><i aria-hidden="true">&#129485;</i><span>Only US People employee</span></div><div class="vn-o"><i aria-hidden="true">&#127760;</i><span>4 countries</span></div><div class="vn-o"><i aria-hidden="true">&#129302;</i><span>3 AI builds</span></div><div class="vn-o"><i aria-hidden="true">&#128256;</i><span>Run in parallel</span></div></div></div>
+            <div class="vn-m" aria-hidden="true">Both</div>
+          </div>
+          <div class="vn-both"><b>Carried across both</b><div class="vn-g3"><div class="vn-o"><i aria-hidden="true">&#9989;</i><span>Four-approval change form</span></div><div class="vn-o"><i aria-hidden="true">&#128706;</i><span>Documented I-9 process</span></div><div class="vn-o"><i aria-hidden="true">&#128216;</i><span>Handbooks</span></div></div></div>
         </div>
         <div class="car-sl" id="car-s3" aria-roledescription="slide" aria-label="3 of 4">
           <h2 class="car-h">Where my People Operations work has reached</h2>
@@ -3837,7 +3859,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
   var vp=document.getElementById('car-vp'); if(!vp) return;
   var sl=[].slice.call(vp.querySelectorAll('.car-sl')), dots=document.getElementById('car-dots'),
       pv=document.getElementById('car-prev'), nx=document.getElementById('car-next'), nn=document.getElementById('car-n'), cur=0;
-  sl.forEach(function(_,i){var b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.setAttribute('aria-label','Slide '+(i+1));b.addEventListener('click',function(){go(i)});dots.appendChild(b)});
+  sl.forEach(function(x,i){x.setAttribute('aria-label',(i+1)+' of '+sl.length);var b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.setAttribute('aria-label','Slide '+(i+1));b.addEventListener('click',function(){go(i)});dots.appendChild(b)});
   function mark(i){cur=i;[].forEach.call(dots.children,function(d,j){d.setAttribute('aria-selected',j===i)});pv.disabled=i===0;nx.disabled=i===sl.length-1;nn.textContent=(i+1)+' / '+sl.length;
     sl.forEach(function(x,j){if(j===i)x.removeAttribute('aria-hidden');else x.setAttribute('aria-hidden','true')})}
   function go(i){i=Math.max(0,Math.min(sl.length-1,i));vp.scrollTo({left:i*vp.clientWidth});mark(i)}
