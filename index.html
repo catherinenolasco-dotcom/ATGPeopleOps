@@ -918,8 +918,8 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
 #welcome .wc-note { font-size: 12.5px; color: #86a2b6; margin: -4px 0 0; }
 #welcome .wc-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 250px)); gap: 22px; justify-content: center; margin: 14px 0 6px; width: 100%; }
 #welcome .wc-card { text-align: left; font: inherit; color: inherit; cursor: pointer; background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03)); border: 1px solid rgba(160,205,232,.28); border-radius: 22px; padding: 16px 18px 16px; display: grid; gap: 8px; box-shadow: 0 18px 40px rgba(0,0,0,.35); transition: transform .3s ease, border-color .3s; }
-#welcome .wc-card:nth-child(1) { transform: rotate(-3deg) translateY(10px); } #welcome .wc-card:nth-child(2) { transform: translateY(-6px); } #welcome .wc-card:nth-child(3) { transform: rotate(3deg) translateY(10px); }
-#welcome .wc-card:hover { transform: rotate(0) translateY(-6px); border-color: rgba(143,208,245,.7); }
+#welcome .wc-card:nth-child(n) { transform: none; } #welcome .wc-card { display: flex; flex-direction: column; align-items: stretch; gap: 10px; } #welcome .wc-card > :last-child { margin-top: auto; } #welcome .wc-card h3 { margin-top: 4px; } #welcome .wc-card .gt { margin-top: auto !important; }
+#welcome .wc-card:hover { transform: translateY(-4px); border-color: rgba(143,208,245,.7); }
 #welcome .wc-card .r1 { display: flex; justify-content: space-between; align-items: center; }
 #welcome .wc-card .n { width: 28px; height: 28px; border-radius: 9px; background: rgba(58,160,220,.2); border: 1px solid rgba(124,195,236,.4); color: #bfe3f7; display: grid; place-items: center; font: 700 13px var(--f-body); }
 #welcome .wc-card .dots { color: #8fd0f5; letter-spacing: 3px; font-size: 14px; }
@@ -968,24 +968,17 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
 <section id="welcome" role="dialog" aria-modal="true" aria-labelledby="wc-h">
   <div class="wc">
     <div class="wc-top"><span class="wc-logo">CN</span>Cat Nolasco &middot; People Operations</div>
-    <div class="wc-badge">&#10024; A thank you, in visuals</div>
-    <h1 id="wc-h">Dear <em>Jenn</em>, thank you for such a <em>great</em> conversation.</h1>
-    <p class="wc-lede">I really enjoyed meeting you and talking with you. I have been thinking a lot about what we discussed, and I have been putting my thoughts and reflections into visuals so you can see what I would bring to ATG.</p>
-    <p class="wc-lede">There is no pressure to look at all of it. Open one card, skim for five minutes, or save it for later. Whatever is useful, I hope it adds to our conversation.</p>
-    <button type="button" class="wc-cta" id="wc-go">Click here to see it <span class="ar">&rarr;</span></button>
-    <p class="wc-note">Or jump straight to one part:</p>
+    <div class="wc-badge">Thoughts and approach</div>
+    <h1 id="wc-h">ATG People Operations: <em>thoughts</em> and <em>approach</em></h1>
+    <p class="wc-lede">Pick any card to start. Each part stands on its own.</p>
+    <button type="button" class="wc-cta" id="wc-go">Open the full page <span class="ar">&rarr;</span></button>
+    <p class="wc-note">Or start with one part</p>
     <div class="wc-cards">
-      <button type="button" class="wc-card" data-wc="fit"><div class="r1"><span class="n">1</span><span class="dots">&bull;&bull;&bull;&bull;</span></div><div class="ic">&#129517;</div><h3>My experience and fit</h3><p>Where I have done this work, and how it connects to the role.</p><div class="gt">Open this &rarr;</div></button>
-      <article class="wc-card"><div class="r1"><span class="n">2</span><span class="dots">&bull;&bull;&bull;&bull;</span></div><div class="ic">&#129302;</div><h3>How I use AI, safely</h3><p>Three real builds, an AI People Team of ten agents, and the BRD process, with a person always approving.</p><div class="wc-agents" role="list" aria-label="The ten AI People Team agents"><span title="Onboarding agent" aria-label="Onboarding agent">👋</span><span title="Offboarding agent" aria-label="Offboarding agent">🚪</span><span title="Benefits agent" aria-label="Benefits agent">💙</span><span title="Payroll agent" aria-label="Payroll agent">💵</span><span title="Engagement agent" aria-label="Engagement agent">😊</span><span title="Immigration agent" aria-label="Immigration agent">🌍</span><span title="Leave agent" aria-label="Leave agent">🗓️</span><span title="Compliance agent" aria-label="Compliance agent">🛡️</span><span title="AskPeople agent" aria-label="AskPeople agent">📥</span><span title="Insights agent" aria-label="Insights agent">📊</span></div><div class="gt wc-two"><button type="button" data-wc="aibuilds">AI builds &rarr;</button><button type="button" data-wc="agents">Meet the 10 agents &rarr;</button></div></article>
-      <button type="button" class="wc-card" data-wc="experience"><div class="r1"><span class="n">3</span><span class="dots">&bull;&bull;&bull;&bull;</span></div><div class="ic">&#128155;</div><h3>Employee and new hire experience</h3><p>Ideas for the whole employee journey, plus tappable new hire and manager apps.</p><div class="gt">Open this &rarr;</div></button>
+      <button type="button" class="wc-card" data-wc="fit"><div class="r1"><span class="n">1</span></div><div class="ic">&#129517;</div><h3>My experience and fit</h3><p>Where I have done this work, and how it fits the role.</p><div class="gt">Open this &rarr;</div></button>
+      <article class="wc-card"><div class="r1"><span class="n">2</span></div><div class="ic">&#129302;</div><h3>How I use AI, safely</h3><p>Three builds, ten AI agents, and the BRD process, with a person always approving.</p><div class="wc-agents" role="list" aria-label="The ten AI People Team agents"><span title="Onboarding agent" aria-label="Onboarding agent">👋</span><span title="Offboarding agent" aria-label="Offboarding agent">🚪</span><span title="Benefits agent" aria-label="Benefits agent">💙</span><span title="Payroll agent" aria-label="Payroll agent">💵</span><span title="Engagement agent" aria-label="Engagement agent">😊</span><span title="Immigration agent" aria-label="Immigration agent">🌍</span><span title="Leave agent" aria-label="Leave agent">🗓️</span><span title="Compliance agent" aria-label="Compliance agent">🛡️</span><span title="AskPeople agent" aria-label="AskPeople agent">📥</span><span title="Insights agent" aria-label="Insights agent">📊</span></div><div class="gt wc-two"><button type="button" data-wc="aibuilds">AI builds &rarr;</button><button type="button" data-wc="agents">Meet the 10 agents &rarr;</button></div></article>
+      <button type="button" class="wc-card" data-wc="experience"><div class="r1"><span class="n">3</span></div><div class="ic">&#128155;</div><h3>Employee and new hire experience</h3><p>The employee journey, plus tappable new hire and manager apps.</p><div class="gt">Open this &rarr;</div></button>
     </div>
-    <div class="wc-strip">
-      <div><span class="e">&#9201;&#65039;</span><b>Skim in 5 minutes</b><span class="d">Or take it slower, your call</span></div>
-      <div><span class="e">&#129517;</span><b>Start anywhere</b><span class="d">Every section stands on its own</span></div>
-      <div><span class="e">&#128274;</span><b>Public information only</b><span class="d">Samples and ideas are labeled</span></div>
     </div>
-    <p class="wc-sign">Thank you again, Cat</p>
-  </div>
 </section>
 
 <div class="hero">
