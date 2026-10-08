@@ -1,8 +1,8 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>People Operations Experience and Sample Approaches</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>People Operations Demo: Fictional Sample</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Kalam:wght@400;700&display=swap');
 
-/* Layout: navy hero with company numbers, sticky pill tabs, then white working panels with rounded cards, echoing the ATG site's navy, bright blue, and light Montserrat headings. */
+/* Layout: navy hero with company numbers, sticky pill tabs, then white working panels with rounded cards, echoing the site's navy, bright blue, and light Montserrat headings. */
 :root {
   --bg: #ffffff;
   --surface: #ffffff;
@@ -58,6 +58,27 @@ h1 { font-family: var(--f-display); font-weight: 300; font-size: clamp(30px, 6vw
 .glance div { border-top: 1px solid rgba(255,255,255,.22); padding-top: 8px; }
 .glance b { display: block; font-weight: 300; font-size: 30px; line-height: 1.1; color: #4db6ee; font-variant-numeric: tabular-nums; }
 .glance span { font-size: 12px; color: var(--on-navy2); }
+/* hero carousel */
+.car { display: grid; gap: 12px; }
+.car-vp { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; -webkit-overflow-scrolling: touch; border-radius: 14px; outline-offset: 4px; }
+.car-vp::-webkit-scrollbar { display: none; }
+.car-sl { flex: 0 0 100%; scroll-snap-align: start; display: grid; gap: 14px; align-content: center; min-height: 250px; padding: 4px 2px; }
+.car-h { margin: 0; font-size: clamp(20px, 3.4vw, 26px); font-weight: 600; color: #fff; line-height: 1.2; }
+.car-ul { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; font-size: 15px; color: var(--on-navy); max-width: 70ch; }
+.car-ul li { border-left: 3px solid #4db6ee; padding-left: 12px; }
+.car-ul b { color: #fff; }
+.car-sl .glance { margin-top: 0; }
+.car-sl .heroviz { margin-top: 0; }
+.car-bar { display: flex; align-items: center; gap: 12px; }
+.car-b { width: 38px; height: 38px; border-radius: 50%; border: 1px solid rgba(255,255,255,.35); background: transparent; color: #fff; font-size: 22px; line-height: 1; cursor: pointer; display: grid; place-items: center; padding: 0 0 3px; }
+.car-b:hover { background: rgba(255,255,255,.12); }
+.car-b:disabled { opacity: .35; cursor: default; }
+.car-dots { display: flex; gap: 8px; flex: 1; justify-content: center; }
+.car-dots button { width: 10px; height: 10px; padding: 0; border-radius: 50%; border: 0; background: rgba(255,255,255,.35); cursor: pointer; }
+.car-dots button[aria-selected="true"] { background: #4db6ee; width: 26px; border-radius: 6px; }
+.car-n { font-size: 12px; color: var(--on-navy2); font-variant-numeric: tabular-nums; min-width: 38px; text-align: right; }
+@media (prefers-reduced-motion: no-preference) { .car-vp { scroll-behavior: smooth; } }
+@media (max-width: 520px) { .car-sl { min-height: 300px; } .car-n { display: none; } }
 .src { font-size: 11px; color: var(--on-navy2); opacity: .85; }
 
 /* tabs */
@@ -663,7 +684,9 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
 .nhev .acts { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 7px; }
 .nhlink { font: 600 11.5px var(--f-body); border: 1px solid var(--accent); color: var(--accent-ink); background: transparent; border-radius: 99px; padding: 5px 10px; cursor: pointer; transition: background .2s ease; }
 .nhlink:hover { background: var(--accent-wash); } .nhlink.on { background: var(--good-wash); border-color: transparent; color: var(--good); }
-.nhhb { background: var(--panel); border-radius: 14px; overflow: hidden; }
+.nhhb { background: var(--panel); border-radius: 14px; overflow: hidden; min-height: min-content; flex: none; }
+.nhhb .bd > div { min-height: 0; }
+.nhhb > button > span:nth-child(2) { min-width: 0; overflow-wrap: anywhere; }
 .nhhb > button { display: grid; grid-template-columns: 28px 1fr 16px; gap: 8px; align-items: center; width: 100%; text-align: left; border: 0; background: transparent; padding: 11px 12px; font: 600 13px var(--f-body); color: var(--ink); cursor: pointer; }
 .nhhb > button .ch { transition: transform .25s ease; color: var(--muted); } .nhhb.open > button .ch { transform: rotate(90deg); }
 .nhhb .bd { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .3s ease; } .nhhb.open .bd { grid-template-rows: 1fr; }
@@ -935,46 +958,71 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
 
 <section id="welcome" role="dialog" aria-modal="true" aria-labelledby="wc-h">
   <div class="wc">
-    <div class="wc-top"><span class="wc-logo">CN</span>Cat Nolasco &middot; People Operations</div>
+    <div class="wc-top"><span class="wc-logo">AR</span>Alex Rivera &middot; People Operations</div>
     <div class="wc-badge">&#10024; A thank you, in visuals</div>
-    <h1 id="wc-h">Dear <em>Jenn</em>, thank you for such a <em>great</em> conversation.</h1>
-    <p class="wc-lede">I really enjoyed meeting you and talking with you. I have been thinking a lot about what we discussed, and I have been putting my thoughts and reflections into visuals so you can see what I would bring to ATG.</p>
+    <h1 id="wc-h">Dear <em>Morgan</em>, thank you for such a <em>great</em> conversation.</h1>
+    <p class="wc-lede">I really enjoyed meeting you and talking with you. I have been thinking a lot about what we discussed, and I have been putting my thoughts and reflections into visuals so you can see what I would bring to Northwind.</p>
     <p class="wc-lede">There is no pressure to look at all of it. Open one card, skim for five minutes, or save it for later. Whatever is useful, I hope it adds to our conversation.</p>
     <button type="button" class="wc-cta" id="wc-go">Click here to see it <span class="ar">&rarr;</span></button>
     <p class="wc-note">Or jump straight to one part:</p>
     <div class="wc-cards">
       <button type="button" class="wc-card" data-wc="fit"><div class="r1"><span class="n">1</span><span class="dots">&bull;&bull;&bull;&bull;</span></div><div class="ic">&#129517;</div><h3>My experience and fit</h3><p>Where I have done this work, and how it connects to the role.</p><div class="gt">Open this &rarr;</div></button>
-      <article class="wc-card"><div class="r1"><span class="n">2</span><span class="dots">&bull;&bull;&bull;&bull;</span></div><div class="ic">&#129302;</div><h3>How I use AI, safely</h3><p>Three real builds, an AI People Team of ten agents, and the BRD process, with a person always approving.</p><div class="wc-agents" role="list" aria-label="The ten AI People Team agents"><span title="Onboarding agent" aria-label="Onboarding agent">👋</span><span title="Offboarding agent" aria-label="Offboarding agent">🚪</span><span title="Benefits agent" aria-label="Benefits agent">💙</span><span title="Payroll agent" aria-label="Payroll agent">💵</span><span title="Engagement agent" aria-label="Engagement agent">😊</span><span title="Immigration agent" aria-label="Immigration agent">🌍</span><span title="Leave agent" aria-label="Leave agent">🗓️</span><span title="Compliance agent" aria-label="Compliance agent">🛡️</span><span title="AskPeople agent" aria-label="AskPeople agent">📥</span><span title="Insights agent" aria-label="Insights agent">📊</span></div><div class="gt wc-two"><button type="button" data-wc="aibuilds">AI builds &rarr;</button><button type="button" data-wc="agents">Meet the 10 agents &rarr;</button></div></article>
+      <article class="wc-card"><div class="r1"><span class="n">2</span><span class="dots">&bull;&bull;&bull;&bull;</span></div><div class="ic">&#129302;</div><h3>How I use AI, safely</h3><p>Three sample builds, an AI People Team of ten agents, and the BRD process, with a person always approving.</p><div class="wc-agents" role="list" aria-label="The ten AI People Team agents"><span title="Onboarding agent" aria-label="Onboarding agent">👋</span><span title="Offboarding agent" aria-label="Offboarding agent">🚪</span><span title="Benefits agent" aria-label="Benefits agent">💙</span><span title="Payroll agent" aria-label="Payroll agent">💵</span><span title="Engagement agent" aria-label="Engagement agent">😊</span><span title="Immigration agent" aria-label="Immigration agent">🌍</span><span title="Leave agent" aria-label="Leave agent">🗓️</span><span title="Compliance agent" aria-label="Compliance agent">🛡️</span><span title="AskPeople agent" aria-label="AskPeople agent">📥</span><span title="Insights agent" aria-label="Insights agent">📊</span></div><div class="gt wc-two"><button type="button" data-wc="aibuilds">AI builds &rarr;</button><button type="button" data-wc="agents">Meet the 10 agents &rarr;</button></div></article>
       <button type="button" class="wc-card" data-wc="experience"><div class="r1"><span class="n">3</span><span class="dots">&bull;&bull;&bull;&bull;</span></div><div class="ic">&#128155;</div><h3>Employee and new hire experience</h3><p>Ideas for the whole employee journey, plus tappable new hire and manager apps.</p><div class="gt">Open this &rarr;</div></button>
     </div>
     <div class="wc-strip">
       <div><span class="e">&#9201;&#65039;</span><b>Skim in 5 minutes</b><span class="d">Or take it slower, your call</span></div>
       <div><span class="e">&#129517;</span><b>Start anywhere</b><span class="d">Every section stands on its own</span></div>
-      <div><span class="e">&#128274;</span><b>Public information only</b><span class="d">Samples and ideas are labeled</span></div>
+      <div><span class="e">&#128274;</span><b>Fictional data only</b><span class="d">Samples and ideas are labeled</span></div>
     </div>
-    <p class="wc-sign">Thank you again, Cat</p>
+    <p class="wc-sign">Thank you again, Alex</p>
   </div>
 </section>
 
 <div class="hero">
   <div class="wrap">
-    <div class="eyebrow">A candidate-created working sample by Cat Nolasco, built from public information</div>
-    <h1>People Operations: experience, discovery questions, and sample approaches</h1>
-    <p class="lede">I start with work I have actually done. After that, optional sample approaches show how I think, and a set of discovery questions shows what I would want to learn about ATG before suggesting anything.</p>
-    <div class="glance" aria-label="ATG at a glance">
-      <div><b>10</b><span>digital marketplaces</span></div>
-      <div><b>3,900+</b><span>auction houses on the platforms</span></div>
-      <div><b>190+</b><span>countries with bidders</span></div>
-      <div><b>99,000+</b><span>auctions facilitated in FY25</span></div>
-      <div><b>5</b><span>offices globally</span></div>
-      <div><b>391</b><span>employees, as of 30 Sep 2025</span></div>
-    </div>
-    <div class="src">ATG is a public company listed on the London Stock Exchange, so these figures come from its public About us page and reporting. Headcount is as of 30 September 2025 (S&amp;P Global Market Intelligence); the FY25 annual report is the latest official report.</div>
-    <p class="note">A working sample built from ATG's public information. The experience tabs describe my own work. The sample approaches are ideas to talk through with the team, and the figures in them are illustrative, not ATG data. Nothing here is legal advice.</p>
-    <div class="heroviz">
-      <div class="hv-head">Where my People Operations work has reached</div>
-      <div class="hv-wrap"><table class="hv-grid" aria-label="Countries supported at Ridecell and Prezent AI"><thead><tr><td></td><th scope="col">US</th><th scope="col">India</th><th scope="col">Germany</th><th scope="col">Spain</th><th scope="col">France</th><th scope="col">Canada</th><th scope="col">Japan</th><th scope="col">UK</th><th scope="col">Dubai</th></tr></thead><tbody><tr><th scope="row"><i class="hv-dot" style="background:#6cc4f5"></i>Ridecell<small>7 years</small></th><td><i class="hv-dot" style="background:#6cc4f5"></i></td><td><i class="hv-dot" style="background:#6cc4f5"></i></td><td><i class="hv-dot" style="background:#6cc4f5"></i></td><td><i class="hv-dot" style="background:#6cc4f5"></i></td><td><i class="hv-dot" style="background:#6cc4f5"></i></td><td><i class="hv-dot" style="background:#6cc4f5"></i></td><td><i class="hv-dot" style="background:#6cc4f5"></i></td><td></td><td></td></tr><tr><th scope="row"><i class="hv-dot" style="background:#f5b942"></i>Prezent AI<small>3 months</small></th><td><i class="hv-dot" style="background:#f5b942"></i></td><td><i class="hv-dot" style="background:#f5b942"></i></td><td></td><td></td><td></td><td></td><td></td><td><i class="hv-dot" style="background:#f5b942"></i></td><td><i class="hv-dot" style="background:#f5b942"></i></td></tr></tbody></table></div>
-      <div class="hv-note">I tell each story on the tabs below, with what I owned and what I supported.</div>
+    <div class="eyebrow">A fictional demo by Alex Rivera. Every name, company and figure is made up</div>
+    <div class="car" id="car" role="region" aria-roledescription="carousel" aria-label="Introduction">
+      <div class="car-vp" id="car-vp" tabindex="0">
+        <div class="car-sl" id="car-s1" aria-roledescription="slide" aria-label="1 of 4">
+          <h1>People Operations: my experience, my questions, and a few sample ideas</h1>
+          <p class="lede">Real work first. Then optional ideas to talk through. Then the questions I would ask before suggesting anything for Northwind.</p>
+        </div>
+        <div class="car-sl" id="car-s2" aria-roledescription="slide" aria-label="2 of 4">
+          <h2 class="car-h">Northwind at a glance</h2>
+          <div class="glance" aria-label="Northwind at a glance">
+            <div><b>10</b><span>digital marketplaces</span></div>
+            <div><b>3,900+</b><span>auction houses</span></div>
+            <div><b>190+</b><span>countries with bidders</span></div>
+            <div><b>99,000+</b><span>auctions last year</span></div>
+            <div><b>5</b><span>offices globally</span></div>
+            <div><b>391</b><span>employees (fictional)</span></div>
+          </div>
+          <div class="src">All figures are fictional and for demonstration only.</div>
+        </div>
+        <div class="car-sl" id="car-s3" aria-roledescription="slide" aria-label="3 of 4">
+          <h2 class="car-h">Where my People Operations work has reached</h2>
+          <div class="heroviz">
+            <div class="hv-wrap"><table class="hv-grid" aria-label="Countries supported at Brightpath and Orbit Labs"><thead><tr><td></td><th scope="col">US</th><th scope="col">India</th><th scope="col">Germany</th><th scope="col">Spain</th><th scope="col">France</th><th scope="col">Canada</th><th scope="col">Japan</th><th scope="col">UK</th><th scope="col">Dubai</th></tr></thead><tbody><tr><th scope="row"><i class="hv-dot" style="background:#6cc4f5"></i>Brightpath<small>7 years</small></th><td><i class="hv-dot" style="background:#6cc4f5"></i></td><td><i class="hv-dot" style="background:#6cc4f5"></i></td><td><i class="hv-dot" style="background:#6cc4f5"></i></td><td><i class="hv-dot" style="background:#6cc4f5"></i></td><td><i class="hv-dot" style="background:#6cc4f5"></i></td><td><i class="hv-dot" style="background:#6cc4f5"></i></td><td><i class="hv-dot" style="background:#6cc4f5"></i></td><td></td><td></td></tr><tr><th scope="row"><i class="hv-dot" style="background:#f5b942"></i>Orbit Labs<small>3 months</small></th><td><i class="hv-dot" style="background:#f5b942"></i></td><td><i class="hv-dot" style="background:#f5b942"></i></td><td></td><td></td><td></td><td></td><td></td><td><i class="hv-dot" style="background:#f5b942"></i></td><td><i class="hv-dot" style="background:#f5b942"></i></td></tr></tbody></table></div>
+          </div>
+          <div class="hv-note">Each story is on the tabs below, with what I owned and what I supported.</div>
+        </div>
+        <div class="car-sl" id="car-s4" aria-roledescription="slide" aria-label="4 of 4">
+          <h2 class="car-h">How to read this</h2>
+          <ul class="car-ul">
+            <li><b>My experience</b> describes my own work.</li>
+            <li><b>Sample approaches</b> are ideas to discuss. Figures in them are illustrative, not Northwind data.</li>
+            <li><b>Discovery questions</b> are what I would listen for first.</li>
+            <li>Nothing here is legal advice.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="car-bar">
+        <button type="button" class="car-b" id="car-prev" aria-label="Previous slide">&#8249;</button>
+        <div class="car-dots" id="car-dots" role="tablist" aria-label="Choose slide"></div>
+        <span class="car-n" id="car-n" aria-live="polite">1 / 4</span>
+        <button type="button" class="car-b" id="car-next" aria-label="Next slide">&#8250;</button>
+      </div>
     </div>
   </div>
 </div>
@@ -1006,7 +1054,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
   <section class="panel" id="p-discovery" role="tabpanel" aria-labelledby="t-discovery" hidden>
     <div>
       <h2>What I would want to learn first</h2>
-      <p class="sub">Before suggesting anything for ATG, I would listen. These are the questions I would bring to the first conversations with People, Finance, Legal, IT, and regional leaders. Every sample approach on this page should be read as a hypothesis these answers would confirm, change, or replace.</p>
+      <p class="sub">Before suggesting anything for Northwind, I would listen. These are the questions I would bring to the first conversations with People, Finance, Legal, IT, and regional leaders. Every sample approach on this page should be read as a hypothesis these answers would confirm, change, or replace.</p>
     </div>
     <div class="dq">
       <div class="card"><h3>Priorities and context</h3><ol>
@@ -1036,24 +1084,24 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
   <section class="panel" id="p-fit" role="tabpanel" aria-labelledby="t-fit">
     <div>
       <h2>How I match the role's requirements</h2>
-      <p class="sub">ATG's eleven key requirements, what I bring to each, and where this page shows it. Select a tab name to jump to the proof.</p>
+      <p class="sub">Northwind's eleven key requirements, what I bring to each, and where this page shows it. Select a tab name to jump to the proof.</p>
     </div>
     <div>
       <h3 style="margin:0 0 6px">My path in one view</h3>
       <div class="tl" role="list">
         <div class="nd" role="listitem"><small>Earlier roles</small><h4>HR and HRIS foundations</h4><p>Hands-on HR roles that built my systems and compliance base, including an HRIS implementation and SOX compliance, plus Munchery.</p><div class="chips"><span>HRIS</span><span>SOX</span><span>People Operations</span></div></div>
-        <div class="nd" role="listitem"><small>7 years</small><h4>Director of People Operations, Ridecell</h4><p>Built the People Ops function, moved the company to one HRIS, and launched AskPeople for global employee questions.</p><div class="chips"><span>US</span><span>India</span><span>Germany</span><span>Spain</span><span>France</span><span>Canada</span><span>Japan</span></div></div>
-        <div class="nd" role="listitem"><small>3 months</small><h4>Head of People Operations, Prezent AI</h4><p>Only US People employee. Built the four-approval change form and three AI tools to run work in parallel.</p><div class="chips"><span>US</span><span>India</span><span>UK</span><span>Dubai</span></div></div>
+        <div class="nd" role="listitem"><small>7 years</small><h4>Director of People Operations, Brightpath</h4><p>Built the People Ops function, moved the company to one HRIS, and launched AskPeople for global employee questions.</p><div class="chips"><span>US</span><span>India</span><span>Germany</span><span>Spain</span><span>France</span><span>Canada</span><span>Japan</span></div></div>
+        <div class="nd" role="listitem"><small>3 months</small><h4>Head of People Operations, Orbit Labs</h4><p>Only US People employee. Built the four-approval change form and three AI tools to run work in parallel.</p><div class="chips"><span>US</span><span>India</span><span>UK</span><span>Dubai</span></div></div>
         <div class="nd now" role="listitem"><small>Now</small><h4>Ready for the next chapter</h4><p>Looking to bring clear, accountable People Operations systems to a global team.</p></div>
       </div>
     </div>
     <div>
       <h3 style="margin:0 0 10px">Start here: four things I have actually done</h3>
       <div class="starthere" id="start-here">
-        <div class="sh"><b>4</b><h3>Approval levels on one change form</h3><p>At Ridecell and Prezent AI I replaced a manual, undocumented change process with one form: manager, finance, HR, and payroll approvals, plus a full audit trail.</p><button type="button" class="go" data-go="action">See the form</button></div>
-        <div class="sh"><b>24 to 48 hrs</b><h3>I-9 completion after day one</h3><p>At Ridecell an audit found incomplete documents, late filings, and no clear owner. I built a structured process with checklists and deadlines, and ran it at Prezent AI too.</p><button type="button" class="go" data-go="record">See the story</button></div>
-        <div class="sh"><b>1 HRIS</b><h3>One system and one set of handbooks</h3><p>At Ridecell I led the move from ADP to Sapling and standardized onboarding, offboarding, and handbooks across the US, India, and Europe. I built handbooks at Prezent AI as well.</p><button type="button" class="go" data-go="record">See the story</button></div>
-        <div class="sh"><b>3</b><h3>AI builds at Prezent AI</h3><p>As the only US People employee, I built three tools that let a reduction in force, hiring, and a compliance audit move forward at the same time.</p><button type="button" class="go" data-go="aibuilds">See the builds</button></div>
+        <div class="sh"><b>4</b><h3>Approval levels on one change form</h3><p>At Brightpath and Orbit Labs I replaced a manual, undocumented change process with one form: manager, finance, HR, and payroll approvals, plus a full audit trail.</p><button type="button" class="go" data-go="action">See the form</button></div>
+        <div class="sh"><b>24 to 48 hrs</b><h3>I-9 completion after day one</h3><p>At Brightpath an audit found incomplete documents, late filings, and no clear owner. I built a structured process with checklists and deadlines, and ran it at Orbit Labs too.</p><button type="button" class="go" data-go="record">See the story</button></div>
+        <div class="sh"><b>1 HRIS</b><h3>One system and one set of handbooks</h3><p>At Brightpath I led the move from the old payroll system to a new HRIS and standardized onboarding, offboarding, and handbooks across the US, India, and Europe. I built handbooks at Orbit Labs as well.</p><button type="button" class="go" data-go="record">See the story</button></div>
+        <div class="sh"><b>3</b><h3>AI builds at Orbit Labs</h3><p>As the only US People employee, I built three tools that let a reduction in force, hiring, and a compliance audit move forward at the same time.</p><button type="button" class="go" data-go="aibuilds">See the builds</button></div>
       </div>
     </div>
     <div>
@@ -1073,7 +1121,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
       <div style="display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between">
         <div style="min-width:240px;flex:1">
           <h3>The annual operating calendar</h3>
-          <p class="sub">The recurring People programs, planned a year ahead: benefits, open enrollment, retirement plans, year-end, and the rest. Sample timing for a US calendar-year plan, with the UK tax year noted; each plan year and renewal date needs confirming for ATG's entities.</p>
+          <p class="sub">The recurring People programs, planned a year ahead: benefits, open enrollment, retirement plans, year-end, and the rest. Sample timing for a US calendar-year plan, with the UK tax year noted; each plan year and renewal date needs confirming for Northwind's entities.</p>
         </div>
         <div class="chip" style="min-width:190px"><div class="v">7</div><div class="k">annual operating cycles I have led, start to finish</div></div>
       </div>
@@ -1091,7 +1139,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
 
     <div class="integ">
       <h2>How it plugs into Google Workspace</h2>
-      <p class="sub">Assumes ATG runs Google Workspace. I would confirm tooling in week one and adapt. <a href="#automation" id="goto-auto" style="color:#7cc3ec">See the automation roadmap</a></p>
+      <p class="sub">Assumes Northwind runs Google Workspace. I would confirm tooling in week one and adapt. <a href="#automation" id="goto-auto" style="color:#7cc3ec">See the automation roadmap</a></p>
       <div class="grid g3" style="margin-top:12px">
         <div class="cell"><h3>Google Sheets: source of truth</h3><ul class="tight"><li>One row per obligation: region, entity, owner, due date, status, evidence link.</li><li>Dropdown statuses, conditional formatting for overdue, protected columns.</li></ul></div>
         <div class="cell"><h3>Google Calendar: reminders</h3><ul class="tight"><li>One shared calendar per region, generated from the Sheet.</li><li>Tiered alerts at 60, 30, and 7 days; the owner is added as a guest.</li></ul></div>
@@ -1130,7 +1178,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
     <div class="cmp" id="auto-tiles"></div>
     <div class="card">
       <h3>Guardrails</h3>
-      <ul class="tight"><li>Automation reminds, routes, and records. People decide and sign off on filings, I-9 corrections, and anything with legal exposure.</li><li>Sensitive documents (I-9 files, SSNs, medical details) stay in approved systems. AI tools only see redacted or non-sensitive text unless ATG's security team approves otherwise.</li><li>Every automation has a named owner, a log, and a way to switch it off.</li></ul>
+      <ul class="tight"><li>Automation reminds, routes, and records. People decide and sign off on filings, I-9 corrections, and anything with legal exposure.</li><li>Sensitive documents (I-9 files, SSNs, medical details) stay in approved systems. AI tools only see redacted or non-sensitive text unless Northwind's security team approves otherwise.</li><li>Every automation has a named owner, a log, and a way to switch it off.</li></ul>
     </div>
   </section>
 
@@ -1139,7 +1187,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
   <section class="panel" id="p-action" role="tabpanel" aria-labelledby="t-action" hidden>
     <div>
       <h2>The Employee Action Form: one front door for the whole employee lifecycle</h2>
-      <p class="sub">At Prezent AI I replaced a manual, undocumented change process with an employee change request form: multi-level approvals (manager, finance, HR, payroll) and a full audit trail. The version below is a working illustration with sample data. Any adaptation for ATG would be designed with the regional People leaders, and the routing shown is a sample, not ATG's current process.</p>
+      <p class="sub">At Orbit Labs I replaced a manual, undocumented change process with an employee change request form: multi-level approvals (manager, finance, HR, payroll) and a full audit trail. The version below is a working illustration with sample data. Any adaptation for Northwind would be designed with the regional People leaders, and the routing shown is a sample, not Northwind's current process.</p>
     </div>
     <div class="icards">
       <div class="icard"><svg viewBox="0 0 54 54" aria-hidden="true"><circle cx="27" cy="27" r="22" fill="color-mix(in srgb, var(--t3) 16%, var(--panel))" stroke="var(--t3)" stroke-width="2.5"/><circle cx="27" cy="19" r="6" fill="var(--t3)"/><path d="M15 40c1-8 6-11 12-11s11 3 12 11" fill="none" stroke="var(--t3)" stroke-width="2.5" stroke-linecap="round"/></svg><div><h3>Onboarding</h3><p>New hire form</p></div></div>
@@ -1179,8 +1227,8 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
   <!-- ASKPEOPLE -->
   <section class="panel" id="p-askpeople" role="tabpanel" aria-labelledby="t-askpeople" hidden>
     <div>
-      <h2>AskPeople: how I would give ATG one front door</h2>
-      <p class="sub">A candidate-created concept based on the role description: one queue where questions get an owner and a clock, built on things I have done before. Current-state details are assumptions to validate with the team, and the routing examples are illustrations, not ATG policy.</p>
+      <h2>AskPeople: how I would give Northwind one front door</h2>
+      <p class="sub">A candidate-created concept based on the role description: one queue where questions get an owner and a clock, built on things I have done before. Current-state details are assumptions to validate with the team, and the routing examples are illustrations, not Northwind policy.</p>
     </div>
     <div class="wfkpi" id="ap-kpis"></div>
     <div class="card">
@@ -1223,7 +1271,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
   <section class="panel" id="p-agents" role="tabpanel" aria-labelledby="t-agents" hidden>
     <div>
       <h2>An AI People Team: agents for each part of the lifecycle</h2>
-      <p class="sub">In my own Hermes setup I built an AI People Team, with an agent for each part of the employee lifecycle. Here is what each one does, how I talk to it, and the work it can take on using only non-PII information. This is a personal build. It has not been deployed at any employer, and I tested it against scenarios drawn from my previous experience, using non-PII examples. It is not a description of ATG's tools. Any real use would start with approved non-PII use cases and sign-off from Security and Legal.</p>
+      <p class="sub">In my own Hermes setup I built an AI People Team, with an agent for each part of the employee lifecycle. Here is what each one does, how I talk to it, and the work it can take on using only non-PII information. This is a personal build. It has not been deployed at any employer, and I tested it against scenarios drawn from my previous experience, using non-PII examples. It is not a description of Northwind's tools. Any real use would start with approved non-PII use cases and sign-off from Security and Legal.</p>
     </div>
     <div class="card">
       <h3>The team</h3>
@@ -1233,12 +1281,12 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
     </div>
 <div class="card" id="osf-card">
   <h3>From signed offer to day one</h3>
-  <p class="sub">What Joe does once a candidate signs, and what the agents pick up. Select a step. Joe keeps the human relationship and the offer terms, and one submitted form starts everything else.</p>
+  <p class="sub">What Sam does once a candidate signs, and what the agents pick up. Select a step. Sam keeps the human relationship and the offer terms, and one submitted form starts everything else.</p>
   <div class="osf" id="osf">
     <div class="osf-flow" id="osf-flow" role="group" aria-label="Steps from signed offer to day one"></div>
     <div class="osf-d" id="osf-d" aria-live="polite"></div>
     <div class="osf-3">
-      <div><b>Joe does</b>Submits the new hire on the action form, keeps the candidate warm, and handles the offer.</div>
+      <div><b>Sam does</b>Submits the new hire on the action form, keeps the candidate warm, and handles the offer.</div>
       <div><b>The agents do</b>Build checklists, send reminders, answer common questions, and report counts.</div>
       <div class="no"><b>Never automated</b>Offer terms, pay, work authorization decisions, and any message that reaches the hire without a person approving it.</div>
     </div>
@@ -1246,9 +1294,9 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
 </div>
 <script>
 (function () {
-  var R = 'Joe', RC = 'Joe';
+  var R = 'Sam', RC = 'Sam';
   var S = [
-    { e: '\u{1F91D}', n: R === 'Joe' ? 'Joe: offer signed' : 'Recruiter: offer signed', w: 'Day 0', c: 'var(--ink)', s: 'Submit the new hire', do: 'Enters the new hire on the employee action form: name, start date, role, region, and manager. That single submission starts every step that follows.', sees: 'A confirmation and a status page that shows which steps are done and which are waiting.', dec: 'Offer terms stay between ' + R + ', the hiring manager, and the candidate. They are never typed into an agent.' },
+    { e: '\u{1F91D}', n: R === 'Sam' ? 'Sam: offer signed' : 'Recruiter: offer signed', w: 'Day 0', c: 'var(--ink)', s: 'Submit the new hire', do: 'Enters the new hire on the employee action form: name, start date, role, region, and manager. That single submission starts every step that follows.', sees: 'A confirmation and a status page that shows which steps are done and which are waiting.', dec: 'Offer terms stay between ' + R + ', the hiring manager, and the candidate. They are never typed into an agent.' },
     { e: '\u{1F4CB}', n: 'Onboarding agent builds the plan', w: 'Day 0', c: 'var(--t3)', s: 'Checklist and reminders', do: 'Builds the day-one to day-30 checklist for the role and country, assigns each task to an owner, and starts the reminders.', sees: 'The checklist status for each task and owner, without any personal details.', dec: 'The People Ops lead reviews the checklist before it goes live.' },
     { e: '\u{1F6C2}', n: 'Immigration agent checks right to work', w: 'Day 0 to 1', c: 'var(--s4)', s: 'Right-to-work steps', do: 'Builds the right-to-work checklist for the hire\'s country, such as the I-9 in the US or the UK check, and sets 90, 60, and 30 day expiry alerts.', sees: 'A simple status: on track or needs attention. Never the documents.', dec: 'A person in People Ops, with counsel where needed, handles every document and any work authorization question.' },
     { e: '\u{1F4B5}', n: 'Payroll and Benefits agents get ready', w: 'Days 1 to 5', c: 'var(--accent)', s: 'Pay and plan set-up', do: 'Payroll gets the pre-payroll checklist for the entity. Benefits notes the eligibility date and schedules the enrollment reminder.', sees: 'That the tasks have owners and dates. ' + RC + ' does not see pay or plan details.', dec: 'The payroll and benefits owners approve the set-up.' },
@@ -1296,8 +1344,8 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
   <!-- AI BUILDS -->
   <section class="panel" id="p-aibuilds" role="tabpanel" aria-labelledby="t-aibuilds" hidden>
     <div>
-      <h2>AI builds: three tools I ran at the same time at Prezent AI</h2>
-      <p class="sub">I was the only US employee on the People team, supporting India, the UK, the US, and Dubai. I built three AI tools so that a reduction in force, hiring, and a compliance audit could all move forward at once. I built and used these myself in my work at Prezent AI. People make every decision; the tools prepare, track, and document.</p>
+      <h2>AI builds: three tools I ran at the same time at Orbit Labs</h2>
+      <p class="sub">I was the only US employee on the People team, supporting India, the UK, the US, and Dubai. I built three AI tools so that a reduction in force, hiring, and a compliance audit could all move forward at once. I built and used these myself in my work at Orbit Labs. People make every decision; the tools prepare, track, and document.</p>
     </div>
     <div class="aiflow">
       <div>
@@ -1341,13 +1389,13 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
         <ul class="aplist" id="ab-human"></ul>
       </div>
       <div class="card">
-        <h3>What this means for ATG</h3>
+        <h3>What this means for Northwind</h3>
         <ul class="aplist" id="ab-atg"></ul>
       </div>
     </div>
       <div>
       <h2>How I scope AI work: a business requirements document (BRD)</h2>
-      <p class="sub">Before I build or switch on any AI tool, I write a short BRD. It is the plain-language agreement on what the tool is for, what it may touch, who approves what, and how we will know it worked. The sample below is an illustrative template using the Compliance Audit Assistant as the example, so the sections and wording are mine but the entries are not ATG's.</p>
+      <p class="sub">Before I build or switch on any AI tool, I write a short BRD. It is the plain-language agreement on what the tool is for, what it may touch, who approves what, and how we will know it worked. The sample below is an illustrative template using the Compliance Audit Assistant as the example, so the sections and wording are mine but the entries are not Northwind's.</p>
     </div>
 <div class="brd" id="brd">
   <div class="brd-what">
@@ -1415,7 +1463,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
   <section class="panel" id="p-dashboard" role="tabpanel" aria-labelledby="t-dashboard" hidden>
     <div>
       <h2>People Operations dashboard</h2>
-      <p class="sub">ATG's headcount of 391 is publicly reported (30 September 2025, S&amp;P Global Market Intelligence). Everything else here, including regional and department splits, attrition, filing rates, and targets, is illustrative and not ATG data, and each chart is tagged. This is the weekly view I would share with leadership. Regrettable attrition counts voluntary exits of employees the company would have chosen to keep: strong performers and people in critical roles.</p>
+      <p class="sub">The headcount of 391 is a fictional sample number. Everything else here, including regional and department splits, attrition, filing rates, and targets, is illustrative and not Northwind data, and each chart is tagged. This is the weekly view I would share with leadership. Regrettable attrition counts voluntary exits of employees the company would have chosen to keep: strong performers and people in critical roles.</p>
     </div>
     <ul class="regkey" aria-label="Region colors"><li><b>Regions</b></li><li class="r-US"><span class="rdot"></span>United States</li><li class="r-UK"><span class="rdot"></span>United Kingdom</li><li class="r-EU"><span class="rdot"></span>EU</li><li class="r-MX"><span class="rdot"></span>Mexico</li></ul>
     <div class="seg" role="group" aria-label="Dashboard view" id="dash-seg">
@@ -1562,7 +1610,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
         </div>
         <div class="card">
           <h3>Tenure of leavers</h3>
-          <p class="sub">Time at ATG when they left</p>
+          <p class="sub">Time at Northwind when they left</p>
           <div class="bars" id="to-ten"></div>
         </div>
       </div>
@@ -1693,9 +1741,9 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
       <p class="sub">Real examples from my own roles. Each one follows the same pattern. Select a card to see the before, what I did, and how the idea could apply elsewhere.</p>
     </div>
     <div class="baw">
-      <div class="ba"><h4>I-9 and right to work</h4><div class="row"><div class="bx b"><b>Before</b><span>Incomplete documents</span><span>Late filings</span><span>No clear owner</span></div><div class="ar">&rarr;</div><div class="bx a"><b>After</b><span>Checklist and deadlines in the HRIS</span><span>Named owner</span><span>Done in 24 to 48 hours</span></div></div><div class="res"><b>Where:</b> Ridecell and Prezent AI</div></div>
-      <div class="ba"><h4>One system, one set of handbooks</h4><div class="row"><div class="bx b"><b>Before</b><span>Different tools by region</span><span>Different handbooks</span><span>Manual hand-offs</span></div><div class="ar">&rarr;</div><div class="bx a"><b>After</b><span>One HRIS (Sapling)</span><span>Standard onboarding and offboarding</span><span>Counsel-reviewed handbooks</span></div></div><div class="res"><b>Where:</b> Ridecell (one HRIS and handbooks across the US, India, and Europe) and Prezent AI (handbooks)</div></div>
-      <div class="ba"><h4>Employee change requests</h4><div class="row"><div class="bx b"><b>Before</b><span>Manual process</span><span>Nothing documented</span><span>Unclear who approved</span></div><div class="ar">&rarr;</div><div class="bx a"><b>After</b><span>One form</span><span>Manager, finance, HR, payroll approvals</span><span>Full audit trail</span></div></div><div class="res"><b>Where:</b> Ridecell and Prezent AI</div></div>
+      <div class="ba"><h4>I-9 and right to work</h4><div class="row"><div class="bx b"><b>Before</b><span>Incomplete documents</span><span>Late filings</span><span>No clear owner</span></div><div class="ar">&rarr;</div><div class="bx a"><b>After</b><span>Checklist and deadlines in the HRIS</span><span>Named owner</span><span>Done in 24 to 48 hours</span></div></div><div class="res"><b>Where:</b> Brightpath and Orbit Labs</div></div>
+      <div class="ba"><h4>One system, one set of handbooks</h4><div class="row"><div class="bx b"><b>Before</b><span>Different tools by region</span><span>Different handbooks</span><span>Manual hand-offs</span></div><div class="ar">&rarr;</div><div class="bx a"><b>After</b><span>One HRIS (new HRIS)</span><span>Standard onboarding and offboarding</span><span>Counsel-reviewed handbooks</span></div></div><div class="res"><b>Where:</b> Brightpath (one HRIS and handbooks across the US, India, and Europe) and Orbit Labs (handbooks)</div></div>
+      <div class="ba"><h4>Employee change requests</h4><div class="row"><div class="bx b"><b>Before</b><span>Manual process</span><span>Nothing documented</span><span>Unclear who approved</span></div><div class="ar">&rarr;</div><div class="bx a"><b>After</b><span>One form</span><span>Manager, finance, HR, payroll approvals</span><span>Full audit trail</span></div></div><div class="res"><b>Where:</b> Brightpath and Orbit Labs</div></div>
     </div>
     <div class="flow" id="tr-pattern"></div>
     <div class="card">
@@ -1724,7 +1772,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
     </div>
     <div id="plans" class="grid"></div>
     <div class="drivers">
-      <div><h2>Where this connects to ATG's growth drivers</h2><p class="sub">ATG's own six drivers, and the two this plan supports most directly.</p></div>
+      <div><h2>Where this connects to Northwind's growth drivers</h2><p class="sub">Northwind's own six drivers, and the two this plan supports most directly.</p></div>
       <div class="grid g3">
         <div class="cell"><h3>Pursue accretive M&amp;A</h3><p>A repeatable integration playbook (payroll, benefits, policies, right to work, access) means the next acquisition adds capability instead of adding complexity.</p></div>
         <div class="cell"><h3>Expand operational leverage</h3><p>Fewer payrolls, one core handbook, one calendar, and one dashboard let People Ops scale across regions without adding a team for every acquisition.</p></div>
@@ -1737,7 +1785,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
   <section class="panel" id="p-experience" role="tabpanel" aria-labelledby="t-experience" hidden>
     <div>
       <h2>Employee experience for remote and distributed teams</h2>
-      <p class="sub">Candidate-created concept based on the role description. Current-state details are assumptions to validate with the team. Every idea is a proposal to test with employees first, not a claim about what ATG does today.</p>
+      <p class="sub">Candidate-created concept based on the role description. Current-state details are assumptions to validate with the team. Every idea is a proposal to test with employees first, not a claim about what Northwind does today.</p>
     </div>
 
     <div class="eestats" id="eestats" aria-label="At a glance"></div>
@@ -1751,7 +1799,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
 
     <div>
       <h3 style="margin-bottom:4px">Idea library</h3>
-      <p class="sub">Filter by theme and effort. Each idea links to one of ATG's values.</p>
+      <p class="sub">Filter by theme and effort. Each idea links to one of Northwind's values.</p>
       <div class="controls" style="margin:10px 0 14px">
         <label>Theme<select id="i-theme"></select></label>
         <label>Effort<select id="i-effort"><option value="">Any effort</option><option>Low</option><option>Medium</option><option>High</option></select></label>
@@ -1785,7 +1833,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
           <div class="tile future"><div class="k">Participation</div><div class="v">Share attending one event a quarter</div></div>
           <div class="tile future"><div class="k">New hire retention</div><div class="v">Still here at 90 days and 12 months</div></div>
           <div class="tile future"><div class="k">Manager effectiveness</div><div class="v">Team survey on 1:1s and clarity</div></div>
-          <div class="tile future"><div class="k">Belonging</div><div class="v">"I feel part of One ATG," by region</div></div>
+          <div class="tile future"><div class="k">Belonging</div><div class="v">"I feel part of One Northwind," by region</div></div>
           <div class="tile future"><div class="k">Feedback loop</div><div class="v">Stay interviews and exit themes</div></div>
         </div>
       </div>
@@ -1851,7 +1899,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
   <section class="panel" id="p-roadmap" role="tabpanel" aria-labelledby="t-roadmap" hidden>
     <div>
       <h2>Annual People Operations roadmap</h2>
-      <p class="sub">A first-year plan, ranked on business impact, risk, and team capacity. The initiatives, scores, and team size are my sample assumptions, to be replaced with ATG's real numbers in the first 30 days.</p>
+      <p class="sub">A first-year plan, ranked on business impact, risk, and team capacity. The initiatives, scores, and team size are my sample assumptions, to be replaced with Northwind's real numbers in the first 30 days.</p>
     </div>
     <div class="wfkpi" id="rm-kpis"></div>
     <div class="wfkpi" id="rm-how"></div>
@@ -1886,13 +1934,13 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
   <!-- VALUES -->
   <section class="panel" id="p-values" role="tabpanel" aria-labelledby="t-values" hidden>
     <div>
-      <h2>ATG's values, and how my work ties into them</h2>
-      <p class="sub">The five values come from ATG's public website. The examples on the left are from my own work at Ridecell and Prezent AI. The right column is a sample of what each value could look like in practice, to be shaped with the team.</p>
+      <h2>Northwind's values, and how my work ties into them</h2>
+      <p class="sub">The five values are sample values for this fictional company. The examples on the left are from my own work at Brightpath and Orbit Labs. The right column is a sample of what each value could look like in practice, to be shaped with the team.</p>
     </div>
     <div id="values" class="grid"></div>
   </section>
 
-  <footer>Designed in the style of ATG's public website for this interview. It is a candidate's working sample, not an ATG document. Statutory dates and thresholds change and differ by entity and country, so each calendar item needs confirmation with ATG's advisors before it is relied on.</footer>
+  <footer>A fictional demo with made-up names and figures, not a real company document. Statutory dates and thresholds change and differ by entity and country, so each calendar item needs confirmation with Northwind's advisors before it is relied on.</footer>
 </main>
 
 <script>
@@ -1914,6 +1962,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
       $('p-' + t).hidden = (t !== name);
       $('t-' + t).setAttribute('aria-selected', t === name ? 'true' : 'false');
     });
+    var hr = document.querySelector('.hero'); if (hr) hr.hidden = (name !== 'fit');
     var g = $('t-' + name).closest('.tgrp').dataset.g;
     document.querySelectorAll('nav.tabs .tgrp').forEach(function (d) { d.hidden = d.dataset.g !== g; });
     document.querySelectorAll('nav.tabs .tgroups button').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.g === g ? 'true' : 'false'); });
@@ -1934,15 +1983,15 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
 
   // ---------- kind bars and start-here links ----------
   (function () {
-    var EXPN = 'My experience', PROPN = 'Illustrative proposal for ATG';
-    var CONCEPT = 'A concept built from the role description and ATG\'s public information. Details are assumptions to confirm with the team.';
+    var EXPN = 'My experience', PROPN = 'Illustrative proposal for Northwind';
+    var CONCEPT = 'A concept built from the role description and a fictional company profile. Details are assumptions to confirm with the team.';
     var LEGAL = ' Not legal advice. Requirements vary by entity and jurisdiction, so confirm with qualified advisers.';
-    var SYN = ' Illustrative figures, not ATG data.';
+    var SYN = ' Illustrative figures, not Northwind data.';
     var K = {
       fit: [['exp', EXPN], 'My background mapped to the posting. The links go to the proof.'],
-      record: [['exp', EXPN], 'Real work at Ridecell and Prezent AI. Where a card says how it could apply elsewhere, that part is a suggestion.'],
-      action: [['exp', EXPN], ['prop', PROPN], 'Built on the change request form I made at Prezent AI. This version is a working illustration with sample data, and any routing for ATG is a proposal.'],
-      aibuilds: [['exp', EXPN], 'Built and used by me at Prezent AI. People make every decision; the tools prepare, track, and document.'],
+      record: [['exp', EXPN], 'Real work at Brightpath and Orbit Labs. Where a card says how it could apply elsewhere, that part is a suggestion.'],
+      action: [['exp', EXPN], ['prop', PROPN], 'Built on the change request form I made at Orbit Labs. This version is a working illustration with sample data, and any routing for Northwind is a proposal.'],
+      aibuilds: [['exp', EXPN], 'Built and used by me at Orbit Labs. People make every decision; the tools prepare, track, and document.'],
       values: [['exp', EXPN], ['prop', PROPN], 'Left column: my own examples. Right column: a sample of what each value could look like in practice.'],
       discovery: [['ask', 'Questions, not conclusions'], 'What I would want to learn before suggesting anything.'],
       calendar: [['prop', PROPN], CONCEPT + LEGAL],
@@ -1950,8 +1999,8 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
       controls: [['prop', PROPN], CONCEPT + ' Thresholds and owners are examples.'],
       automation: [['prop', PROPN], CONCEPT],
       askpeople: [['prop', PROPN], CONCEPT],
-      agents: [['prop', PROPN], 'A personal build, not deployed at any employer. Tested against scenarios from my previous experience, using non-PII examples only. Not a description of ATG\'s tools.'],
-      dashboard: [['prop', PROPN], CONCEPT + SYN + ' Only the headcount of 391 is publicly reported.'],
+      agents: [['prop', PROPN], 'A personal build, not deployed at any employer. Tested against scenarios from my previous experience, using non-PII examples only. Not a description of Northwind\'s tools.'],
+      dashboard: [['prop', PROPN], CONCEPT + SYN + ' The headcount of 391 is fictional too.'],
       plan: [['prop', PROPN], CONCEPT + LEGAL],
       roadmap: [['prop', PROPN], CONCEPT + SYN],
       experience: [['prop', PROPN], CONCEPT],
@@ -2077,7 +2126,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
 
   // ---------- dashboard ----------
   var KPIS = [
-    ['Active headcount', '391', '', 'Latest reported, 30 Sep 2025. Regional split is sample: US 128, UK 147, EU 73, MX 43', 'info', '\u25CF Reported', [367, 372, 377, 382, 386, 391]],
+    ['Active headcount', '391', '', 'Fictional headcount. Regional split is sample: US 128, UK 147, EU 73, MX 43', 'info', '\u25CF Reported', [367, 372, 377, 382, 386, 391]],
     ['Voluntary attrition, trailing 12 months', '11.8', '%', 'Target under 12%', 'good', '✓ On target', [13.1, 12.8, 12.5, 12.2, 12.0, 11.8]],
     ['Regrettable attrition, trailing 12 months', '4.1', '%', 'Target under 5%', 'good', '✓ On target', [5.0, 4.8, 4.6, 4.4, 4.2, 4.1]],
     ['New hires starting, next 30 days', '14', '', 'Across 7 departments', 'info', '\u25CF Sample', [9, 11, 10, 12, 13, 14]],
@@ -2279,7 +2328,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
       p: [
         'Run a counsel-guided full I-9 audit of the US population and a records review of UK right-to-work checks. Classify issues (missing, late, incomplete, expired) and set a correction protocol: dated corrections only, never backdating.',
         'Remediate by priority. Reverify only where required, and avoid over-documentation that can create discrimination risk. Confirm EU and Mexico work authorization records against local rules.',
-        'Replace intake with a day-one workflow: I-9s complete within 24 to 48 hours, an expiry tracker with 90, 60, and 30 day alerts, and a quarterly self-audit. I built this process at Ridecell and Prezent AI.'],
+        'Replace intake with a day-one workflow: I-9s complete within 24 to 48 hours, an expiry tracker with 90, 60, and 30 day alerts, and a quarterly self-audit. I built this process at Brightpath and Orbit Labs.'],
       m: 'Error rate by category falling every month, 100% completed inside the legal window, no expired authorization left unaddressed.',
       n: 'Immigration counsel; access to HRIS and to the paper file locations of each acquired entity.' },
     { t: 'Flexible-first global handbook', tag: 'One core handbook, regional addenda',
@@ -2331,18 +2380,18 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
   })();
   // ---------- values ----------
   var VALUES = [
-    { n: 'Drive Results', atg: ['Execute with excellence on the right priorities', 'Take ownership on what matters and be accountable', 'Set a pace that pushes ATG ahead of the competition'],
+    { n: 'Drive Results', atg: ['Execute with excellence on the right priorities', 'Take ownership on what matters and be accountable', 'Set a pace that pushes Northwind ahead of the competition'],
       proof: ['Built the I-9 process from scratch and cut completion to 24 to 48 hours after Day 1.', 'Built a compliance dashboard so leadership saw headcount, onboarding, and training status without ad hoc requests.', 'Ran an executive search and a reduction in force at the same time as the only US HR person.'],
       atwork: ['Start with the areas of highest legal exposure, in that order.', 'One named owner and due date for every obligation on the calendar.', 'A monthly scorecard: on-time filings, open findings, and days to close.'] },
-    { n: 'Create Customer Value', atg: ['Know your customer', 'Understand how ATG creates value for buyers and sellers', 'Act with trust, integrity and consistency'],
+    { n: 'Create Customer Value', atg: ['Know your customer', 'Understand how Northwind creates value for buyers and sellers', 'Act with trust, integrity and consistency'],
       proof: ['Treated managers, employees, and in-country HR partners as my customers, and removed their manual steps.', 'Corrected I-9 problems through a documented process, with dated corrections and no backdating.', 'Filed training certificates in employee records so audits never depended on memory.'],
       atwork: ['Spend the first two weeks listening to Finance, Legal, IT, and regional HR leads.', 'Learn how bidders, auctioneers, and the marketplaces teams work, so policies fit the real jobs.', 'Make every compliance answer consistent across every payroll.'] },
-    { n: 'Find a Smarter, Better Way', atg: ['Innovate and seek improved ways of working', 'Deliver today but also be future-focused', 'Be creative in seeking ways to enhance efficiency, delivery or impact'],
-      proof: ['Led the move from ADP to Sapling as one source of truth for HR data.', 'Replaced a manual, undocumented change process with an approval workflow and a full audit trail.', 'Used Claude to build reusable skills for employee changes, hiring, and reductions in force.'],
-      atwork: ['Run the calendar, tracker, and weekly digest on the Google tools ATG already has.', 'Put a payroll consolidation roadmap in front of leadership by day 90.', 'Automate the repeatable steps first (reminders, evidence requests, acknowledgments).'] },
-    { n: 'Collaborate To Win', atg: ['Think, act and win as One ATG', 'Work together across teams and borders to achieve and celebrate shared success', 'Know the vision, work on the right priorities and be an expert in your discipline'],
+    { n: 'Work Smarter Together', atg: ['Innovate and seek improved ways of working', 'Deliver today but also be future-focused', 'Be creative in seeking ways to enhance efficiency, delivery or impact'],
+      proof: ['Led the move from the old payroll system to a new HRIS as one source of truth for HR data.', 'Replaced a manual, undocumented change process with an approval workflow and a full audit trail.', 'Used Claude to build reusable skills for employee changes, hiring, and reductions in force.'],
+      atwork: ['Run the calendar, tracker, and weekly digest on the Google tools Northwind already has.', 'Put a payroll consolidation roadmap in front of leadership by day 90.', 'Automate the repeatable steps first (reminders, evidence requests, acknowledgments).'] },
+    { n: 'Collaborate To Win', atg: ['Think, act and win as One Northwind', 'Work together across teams and borders to achieve and celebrate shared success', 'Know the vision, work on the right priorities and be an expert in your discipline'],
       proof: ['Spent three weeks in India aligning processes and split EU support with my India counterpart.', 'Shared one compliance calendar with the people team and in-country counterparts.', 'Standardized onboarding, offboarding, and handbooks across the US, India, and Europe.'],
-      atwork: ['One core handbook with regional addenda, so every region reads as One ATG.', 'Regional compliance leads meet monthly and own their lines on the shared calendar.', 'Celebrate closed findings and clean filings publicly, not only the problems.'] },
+      atwork: ['One core handbook with regional addenda, so every region reads as One Northwind.', 'Regional compliance leads meet monthly and own their lines on the shared calendar.', 'Celebrate closed findings and clean filings publicly, not only the problems.'] },
     { n: 'Empower People to Grow', atg: ['Be ambitious in seeking ways to develop yourself and others', 'Create an environment of respect, diversity and inclusion', 'Start with trust and professional honesty'],
       proof: ['Built tools and documentation so the team could keep using them after I left.', 'Wrote manager talk tracks so employees heard clear, consistent messages during a hard change.', 'Had legal counsel review every regional handbook, so policies were fair and lawful in each country.'],
       atwork: ['Train managers on leave requests, right to work, and the new handbook.', 'Write plain-language policies and FAQs people can actually use.', 'Be direct with leadership about risks and with employees about what is changing.'] }
@@ -2384,7 +2433,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
     } else if (i === 3) {
       var N = [[64, 128, 'US', '#3987e5'], [216, 128, 'UK', '#eb6834'], [64, 240, 'EU', '#1baf7a'], [216, 240, 'MX', '#eda100']];
       o = N.map(function (n) { return '<line x1="' + n[0] + '" y1="' + n[1] + '" x2="140" y2="184" stroke="' + VL + '" stroke-width="2.5" stroke-dasharray="3 6" opacity=".8"/>'; }).join('') +
-        '<circle cx="140" cy="184" r="38" fill="' + VB + '"/><circle cx="140" cy="184" r="38" fill="none" stroke="' + VW + '" stroke-width="3"/><text x="140" y="180" font-size="12" text-anchor="middle" fill="' + VW + '">One</text><text x="140" y="196" font-size="12" text-anchor="middle" fill="' + VW + '">ATG</text>' +
+        '<circle cx="140" cy="184" r="38" fill="' + VB + '"/><circle cx="140" cy="184" r="38" fill="none" stroke="' + VW + '" stroke-width="3"/><text x="140" y="180" font-size="12" text-anchor="middle" fill="' + VW + '">One</text><text x="140" y="196" font-size="12" text-anchor="middle" fill="' + VW + '">Northwind</text>' +
         N.map(function (n, k) { return '<g class="fx" style="animation-delay:' + (k * 0.5) + 's"><circle cx="' + n[0] + '" cy="' + n[1] + '" r="22" fill="' + n[3] + '"/><text x="' + n[0] + '" y="' + (n[1] + 5) + '" font-size="13" text-anchor="middle" fill="#05202f">' + n[2] + '</text></g>'; }).join('') +
         star(140, 118, 11, 4.5, '#eda100');
     } else {
@@ -2397,7 +2446,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
   }
   $('values').innerHTML = VALUES.map(function (v, i) {
     function ul(a) { return '<ul>' + a.map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>'; }
-    return '<div class="val-card' + (i % 2 ? ' flip' : '') + '"><div class="val-tile"><b>' + esc(v.n) + '</b><span>ATG value ' + (i + 1) + ' of 5</span>' + vScene(i) + '</div><div class="val-body"><div><h3 style="font-weight:400;font-size:13px;color:var(--muted)">What ATG says</h3>' + ul(v.atg) + '</div><div class="cols"><div><h4>Where I have done it</h4>' + ul(v.proof) + '</div><div><h4>What it looks like here</h4>' + ul(v.atwork) + '</div></div></div></div>';
+    return '<div class="val-card' + (i % 2 ? ' flip' : '') + '"><div class="val-tile"><b>' + esc(v.n) + '</b><span>Northwind value ' + (i + 1) + ' of 5</span>' + vScene(i) + '</div><div class="val-body"><div><h3 style="font-weight:400;font-size:13px;color:var(--muted)">What Northwind says</h3>' + ul(v.atg) + '</div><div class="cols"><div><h4>Where I have done it</h4>' + ul(v.proof) + '</div><div><h4>What it looks like here</h4>' + ul(v.atwork) + '</div></div></div></div>';
   }).join('');
   // ---------- automation ----------
   var SRC = [
@@ -2425,7 +2474,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
     { k: 'Joiner, mover, leaver', d: 'Hires, location changes, and terminations trigger checklists: leave rules, tax registrations, access removal within 24 hours.', l: 2 },
     { k: 'Looker Studio dashboard', d: 'The tracker and HRIS exports feed a live dashboard so leadership stops asking for ad hoc reports.', l: 2 },
     { k: 'Quarterly access review', d: 'User lists are pulled into a sheet, reviewers are assigned, and sign-offs are logged as SOC 2 evidence.', l: 3 },
-    { k: 'Payroll consolidation', d: 'With a clean inventory and filing history, leadership can decide how many payroll providers ATG should run.', l: 3 }
+    { k: 'Payroll consolidation', d: 'With a clean inventory and filing history, leadership can decide how many payroll providers Northwind should run.', l: 3 }
   ];
   var HUB_NOW = 'Spreadsheets, inboxes, memory. Each team tracks its own deadlines in its own way, so nothing adds up to one picture.';
   var HUB_FUT = 'One tracker: a Google Sheet with a row per obligation (region, entity, owner, due date, status, evidence link), fed by HRIS and payroll exports. Everything else reads from it.';
@@ -2506,9 +2555,9 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
   // ---------- employee experience ----------
   var STAGES = [
     ['Before day one', ['A welcome note from the manager and from the People team, in the same format in every region.', 'Equipment and accounts ready before the start date, with a named local contact for questions.', 'A short "what to expect in week one" page, in the local language where needed.']],
-    ['Week one', ['A buddy from a different team and, where possible, a different region.', 'An "ATG 101" session on how the marketplaces work and who the customers are, ending with a guided first look at a live auction.', 'A welcome call with the regional lead, and the compliance basics (I-9 or local equivalent) finished within 48 hours.']],
+    ['Week one', ['A buddy from a different team and, where possible, a different region.', 'An "Northwind 101" session on how the marketplaces work and who the customers are, ending with a guided first look at a live auction.', 'A welcome call with the regional lead, and the compliance basics (I-9 or local equivalent) finished within 48 hours.']],
     ['First 90 days', ['Check-ins at 30, 60, and 90 days with the manager and with People Ops.', 'Three intro chats with people outside the team, to build the cross-region network early.', 'Required courses (Security Awareness Training, Harassment Prevention Training, Workplace Violence Prevention Training in the US, and the UK equivalents: UK Harassment Prevention, UK Data Protection, and UK Health and Safety Training) assigned on day one and finished within 30 days.', 'A pulse survey at day 30 and a "what would you change" conversation at day 90.']],
-    ['Ongoing', ['Team rituals and an async-first working agreement: core overlap hours, written updates, meeting-free blocks.', 'Monthly town hall with two time slots, a written recap, and a place to ask questions beforehand.', 'Recognition tied to ATG values, visible across regions.']],
+    ['Ongoing', ['Team rituals and an async-first working agreement: core overlap hours, written updates, meeting-free blocks.', 'Monthly town hall with two time slots, a written recap, and a place to ask questions beforehand.', 'Recognition tied to Northwind values, visible across regions.']],
     ['Growth', ['Career conversations at least twice a year and a visible internal jobs board.', 'Mentoring circles that mix regions and functions.', 'A learning budget with a consistent policy in every country, set with tax advice.']],
     ['Moving on', ['Stay interviews before people decide to leave, and exit interviews with themes shared quarterly.', 'A respectful offboarding checklist: final pay, benefits notices, and access removed within 24 hours.', 'An alumni network, since good people come back and refer others.']]
   ];
@@ -2566,19 +2615,19 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
 
   var IDEAS = [
     ['Auction night', 'Connection', 'Medium', 'High', 'Collaborate To Win', 'A quarterly virtual live auction of fun lots, with a charity or team prize. Employees get a first-hand bidder experience and the company gets a product-knowledge event.'],
-    ['Lot swap', 'Connection', 'Low', 'Medium', 'Create Customer Value', 'A Chat space where employees share their best finds from ATG marketplaces. It builds product pride and surfaces real customer insight.'],
+    ['Lot swap', 'Connection', 'Low', 'Medium', 'Create Customer Value', 'A Chat space where employees share their best finds from Northwind marketplaces. It builds product pride and surfaces real customer insight.'],
     ['Coffee roulette', 'Connection', 'Low', 'Medium', 'Collaborate To Win', 'A monthly random pairing across regions and teams for a 30-minute chat, run by a simple Google Chat or Sheets automation.'],
     ['Day in my region', 'Connection', 'Low', 'Medium', 'Collaborate To Win', 'A 20-minute monthly show-and-tell where one office or country shares how its day works. Rotates time slots so no region always stays up late.'],
     ['Interest spaces', 'Connection', 'Low', 'Low', 'Empower People to Grow', 'Optional Chat spaces for pets, cooking, collecting, local cities, and parents. Employees run them; People Ops only sets them up.'],
     ['Local meetups', 'Connection', 'Medium', 'High', 'Collaborate To Win', 'A small quarterly budget for people in the same area to meet in person, with a photo or recap shared to everyone else.'],
-    ['Values shout-outs', 'Recognition', 'Low', 'High', 'Drive Results', 'Peer recognition tagged to the five ATG values, with a monthly roundup in the town hall and a quarterly team award.'],
+    ['Values shout-outs', 'Recognition', 'Low', 'High', 'Drive Results', 'Peer recognition tagged to the five Northwind values, with a monthly roundup in the town hall and a quarterly team award.'],
     ['Milestone moments', 'Recognition', 'Low', 'Medium', 'Empower People to Grow', 'Work anniversaries and personal milestones marked with a note from the manager and a locally appropriate gift. Checked with Finance for tax treatment.'],
     ['Product lunch and learn', 'Growth', 'Low', 'Medium', 'Create Customer Value', 'Monthly sessions on a marketplace or category, such as industrial machinery or fine art, led by the teams that know it best.'],
     ['Mentoring circles', 'Growth', 'Medium', 'High', 'Empower People to Grow', 'Groups of four to six mixing regions and functions, meeting monthly for a quarter. Participants choose a topic.'],
-    ['Remote manager toolkit', 'Growth', 'Medium', 'High', 'Find a Smarter, Better Way', '1:1 templates, async norms, and short training on leading distributed teams, including how to run a good cross-time-zone meeting.'],
+    ['Remote manager toolkit', 'Growth', 'Medium', 'High', 'Work Smarter Together', '1:1 templates, async norms, and short training on leading distributed teams, including how to run a good cross-time-zone meeting.'],
     ['Town hall, two sessions', 'Communication', 'Low', 'High', 'Collaborate To Win', 'One monthly town hall held twice, with questions collected beforehand, a recording, and a written recap in the people hub.'],
     ['One people hub', 'Communication', 'Medium', 'High', 'Collaborate To Win', 'A single home for policies, benefits by country, the holiday calendar, news, and who to ask. Replaces five places to look.'],
-    ['Async-first agreement', 'Communication', 'Low', 'High', 'Find a Smarter, Better Way', 'A short team charter: overlap hours, how to flag urgent items, response-time expectations, and meeting-free blocks.'],
+    ['Async-first agreement', 'Communication', 'Low', 'High', 'Work Smarter Together', 'A short team charter: overlap hours, how to flag urgent items, response-time expectations, and meeting-free blocks.'],
     ['Recharge days', 'Wellbeing', 'Low', 'Medium', 'Empower People to Grow', 'A few company-wide days off a year, set with local holidays in mind, so people can truly disconnect together.'],
     ['Home office basics', 'Wellbeing', 'Medium', 'Medium', 'Create Customer Value', 'A consistent setup allowance and ergonomic guidance by country. Needs tax and legal review for each location.'],
     ['Day-one welcome kit', 'Onboarding', 'Medium', 'Medium', 'Drive Results', 'A branded box or e-kit for every new hire, sent to their home before the start date, with a handwritten note from the manager.']
@@ -2663,7 +2712,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
       ['Onboarding and offboarding', 'People Ops generalist', '4 business hours', 'First-week checklist and what to expect', 'Missing access or equipment, sent to IT from the same ticket', 'My laptop has not arrived. The ticket is created for IT and People Ops sees the status.', false],
       ['Systems and access', 'HRIS administrator', '1 business day', 'How to update an address or emergency contact', 'Permission changes, which need an approver', 'How do I change my address? The agent links the self-service steps.', false]
     ];
-    var kp = [['AI agents in my own build', '10', 'onboarding, offboarding, benefits, payroll, engagement, immigration, leave, compliance, AskPeople, insights'], ['Annual cycles I have supported', '7', 'benefits, open enrollment, year-end'], ['Countries at Ridecell', '7', 'US, India, Germany, Spain, France, Canada, Japan'], ['Personal data in agents', '0', 'agents take non-PII actions only']];
+    var kp = [['AI agents in my own build', '10', 'onboarding, offboarding, benefits, payroll, engagement, immigration, leave, compliance, AskPeople, insights'], ['Annual cycles I have supported', '7', 'benefits, open enrollment, year-end'], ['Countries at Brightpath', '7', 'US, India, Germany, Spain, France, Canada, Japan'], ['Personal data in agents', '0', 'agents take non-PII actions only']];
     $('ap-kpis').innerHTML = kp.map(function (k) { return '<div class="kpi"><div class="lbl">' + k[0] + '</div><div class="val">' + k[1] + '</div><div class="tgt">' + k[2] + '</div></div>'; }).join('');
     var SRC = ['Portal form', 'Slack or Teams message', 'Email to the People address', 'Manager request', 'HRIS case or form'];
     $('ap-src').innerHTML = '<div class="apin">' + SRC.map(function (x) { return '<span class="apchip">' + x + '</span>'; }).join('') + '</div><div class="aparrow" aria-hidden="true">&#9660;</div><div class="apcore"><b>AskPeople</b><span>One queue, one ticket ID, one owner, one clock</span></div><div class="aparrow" aria-hidden="true">&#9660;</div><div class="apout">' + ['Answered from the knowledge base', 'People Ops generalist', 'Payroll, benefits, or leave specialist', 'Legal, Finance, or IT'].map(function (x, i) { return '<span class="apchip o' + i + '">' + x + '</span>'; }).join('') + '</div>';
@@ -2676,7 +2725,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
     }
     draw();
     $('ap-types').addEventListener('click', function (e) { var b = e.target.closest('button[data-i]'); if (b) { sel = +b.dataset.i; draw(); } });
-    var PR = [['An AI team that answers', 'agents', 'In my personal Hermes build, ten agents handle non-PII questions across the lifecycle. Not deployed; tested on scenarios from my past roles. See AI People Team.'], ['A controlled front door', 'action', 'The employee change form routes work to owners with an audit trail. See Employee action form.'], ['Proof it works across regions', 'record', 'One framework across Ridecell and Prezent AI countries. See Transformations I have led.'], ['Measures that hold us accountable', 'dashboard', 'The operational scorecard turns questions into response and resolution numbers. See People Ops dashboard.']];
+    var PR = [['An AI team that answers', 'agents', 'In my personal Hermes build, ten agents handle non-PII questions across the lifecycle. Not deployed; tested on scenarios from my past roles. See AI People Team.'], ['A controlled front door', 'action', 'The employee change form routes work to owners with an audit trail. See Employee action form.'], ['Proof it works across regions', 'record', 'One framework across Brightpath and Orbit Labs countries. See Transformations I have led.'], ['Measures that hold us accountable', 'dashboard', 'The operational scorecard turns questions into response and resolution numbers. See People Ops dashboard.']];
     $('ap-proof').innerHTML = PR.map(function (x) { return '<button type="button" class="go" data-go="' + x[1] + '" title="' + esc(x[2]) + '">' + esc(x[0]) + '</button>'; }).join('');
     $('ap-proof').insertAdjacentHTML('afterend', '<ul class="aplist" style="margin-top:12px">' + PR.map(function (x) { return '<li>' + esc(x[2]) + '</li>'; }).join('') + '</ul>');
     $('ap-proof').querySelectorAll('[data-go]').forEach(function (b) { b.addEventListener('click', function () { showTab(b.dataset.go); try { history.replaceState(null, '', '#' + b.dataset.go); } catch (e) {} window.scrollTo(0, 0); }); });
@@ -2697,7 +2746,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
       ['TA Orchestrator', 'var(--accent)', 'Runs hiring from an approved role to a signed offer and a ready first day.',
         ['Starts from the approved requisition and writes the role scorecard.', 'Tracks candidates through each stage and prompts the next step.', 'Routes the offer through approvals before it goes out.', 'Hands off to onboarding with the start date, location, and access tasks.'],
         'I used it to keep open roles moving across regions without a separate spreadsheet for each one.',
-        ['Who to interview and who to hire.', 'Offer terms and approvals.', 'Anything that needs local judgment.'], 'Employee action form: the new hire request type, and the onboarding checklist.', 'Hired the Chief Growth Officer and President of Prezent Vivo in 3 weeks.', 0],
+        ['Who to interview and who to hire.', 'Offer terms and approvals.', 'Anything that needs local judgment.'], 'Employee action form: the new hire request type, and the onboarding checklist.', 'Hired the Chief Growth Officer and President of Orbit Pilot in 3 weeks.', 0],
       ['Compliance Audit Assistant', 'var(--t3)', 'Checks employee records and required documents against the requirements for each country.',
         ['Compares records and training against a requirements list by country.', 'Flags gaps such as a missing form, an overdue course, or a late filing.', 'Produces an evidence list an auditor can follow.', 'Keeps a log of what was checked and when.'],
         'I used it to keep audit readiness moving in the background while hiring and the reduction in force took most of my attention.',
@@ -2721,7 +2770,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
     var fl = [['Intake', 'One approved request starts the work'], ['Orchestrate', 'The tool builds the steps, owners, and dates'], ['Approve', 'A person reviews at each gate'], ['Record', 'Every step is logged with a timestamp']];
     $('ab-flow').innerHTML = fl.map(function (x, i) { return '<div class="fnode' + (i === 3 ? ' end' : '') + '"><span class="fi">' + (i === 3 ? '&#10003;' : i + 1) + '</span><b>' + x[0] + '</b><span>' + x[1] + '</span></div>'; }).join('');
     $('ab-human').innerHTML = ['Every decision about people, including who is affected, who is hired, and what an offer says.', 'Review of every message before it reaches an employee or candidate.', 'Judgment on local rules in each country.', 'Sign-off on audit findings and fixes.'].map(function (x) { return '<li>' + x + '</li>'; }).join('');
-    $('ab-atg').innerHTML = ['A small team can run several large workstreams in parallel without losing control.', 'The same pattern fits ATG: one intake, named approvers, a record for every step.', 'The tools are reusable, so the team can keep using them without me.', 'The audit assistant could support compliance work from the first month.'].map(function (x) { return '<li>' + x + '</li>'; }).join('');
+    $('ab-atg').innerHTML = ['A small team can run several large workstreams in parallel without losing control.', 'The same pattern fits Northwind: one intake, named approvers, a record for every step.', 'The tools are reusable, so the team can keep using them without me.', 'The audit assistant could support compliance work from the first month.'].map(function (x) { return '<li>' + x + '</li>'; }).join('');
   })();
 
   // ---------- new hire app ----------
@@ -2839,7 +2888,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
     function calScreen() {
       var mm = MONTHS[st.cm], y = mm[0], m = mm[1], ws = WS[st.r], first = new Date(y, m, 1).getDay(), dim = new Date(y, m + 1, 0).getDate(), off = (first - ws + 7) % 7;
       var em = evMap(y, m), heads = ['S', 'M', 'T', 'W', 'T', 'F', 'S'].map(function (_, i, a) { return a[(i + ws) % 7]; });
-      var h = '<h4>\u{1F4C5} My calendar</h4><div class="nhsub">Holidays for ' + CTRY[st.r] + ', plus company events.</div><span class="nhflag">Sample dates, not ATG\'s calendar</span>';
+      var h = '<h4>\u{1F4C5} My calendar</h4><div class="nhsub">Holidays for ' + CTRY[st.r] + ', plus company events.</div><span class="nhflag">Sample dates, not Northwind\'s calendar</span>';
       h += '<div class="nhcat" role="group" aria-label="Filter">' + [['all', '✨ All'], ['holiday', '\u{1F384} Holidays'], ['allhands', '\u{1F4E3} All hands'], ['offsite', '\u{1F3D5}\u{FE0F} Offsites']].map(function (f) { return '<button data-cf="' + f[0] + '" aria-pressed="' + (st.cf === f[0] ? 'true' : 'false') + '">' + f[1] + '</button>'; }).join('') + '</div>';
       h += '<div class="nhmonth"><button data-cm="-1" aria-label="Previous month"' + (st.cm === 0 ? ' disabled' : '') + '>&lsaquo;</button><span>' + MN[m] + ' ' + y + '</span><button data-cm="1" aria-label="Next month"' + (st.cm === MONTHS.length - 1 ? ' disabled' : '') + '>&rsaquo;</button></div>';
       h += '<div class="nhcal">' + heads.map(function (x) { return '<span class="wd">' + x + '</span>'; }).join('');
@@ -2873,7 +2922,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
     var GWX = [['Outlook folders', 'Gmail labels'], ['Teams or Slack channels', 'Chat Spaces'], ['OneDrive and SharePoint', 'Drive and Shared drives'], ['Word, Excel, PowerPoint', 'Docs, Sheets, Slides'], ['Outlook meeting', 'Calendar event with Meet'], ['Shared mailbox', 'Google Group or delegated inbox']];
     var GWTAB = ['Start', 'Apps', 'Tips', 'My day', 'Switching'];
     function gwScreen() {
-      var h = '<h4>\u{1F9E9} Google Workspace</h4><div class="nhsub">New to Google? Start here and use it with confidence by Friday.</div><span class="nhflag">Sample guide, not ATG\'s</span>' +
+      var h = '<h4>\u{1F9E9} Google Workspace</h4><div class="nhsub">New to Google? Start here and use it with confidence by Friday.</div><span class="nhflag">Sample guide, not Northwind\'s</span>' +
         '<div class="nhgw" role="group" aria-label="Guide section">' + GWTAB.map(function (t, i) { return '<button data-gw="' + i + '" aria-pressed="' + (i === st.gw ? 'true' : 'false') + '">' + t + '</button>'; }).join('') + '</div>';
       if (st.gw === 0) {
         var n = GWS.filter(function (x, i) { return st.gs[i]; }).length;
@@ -2894,7 +2943,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
       return h;
     }
     function hbScreen() {
-      var h = '<h4>\u{1F4D6} Handbook</h4><div class="nhsub">One core handbook with a ' + ADD[st.r] + '. Tap a section to preview it.</div><span class="nhflag">Sample handbook, not ATG\'s</span>';
+      var h = '<h4>\u{1F4D6} Handbook</h4><div class="nhsub">One core handbook with a ' + ADD[st.r] + '. Tap a section to preview it.</div><span class="nhflag">Sample handbook, not Northwind\'s</span>';
       HBL.forEach(function (x, i) {
         var txt = x[2][Math.min(st.r, x[2].length - 1)], title = i === 6 ? ADD[st.r] : x[1], open = st.hb === i;
         h += '<div class="nhhb' + (open ? ' open' : '') + '"><button data-hbo="' + i + '" aria-expanded="' + (open ? 'true' : 'false') + '"><span>' + x[0] + '</span><span>' + esc(title) + '</span><span class="ch">&rsaquo;</span></button><div class="bd"><div><p>' + esc(txt) + '</p><div class="acts"><button class="nhlink' + (st.opened[i] ? ' on' : '') + '" data-open="' + i + '">' + (st.opened[i] ? '✓ Opened in handbook' : '\u{1F517} Open full page') + '</button>' + (i === 5 ? '<button class="nhlink" data-go="benefits">\u{1FA7A} My benefits</button>' : '') + (i === 0 ? '<button class="nhlink" data-go="calendar">\u{1F4C5} My calendar</button>' : '') + '</div></div></div></div>';
@@ -2930,7 +2979,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
       } else if (st.s === 'benefits') {
         var R = BEN[st.r], ci = Math.min(st.bc, R.length - 1), C = R[ci], pi = Math.min(st.bp, C[2].length - 1), P = C[2][pi], key = st.r + '-' + ci;
         var on = st.pick[key] === pi;
-        h = '<h4>\u{1FA7A} My benefits</h4><div class="nhsub">' + CTRY[st.r] + '. Tap a topic, then a plan, to see what is offered.</div><span class="nhflag">Sample offering, not ATG benefits</span>' +
+        h = '<h4>\u{1FA7A} My benefits</h4><div class="nhsub">' + CTRY[st.r] + '. Tap a topic, then a plan, to see what is offered.</div><span class="nhflag">Sample offering, not Northwind benefits</span>' +
           '<div class="nhcat" role="group" aria-label="Benefit topic">' + R.map(function (c, i) { return '<button data-bc="' + i + '" aria-pressed="' + (i === ci ? 'true' : 'false') + '">' + c[1] + ' ' + c[0] + '</button>'; }).join('') + '</div>' +
           '<div class="nhplan" role="group" aria-label="Plan">' + C[2].map(function (p, i) { return '<button data-bp="' + i + '" aria-pressed="' + (i === pi ? 'true' : 'false') + '">' + esc(p[0]) + (st.pick[st.r + '-' + ci] === i ? ' \u2713' : '') + '</button>'; }).join('') + '</div>' +
           '<div class="nhben nhdyn in"><h5>' + esc(P[0]) + '</h5><span class="tag">' + esc(P[1]) + '</span><ul>' + P[2].map(function (x) { return '<li>' + esc(x) + '</li>'; }).join('') + '</ul>' +
@@ -3136,21 +3185,21 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
     var TN = { discovery: 'Discovery questions', aibuilds: 'AI builds', askpeople: 'AskPeople portal', calendar: 'Compliance calendar', automation: 'Automation roadmap', action: 'Employee action form', agents: 'AI People Team', dashboard: 'People Ops dashboard', audit: 'Compliance audit', controls: 'Payroll and benefits controls', record: "Transformations I've led", plan: 'Sample first 90 days', roadmap: 'Annual roadmap', experience: 'Employee experience', values: 'Values in practice' };
     // requirement, proof tabs, what I bring (written for the hiring manager)
     var RQ = [
-      ['Significant experience leading an HR Operations, People Operations or shared-services function', ['record', 'roadmap'], 'Thirteen years in People Operations, including leading the function at Ridecell and Prezent AI and supporting seven annual benefits and year-end cycles.'],
-      ['Strong knowledge of US employment operations, payroll, benefits and compliance', ['calendar', 'controls', 'audit'], 'US payroll, benefits, and compliance are my daily work. The calendar, audit, and controls tabs show how I run them, and I hold the SHRM-CP.'],
-      ['Experience in a global or multi-country organization, partnering with regional People teams', ['record', 'action'], 'At Ridecell I supported the US, India, Germany, Spain, France, Canada, and Japan with one core process and local modules.'],
+      ['Significant experience leading an HR Operations, People Operations or shared-services function', ['record', 'roadmap'], 'Thirteen years in People Operations, including leading the function at Brightpath and Orbit Labs and supporting seven annual benefits and year-end cycles.'],
+      ['Strong knowledge of US employment operations, payroll, benefits and compliance', ['calendar', 'controls', 'audit'], 'US payroll, benefits, and compliance are my daily work. The calendar, audit, and controls tabs show how I run them, and I hold the .'],
+      ['Experience in a global or multi-country organization, partnering with regional People teams', ['record', 'action'], 'At Brightpath I supported the US, India, Germany, Spain, France, Canada, and Japan with one core process and local modules.'],
       ['Improving HR systems, workflows, data quality and operational controls', ['action', 'controls', 'dashboard'], 'I consolidated onto one HRIS, built a change request form with an audit trail, and set up reconciliations between HRIS, payroll, and Finance.'],
-      ['Building processes rather than inheriting and administering them', ['record', 'agents'], 'The four-approval change process, the compliance framework, and my AI builds at Prezent AI were all built from a blank page.'],
-      ['Analytical judgment: turning operational data into clear priorities and decisions', ['dashboard', 'roadmap'], 'The dashboard, scorecard, and roadmap show how I turn workforce data into ranked priorities. The numbers are samples until ATG data replaces them.'],
+      ['Building processes rather than inheriting and administering them', ['record', 'agents'], 'The four-approval change process, the compliance framework, and my AI builds at Orbit Labs were all built from a blank page.'],
+      ['Analytical judgment: turning operational data into clear priorities and decisions', ['dashboard', 'roadmap'], 'The dashboard, scorecard, and roadmap show how I turn workforce data into ranked priorities. The numbers are samples until Northwind data replaces them.'],
       ['Comfort working across People, Finance, Legal and IT where ownership is shared', ['dashboard', 'action'], 'A month-end close with Finance, system access that follows the form for IT, and named owners wherever Legal and People share a decision.'],
       ['Managing vendors and holding external partners accountable for outcomes', ['controls', 'calendar'], 'My approach: SOC reports on file for each payroll provider, invoice reconciliations against the HRIS, and a vendor review at every renewal.'],
       ['Strong project and change-management skills across multiple workstreams at once', ['plan', 'roadmap', 'record'], 'I have supported seven annual cycles alongside system and compliance projects. The 90-day plan and annual roadmap show how I sequence work and protect capacity.'],
       ['Excellent judgment with sensitive employee information and confidential matters', ['controls', 'agents', 'askpeople'], 'Segregation of duties, restricted queues for leave and work authorization, and AI agents limited to non-PII actions.'],
       ["Commitment to fair and equitable compensation practices", ['action', 'roadmap'], 'Pay changes go through the same approvals and audit trail as every other employee change. A pay equity review is one item I would add to the roadmap with you.']
     ];
-    var KP = [['Requirements', RQ.length, 'from the job posting'], ['Years in People Ops', '13<small>+</small>', 'progressive HR experience'], ['Annual cycles supported', '7', 'benefits, open enrollment, year-end'], ['Countries at Ridecell', '7', 'US, India, Germany, Spain, France, Canada, Japan']];
+    var KP = [['Requirements', RQ.length, 'from the job posting'], ['Years in People Ops', '13<small>+</small>', 'progressive HR experience'], ['Annual cycles supported', '7', 'benefits, open enrollment, year-end'], ['Countries at Brightpath', '7', 'US, India, Germany, Spain, France, Canada, Japan']];
     $('fit-kpis').innerHTML = KP.map(function (k) { return '<div class="kpi"><div class="lbl">' + k[0] + '</div><div class="val">' + k[1] + '</div><div class="tgt">' + k[2] + '</div></div>'; }).join('');
-    $('fit-table').innerHTML = '<thead><tr><th class="n">#</th><th>What ATG asks for</th><th>What I bring</th><th>Proof on this page</th></tr></thead><tbody>' + RQ.map(function (r, i) {
+    $('fit-table').innerHTML = '<thead><tr><th class="n">#</th><th>What Northwind asks for</th><th>What I bring</th><th>Proof on this page</th></tr></thead><tbody>' + RQ.map(function (r, i) {
       return '<tr><td class="n">' + (i + 1) + '</td><td style="min-width:200px">' + esc(r[0]) + '</td><td style="min-width:260px">' + esc(r[2]) + '</td><td><div class="chips">' + r[1].map(function (t) { return '<button type="button" class="go" data-go="' + t + '">' + esc(TN[t]) + '</button>'; }).join('') + '</div></td></tr>';
     }).join('') + '</tbody>';
     $('fit-table').querySelectorAll('[data-go]').forEach(function (b) {
@@ -3175,7 +3224,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
       [3, 'Training completion', 'Required courses completed by the due date', 'Training records', '90%', '87%', 87, 90, 'min', 1],
       [3, 'Filings and notices on time', 'Calendar items filed by their deadline', 'Compliance calendar', '100%', '100%', 100, 100, 'min', 0],
       [3, 'Audit findings past due', 'Open findings past their agreed date', 'Audit tracker', '0', '2', 2, 0, 'max', 1],
-      [4, 'Employee sentiment (eNPS)', 'Likelihood to recommend ATG as a place to work', 'Quarterly survey', '30', '32', 32, 30, 'min', 1],
+      [4, 'Employee sentiment (eNPS)', 'Likelihood to recommend Northwind as a place to work', 'Quarterly survey', '30', '32', 32, 30, 'min', 1],
       [4, 'Onboarding pulse at day 30', 'Average score out of 5 from new hires', 'Pulse survey', '4.2', '4.3', 4.3, 4.2, 'min', 0],
       [4, '90-day new hire retention', 'Hires still employed after 90 days', 'HRIS', '95%', '96%', 96, 95, 'min', 0]
     ];
@@ -3321,7 +3370,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
     var R = [
       ['Open enrollment', [[7, 8, 0, 'Plan: renewals final, communications drafted, vendor files tested'], [9, 10, 1, 'Enrollment window, employee sessions, reminders'], [11, 11, 2, 'Confirm elections and send files to carriers and payroll']]],
       ['Benefits renewal and vendors', [[2, 4, 0, 'Review claims and plan performance'], [5, 7, 1, 'Broker market review and renewal decisions'], [8, 8, 2, 'Contracts signed']]],
-      ['Retirement plans (401(k))', [[0, 2, 1, 'ADP/ACP testing and any corrective distributions'], [3, 5, 0, 'Plan review and provider check-in'], [6, 6, 2, 'Form 5500 filing'], [9, 10, 0, 'Contribution limit updates for next year']]],
+      ['Retirement plans (401(k))', [[0, 2, 1, 'the old payroll system/ACP testing and any corrective distributions'], [3, 5, 0, 'Plan review and provider check-in'], [6, 6, 2, 'Form 5500 filing'], [9, 10, 0, 'Contribution limit updates for next year']]],
       ['Year-end and tax forms', [[10, 10, 0, 'Payroll year-end checklist begins'], [11, 11, 1, 'Final payroll, bonuses, and aguinaldo in Mexico'], [0, 0, 2, 'W-2s and Form 3922'], [3, 4, 2, 'UK year end, P60s']]],
       ['Performance and pay cycle', [[5, 6, 1, 'Mid-year check-in'], [10, 11, 0, 'Calibration prep and budgets'], [0, 2, 1, 'Reviews and pay changes']]],
       ['Engagement and compliance training', [[3, 3, 1, 'Spring pulse survey'], [9, 9, 1, 'Autumn engagement survey'], [9, 11, 1, 'Annual compliance courses']]]
@@ -3490,20 +3539,20 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
     var PAT = [['Find the gap', 'Audit or inventory, with counsel where needed'], ['Name an owner', 'One accountable person for each obligation'], ['Build the routine', 'Workflow, calendar, checklist, alerts'], ['Make it provable', 'Records, evidence, and a dashboard']];
     $('tr-pattern').innerHTML = PAT.map(function (x, i) { return '<div class="fnode' + (i === 3 ? ' end' : '') + '"><span class="fi">' + (i + 1) + '</span><b>' + x[0] + '</b><span>' + x[1] + '</span></div>'; }).join('');
     var T = [
-      { st: '24 to 48 hrs', t: 'Right-to-work (I-9) rebuild', w: 'Ridecell, about 100 employees, and Prezent AI', b: 'At Ridecell, an audit found incomplete documentation, late filings, and no clear owner. A part-time intern had been running it.', d: ['Built a structured onboarding process with clear deadlines and a document checklist (in ADP at Ridecell), and used the same approach at Prezent AI.', 'Replaced ad hoc handling with a documented process that someone owns.', 'Corrected issues through a documented process.'], a: 'I-9s completed within 24 to 48 hours of day one. It is the first check I would run at ATG.', l: ['Right-to-work audit'] },
-      { st: '7 countries', t: 'A global compliance framework', w: 'Ridecell: US, India, Germany, Spain, France, Canada, Japan', b: 'Requirements varied by state and country, from California workplace violence prevention and privacy and security training to country-specific EU law.', d: ['Ran a shared Google Calendar with the people team and in-country counterparts, with reminders 2 months and 1 month ahead.', 'Built a compliance dashboard for leadership: headcount, onboarding and offboarding, training completion.', 'Filed training certificates in employee records.'], a: 'Fewer ad hoc data requests from leadership, and training records ready for the SOC audit.', l: ['Compliance calendar', 'Dashboard', 'Audit readiness'] },
-      { st: '1 HRIS', t: 'One system and one set of handbooks', w: 'Ridecell: US, India, Europe. Prezent AI: handbooks', b: 'Onboarding, offboarding, welcome communications, and handbooks needed to be consistent across regions, on the old HRIS.', d: ['Led the migration from ADP to Sapling as the single global HRIS.', 'Standardized onboarding, offboarding, welcome communications, and handbooks, and built handbooks at Prezent AI as well.', 'Spent three weeks in India learning local processes, and had legal counsel review every regional handbook.'], a: 'One source of truth for HR data, and handbooks that are consistent and locally reviewed.', l: ['Flexible-first handbook', 'Ten payrolls'] },
-      { st: '4 approvals', t: 'A controlled employee change process', w: 'Ridecell and Prezent AI', b: 'Employee changes ran through a manual process with no documentation.', d: ['Built an employee change request form with approvals from manager, finance, HR, and payroll.', 'Added a full audit trail.', 'Built reusable AI skills for employee changes, hiring, and reductions in force, so the team could keep using them.'], a: 'Every change has an approver, a timestamp, and a record. The process kept running after I left.', l: ['Employee action form', 'Controls'] },
-      { st: 'SLAs', t: 'One front door for employee questions', w: 'Ridecell', b: 'Employee inquiries needed one consistent place to land, with clear expectations for response times.', d: ['Launched AskPeople, one global channel for all employee inquiries.', 'Set service levels and turnaround times by request type.', 'Wrote People Ops playbooks, in Confluence and Jira at Ridecell and in Notion at Prezent AI.'], a: 'A single visible queue with clear standards, and documented playbooks the team could run without me.', l: ['Service standards', 'Employee experience'] },
+      { st: '24 to 48 hrs', t: 'Right-to-work (I-9) rebuild', w: 'Brightpath, about 100 employees, and Orbit Labs', b: 'At Brightpath, an audit found incomplete documentation, late filings, and no clear owner. A part-time intern had been running it.', d: ['Built a structured onboarding process with clear deadlines and a document checklist (in the old system at Brightpath), and used the same approach at Orbit Labs.', 'Replaced ad hoc handling with a documented process that someone owns.', 'Corrected issues through a documented process.'], a: 'I-9s completed within 24 to 48 hours of day one. It is the first check I would run at Northwind.', l: ['Right-to-work audit'] },
+      { st: '7 countries', t: 'A global compliance framework', w: 'Brightpath: US, India, Germany, Spain, France, Canada, Japan', b: 'Requirements varied by state and country, from California workplace violence prevention and privacy and security training to country-specific EU law.', d: ['Ran a shared Google Calendar with the people team and in-country counterparts, with reminders 2 months and 1 month ahead.', 'Built a compliance dashboard for leadership: headcount, onboarding and offboarding, training completion.', 'Filed training certificates in employee records.'], a: 'Fewer ad hoc data requests from leadership, and training records ready for the SOC audit.', l: ['Compliance calendar', 'Dashboard', 'Audit readiness'] },
+      { st: '1 HRIS', t: 'One system and one set of handbooks', w: 'Brightpath: US, India, Europe. Orbit Labs: handbooks', b: 'Onboarding, offboarding, welcome communications, and handbooks needed to be consistent across regions, on the old HRIS.', d: ['Led the migration from the old payroll system to a new HRIS as the single global HRIS.', 'Standardized onboarding, offboarding, welcome communications, and handbooks, and built handbooks at Orbit Labs as well.', 'Spent three weeks in India learning local processes, and had legal counsel review every regional handbook.'], a: 'One source of truth for HR data, and handbooks that are consistent and locally reviewed.', l: ['Flexible-first handbook', 'Ten payrolls'] },
+      { st: '4 approvals', t: 'A controlled employee change process', w: 'Brightpath and Orbit Labs', b: 'Employee changes ran through a manual process with no documentation.', d: ['Built an employee change request form with approvals from manager, finance, HR, and payroll.', 'Added a full audit trail.', 'Built reusable AI skills for employee changes, hiring, and reductions in force, so the team could keep using them.'], a: 'Every change has an approver, a timestamp, and a record. The process kept running after I left.', l: ['Employee action form', 'Controls'] },
+      { st: 'SLAs', t: 'One front door for employee questions', w: 'Brightpath', b: 'Employee inquiries needed one consistent place to land, with clear expectations for response times.', d: ['Launched AskPeople, one global channel for all employee inquiries.', 'Set service levels and turnaround times by request type.', 'Wrote People Ops playbooks, in Confluence and Jira at Brightpath and in Notion at Orbit Labs.'], a: 'A single visible queue with clear standards, and documented playbooks the team could run without me.', l: ['Service standards', 'Employee experience'] },
       { st: '7 cycles', t: 'The annual operating calendar', w: 'Across my roles', b: 'Benefits, open enrollment, retirement plans, and year-end work are recurring and easy to miss.', d: ['Supported seven annual cycles covering benefits, open enrollment, retirement plans, and year-end activities.', 'Planned each cycle a year ahead, with reminders in advance.'], a: 'Predictable cycles that finish on time and do not depend on one person’s memory.', l: ['Annual operating calendar', 'Benefits and retirement plans'] },
-      { st: 'SOX', t: 'Public-company controls', w: 'Dolby Laboratories', b: 'In a public company, HR processes sit inside audited financial controls.', d: ['Worked on an SAP SuccessFactors implementation.', 'Supported SOX compliance for HR processes.'], a: 'Experience working inside the discipline a UK-listed company needs.', l: ['Governance for a listed company', 'SOC 2 and audit'] },
-      { st: 'Audit-ready', t: 'Training and records evidence', w: 'Ridecell', b: 'Audits go faster when training and records evidence is easy to find.', d: ['Filed training certificates in each employee record.', 'Reported completion on the leadership dashboard.'], a: 'When the SOC audit came, the evidence was already in place.', l: ['Training courses', 'Compliance audit'] }
+      { st: 'SOX', t: 'Public-company controls', w: 'a fictional software company', b: 'In a public company, HR processes sit inside audited financial controls.', d: ['Worked on an SAP SuccessFactors implementation.', 'Supported SOX compliance for HR processes.'], a: 'Experience working inside the discipline a UK-listed company needs.', l: ['Governance for a listed company', 'SOC 2 and audit'] },
+      { st: 'Audit-ready', t: 'Training and records evidence', w: 'Brightpath', b: 'Audits go faster when training and records evidence is easy to find.', d: ['Filed training certificates in each employee record.', 'Reported completion on the leadership dashboard.'], a: 'When the SOC audit came, the evidence was already in place.', l: ['Training courses', 'Compliance audit'] }
     ];
     var sel = 0;
     function draw() {
       $('tr-cards').innerHTML = T.map(function (x, i) { return '<button type="button" class="tcard" data-i="' + i + '" aria-pressed="' + (i === sel ? 'true' : 'false') + '"><span class="st">' + esc(x.st) + '</span><span class="tt">' + esc(x.t) + '</span><span class="wh">' + esc(x.w) + '</span></button>'; }).join('');
       var X = T[sel];
-      $('tr-detail').innerHTML = '<div style="margin-top:18px"><h3 style="margin:0">' + esc(X.t) + '</h3><p class="sub" style="margin:2px 0 0">' + esc(X.w) + '</p></div><div class="ttrip"><div class="tcol b"><h4>Before</h4><p>' + esc(X.b) + '</p></div><div class="tcol d"><h4>What I did</h4><ul>' + X.d.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div><div class="tcol a"><h4>After</h4><p>' + esc(X.a) + '</p></div></div><div class="tland"><b style="color:var(--ink)">Where it lands at ATG:</b>' + X.l.map(function (t) { return '<span class="t">' + esc(t) + '</span>'; }).join('') + '</div>';
+      $('tr-detail').innerHTML = '<div style="margin-top:18px"><h3 style="margin:0">' + esc(X.t) + '</h3><p class="sub" style="margin:2px 0 0">' + esc(X.w) + '</p></div><div class="ttrip"><div class="tcol b"><h4>Before</h4><p>' + esc(X.b) + '</p></div><div class="tcol d"><h4>What I did</h4><ul>' + X.d.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul></div><div class="tcol a"><h4>After</h4><p>' + esc(X.a) + '</p></div></div><div class="tland"><b style="color:var(--ink)">Where it lands at Northwind:</b>' + X.l.map(function (t) { return '<span class="t">' + esc(t) + '</span>'; }).join('') + '</div>';
     }
     $('tr-cards').addEventListener('click', function (e) { var b = e.target.closest('button[data-i]'); if (b) { sel = +b.dataset.i; draw(); } });
     draw();
@@ -3699,6 +3748,21 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
     $('dp-type').innerHTML = T.map(function (t) { return '<span style="flex:' + t[1] + ';background:' + t[2] + '" title="' + t[0] + ': ' + t[1] + '"></span>'; }).join('');
     $('dp-type-legend').innerHTML = T.map(function (t) { return '<li><i style="background:' + t[2] + '"></i>' + t[0] + '<b>' + t[1] + '</b></li>'; }).join('');
   })();
+})();
+
+(function(){
+  var vp=document.getElementById('car-vp'); if(!vp) return;
+  var sl=[].slice.call(vp.querySelectorAll('.car-sl')), dots=document.getElementById('car-dots'),
+      pv=document.getElementById('car-prev'), nx=document.getElementById('car-next'), nn=document.getElementById('car-n'), cur=0;
+  sl.forEach(function(_,i){var b=document.createElement('button');b.type='button';b.setAttribute('role','tab');b.setAttribute('aria-label','Slide '+(i+1));b.addEventListener('click',function(){go(i)});dots.appendChild(b)});
+  function mark(i){cur=i;[].forEach.call(dots.children,function(d,j){d.setAttribute('aria-selected',j===i)});pv.disabled=i===0;nx.disabled=i===sl.length-1;nn.textContent=(i+1)+' / '+sl.length;
+    sl.forEach(function(x,j){if(j===i)x.removeAttribute('aria-hidden');else x.setAttribute('aria-hidden','true')})}
+  function go(i){i=Math.max(0,Math.min(sl.length-1,i));vp.scrollTo({left:i*vp.clientWidth});mark(i)}
+  pv.addEventListener('click',function(){go(cur-1)});nx.addEventListener('click',function(){go(cur+1)});
+  var t;vp.addEventListener('scroll',function(){clearTimeout(t);t=setTimeout(function(){var i=Math.round(vp.scrollLeft/vp.clientWidth);if(i!==cur)mark(i)},60)});
+  vp.addEventListener('keydown',function(e){if(e.key==='ArrowRight'){e.preventDefault();go(cur+1)}else if(e.key==='ArrowLeft'){e.preventDefault();go(cur-1)}});
+  window.addEventListener('resize',function(){vp.scrollTo({left:cur*vp.clientWidth})});
+  mark(0);
 })();
 </script>
 </body></html>
