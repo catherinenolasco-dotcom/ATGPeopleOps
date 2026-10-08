@@ -82,13 +82,22 @@ h1 { font-family: var(--f-display); font-weight: 300; font-size: clamp(30px, 6vw
 .src { font-size: 11px; color: var(--on-navy2); opacity: .85; }
 
 /* tabs */
-nav.tabs { background: var(--navy); }
 nav.tabs .tgroups { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 16px 12px; }
 nav.tabs .tgroups button { font: 600 13px var(--f-body); color: var(--on-navy); background: transparent; border: 1px solid rgba(255,255,255,.3); border-radius: 99px; padding: 8px 16px; cursor: pointer; }
 nav.tabs .tgroups button:hover { background: rgba(255,255,255,.1); }
 nav.tabs .tgroups button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
 nav.tabs .tsubs { background: rgba(255,255,255,.07); padding: 0 16px; }
 nav.tabs .tsubs:not(:has(.tgrp:not([hidden]) button:nth-child(2))) { display: none; }
+/* cleaner section nav: one tidy row, scrolls sideways on small screens */
+nav.tabs .tgroups { display: flex; flex-wrap: nowrap; align-items: center; gap: 6px; overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch; padding: 14px 16px 12px; }
+nav.tabs .tgroups::-webkit-scrollbar { display: none; }
+nav.tabs .tgroups button { flex: none; white-space: nowrap; font-size: 12.5px; padding: 7px 13px; }
+nav.tabs .tlabel { flex: none; white-space: nowrap; margin: 0 4px 0 8px; padding-left: 14px; border-left: 1px solid rgba(255,255,255,.28); font-size: 10.5px; line-height: 1.2; }
+nav.tabs .tsubs { overflow-x: auto; scrollbar-width: none; }
+nav.tabs { background: var(--navy); }
+nav.tabs .tsubs .tgrp { flex-wrap: nowrap; gap: 4px 20px; }
+nav.tabs .tsubs .tgrp button { flex: none; white-space: nowrap; }
+nav.tabs .tsubs .tgrp[hidden] { display: none; }
 nav.tabs .tgrp[hidden] { display: none; }
 
 .heroviz { margin-top: 6px; display: grid; gap: 12px; }
@@ -1032,7 +1041,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
     <div class="tgroups" role="group" aria-label="Section groups">
       <button type="button" data-g="me" aria-pressed="true">My experience</button>
       <button type="button" data-g="disc" aria-pressed="false">Discovery questions</button>
-      <span class="tlabel">Optional sample approaches</span>
+      <span class="tlabel">Sample approaches<br>(optional)</span>
       <button type="button" data-g="comp" aria-pressed="false">Compliance</button>
       <button type="button" data-g="sys" aria-pressed="false">Systems and automation</button>
       <button type="button" data-g="data" aria-pressed="false">Data and planning</button>
