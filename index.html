@@ -464,6 +464,20 @@ section.panel > * { min-width: 0; }
 .agc.agwide { display: flex; align-items: center; gap: 10px; text-align: left; width: auto; padding: 8px 14px 8px 8px; font-size: 14px; }
 .agwide b { font: 700 16px/1.1 var(--hand); display: block; } .agwide small { font: 400 12.5px var(--hand); color: var(--ink2); display: block; margin-top: 2px; }
 @media (max-width: 900px) { .aghead { display: flex; flex-direction: column; align-items: center; gap: 0; } .aglead { order: 1; } .agfw.right { order: 2; } .agfw.left { order: 3; } .agfw, .agfw.left { flex-direction: column; } .aglink { width: 0; height: 16px; border-top: 0; border-left: 3px dashed var(--stk); } .agstem { margin-top: 12px; } }
+.agsk { margin-top: 18px; }
+.agsk > h4 { margin: 0; font: 600 11.5px var(--f-body); letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); }
+.agsk > p { margin: 3px 0 10px; font-size: 13px; color: var(--muted); }
+.agskg { display: grid; grid-template-columns: repeat(auto-fit, minmax(185px, 1fr)); gap: 10px; }
+.agskc { background: var(--surface); border: 1px solid var(--line); border-top: 4px solid var(--ac, var(--accent)); border-radius: 14px; padding: 11px 12px 12px; display: grid; gap: 5px; align-content: start; transition: transform .2s, box-shadow .2s; }
+.agskc:hover { transform: translateY(-2px); box-shadow: 0 8px 18px rgba(0,60,100,.12); }
+.agskc .sh1 { display: flex; align-items: center; gap: 8px; }
+.agskc .sem { width: 32px; height: 32px; border-radius: 10px; display: grid; place-items: center; font-size: 17px; flex: none; background: color-mix(in srgb, var(--ac, var(--accent)) 16%, var(--surface)); }
+.agskc b { font-size: 13px; line-height: 1.25; color: var(--ink); }
+.agskc p { margin: 0; font-size: 12.5px; color: var(--ink2); line-height: 1.45; }
+.agskc .run { justify-self: start; font: 600 10.5px var(--f-body); letter-spacing: .04em; border-radius: 99px; padding: 3px 9px; background: var(--accent-wash); color: var(--accent-ink); }
+.agskbar { display: flex; flex-wrap: wrap; gap: 8px 14px; justify-content: center; align-items: center; margin: 12px 0 2px; font-size: 12.5px; color: var(--ink2); }
+.agskbar b { color: var(--accent-ink); font-size: 14px; }
+@media (prefers-reduced-motion: reduce) { .agskc { transition: none; } }
 .agsvg { width: 100%; height: auto; display: block; margin-top: 8px; }
 .agsvg .an { cursor: pointer; }
 .agsvg .an rect { fill: var(--surface); stroke: var(--ac); stroke-width: 2.5; }
@@ -854,7 +868,93 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
 .gwtime b { font-size: 11px; color: var(--accent-ink); padding-top: 2px; } .gwtime span b { color: var(--ink); font-size: 12.5px; display: block; }
 .gwtime > div > span { background: var(--panel); border-radius: 12px; padding: 7px 10px; margin-left: 12px; }
 .gwx { display: grid; gap: 6px; } .gwx div { display: grid; grid-template-columns: 1fr 18px 1fr; gap: 6px; align-items: center; background: var(--panel); border-radius: 12px; padding: 7px 10px; font-size: 11.5px; } .gwx div i { font-style: normal; color: var(--accent-ink); text-align: center; } .gwx div b { color: var(--ink); }
+
+#welcome { position: fixed; inset: 0; z-index: 1000; overflow-y: auto; color: #e9f1f7; font-family: var(--f-body); background: radial-gradient(1000px 520px at 78% -8%, rgba(58,160,220,.22), transparent 60%), radial-gradient(800px 480px at 8% 108%, rgba(58,160,220,.14), transparent 60%), linear-gradient(180deg, #0a1623 0%, #0e2033 100%); transition: opacity .55s ease, transform .55s ease; }
+#welcome.out { opacity: 0; transform: scale(1.02); pointer-events: none; }
+#welcome .wc { max-width: 980px; margin: 0 auto; padding: 44px 20px 48px; display: grid; justify-items: center; text-align: center; gap: 18px; min-height: 100%; align-content: center; }
+#welcome .wc-top { display: flex; align-items: center; gap: 10px; font: 600 14px var(--f-body); color: #cfe2ee; letter-spacing: .02em; }
+#welcome .wc-logo { width: 34px; height: 34px; border-radius: 10px; background: rgba(58,160,220,.18); border: 1px solid rgba(124,195,236,.45); display: grid; place-items: center; color: #9fd4f2; font: 700 12px var(--f-body); }
+#welcome .wc-badge { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(124,195,236,.4); background: rgba(58,160,220,.1); color: #bfe3f7; border-radius: 99px; padding: 7px 16px; font: 600 11.5px var(--f-body); letter-spacing: .12em; text-transform: uppercase; margin-top: 10px; }
+#welcome h1 { font: 700 clamp(30px, 5.4vw, 54px)/1.12 var(--f-body); letter-spacing: -.02em; margin: 0; max-width: 820px; color: #fff; }
+#welcome h1 em { font-family: inherit; font-style: normal; font-weight: 700; color: #8fd0f5; letter-spacing: inherit; }
+#welcome .wc-lede { max-width: 660px; margin: 0; color: #a9bfce; font-size: clamp(15px, 1.7vw, 17.5px); line-height: 1.65; }
+#welcome .wc-lede + .wc-lede { margin-top: -6px; }
+#welcome .wc-cta { position: relative; font: 600 16.5px var(--f-body); color: #fff; background: linear-gradient(180deg, #2b9ad8, #0a70ad); border: 1px solid rgba(160,215,245,.55); border-radius: 99px; padding: 15px 30px; cursor: pointer; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 0 0 6px rgba(58,160,220,.12), 0 12px 34px rgba(10,112,173,.5); transition: transform .2s, box-shadow .2s; margin-top: 4px; }
+#welcome .wc-cta:hover { transform: translateY(-2px); box-shadow: 0 0 0 8px rgba(58,160,220,.16), 0 16px 40px rgba(10,112,173,.6); }
+#welcome .wc-cta:focus-visible, #welcome .wc-card:focus-visible { outline: 3px solid #bfe3f7; outline-offset: 3px; }
+#welcome .wc-cta .ar { transition: transform .2s; } #welcome .wc-cta:hover .ar { transform: translateX(4px); }
+#welcome .wc-note { font-size: 12.5px; color: #86a2b6; margin: -4px 0 0; }
+#welcome .wc-cards { display: grid; grid-template-columns: repeat(3, minmax(0, 250px)); gap: 22px; justify-content: center; margin: 14px 0 6px; width: 100%; }
+#welcome .wc-card { text-align: left; font: inherit; color: inherit; cursor: pointer; background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03)); border: 1px solid rgba(160,205,232,.28); border-radius: 22px; padding: 16px 18px 16px; display: grid; gap: 8px; box-shadow: 0 18px 40px rgba(0,0,0,.35); transition: transform .3s ease, border-color .3s; }
+#welcome .wc-card:nth-child(1) { transform: rotate(-3deg) translateY(10px); } #welcome .wc-card:nth-child(2) { transform: translateY(-6px); } #welcome .wc-card:nth-child(3) { transform: rotate(3deg) translateY(10px); }
+#welcome .wc-card:hover { transform: rotate(0) translateY(-6px); border-color: rgba(143,208,245,.7); }
+#welcome .wc-card .r1 { display: flex; justify-content: space-between; align-items: center; }
+#welcome .wc-card .n { width: 28px; height: 28px; border-radius: 9px; background: rgba(58,160,220,.2); border: 1px solid rgba(124,195,236,.4); color: #bfe3f7; display: grid; place-items: center; font: 700 13px var(--f-body); }
+#welcome .wc-card .dots { color: #8fd0f5; letter-spacing: 3px; font-size: 14px; }
+#welcome .wc-card .ic { width: 46px; height: 46px; border-radius: 14px; background: rgba(255,255,255,.08); border: 1px solid rgba(160,205,232,.25); display: grid; place-items: center; font-size: 24px; }
+#welcome .wc-card h3 { font: 600 18px/1.25 var(--f-body); margin: 2px 0 0; color: #fff; }
+#welcome .wc-card p { margin: 0; font-size: 13px; color: #9fb5c5; line-height: 1.5; }
+#welcome .wc-card .gt { border-top: 1px dashed rgba(160,205,232,.3); padding-top: 9px; margin-top: 4px; font: 600 11.5px var(--f-body); letter-spacing: .1em; text-transform: uppercase; color: #8fd0f5; }
+#welcome .wc-strip { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; background: rgba(255,255,255,.04); border: 1px solid rgba(160,205,232,.22); border-radius: 18px; padding: 14px 18px; max-width: 760px; width: 100%; text-align: left; }
+#welcome .wc-strip div { display: grid; grid-template-columns: 40px 1fr; gap: 0 12px; align-items: center; padding: 2px 8px; }
+#welcome .wc-strip .e { width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(160,205,232,.3); display: grid; place-items: center; font-size: 18px; grid-row: span 2; }
+#welcome .wc-strip b { font-size: 13.5px; color: #fff; } #welcome .wc-strip span.d { font-size: 12px; color: #86a2b6; }
+#welcome .wc-sign { font: 600 16px var(--f-body); color: #cfe2ee; margin: 4px 0 0; }
+@media (max-width: 760px) { #welcome .wc-cards { grid-template-columns: 1fr; max-width: 360px; } #welcome .wc-card:nth-child(n) { transform: none; } #welcome .wc-strip { grid-template-columns: 1fr; } }
+@media (prefers-reduced-motion: reduce) { #welcome, #welcome .wc-card, #welcome .wc-cta { transition: none; } }
+#welcome .wc-agents { display: flex; flex-wrap: wrap; gap: 5px; }
+#welcome .wc-agents span { width: 30px; height: 30px; border-radius: 10px; background: rgba(255,255,255,.08); border: 1px solid rgba(160,205,232,.25); display: grid; place-items: center; font-size: 16px; }
+#welcome .wc-two { display: flex; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
+#welcome .wc-two button { font: inherit; letter-spacing: inherit; text-transform: inherit; color: inherit; background: none; border: 0; padding: 2px 0; cursor: pointer; }
+#welcome .wc-two button:hover { text-decoration: underline; } #welcome .wc-two button:focus-visible { outline: 2px solid #bfe3f7; outline-offset: 3px; border-radius: 4px; }
+#welcome article.wc-card { cursor: default; }
+.osf { display: grid; gap: 14px; margin-top: 14px; }
+.osf-flow { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; position: relative; }
+.osf-n { position: relative; background: var(--surface); border: 2px solid var(--line); border-top: 5px solid var(--oc); border-radius: 16px; padding: 10px 6px 10px; cursor: pointer; font: inherit; color: var(--ink); display: grid; gap: 3px; justify-items: center; text-align: center; transition: transform .2s, border-color .2s, background .2s; }
+.osf-n:hover { transform: translateY(-2px); }
+.osf-n .t { font: 700 10px var(--f-body); letter-spacing: .06em; text-transform: uppercase; color: var(--muted); }
+.osf-n .e { font-size: 24px; line-height: 1.1; } .osf-n b { font-size: 12px; line-height: 1.25; }
+.osf-n small { font-size: 10.5px; color: var(--muted); line-height: 1.3; }
+.osf-n[aria-pressed="true"] { border-color: var(--oc); background: color-mix(in srgb, var(--oc) 12%, var(--surface)); box-shadow: 0 6px 0 -2px var(--oc); }
+.osf-n:not(:last-child)::after { content: "\2192"; position: absolute; right: -11px; top: 46%; z-index: 2; width: 18px; height: 18px; border-radius: 50%; background: var(--bg, #fff); color: var(--accent-ink); display: grid; place-items: center; font: 700 12px var(--f-body); }
+.osf-d { background: color-mix(in srgb, var(--oc, var(--accent)) 10%, var(--surface)); border-left: 6px solid var(--oc, var(--accent)); border-radius: 16px; padding: 14px 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; animation: osfIn .3s ease both; }
+.osf-d .ttl { grid-column: 1 / -1; font: 500 17px var(--f-display, inherit); color: var(--ink); display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+.osf-d h4 { margin: 0 0 4px; font: 700 11px var(--f-body); letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); }
+.osf-d p { margin: 0; font-size: 13.5px; color: var(--ink2); }
+.osf-d .when { font: 600 11px var(--f-body); background: var(--surface); border: 1px solid var(--line2); border-radius: 99px; padding: 3px 10px; color: var(--ink2); }
+.osf-d .dec { grid-column: 1 / -1; background: var(--warn-wash); color: var(--warn); border-radius: 12px; padding: 8px 12px; font-size: 13px; } .osf-d .dec b { color: inherit; }
+.osf-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.osf-3 > div { border-radius: 14px; padding: 10px 12px; font-size: 12.5px; color: var(--ink2); background: var(--panel); display: grid; gap: 3px; align-content: start; }
+.osf-3 b { color: var(--ink); font-size: 13px; }
+.osf-3 .no { background: var(--warn-wash); color: var(--warn); } .osf-3 .no b { color: inherit; }
+@keyframes osfIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+@media (max-width: 900px) { .osf-flow { grid-template-columns: repeat(4, 1fr); } .osf-d { grid-template-columns: 1fr; } .osf-3 { grid-template-columns: 1fr; } .osf-n:not(:last-child)::after { display: none; } }
+@media (max-width: 520px) { .osf-flow { grid-template-columns: repeat(2, 1fr); } }
+@media (prefers-reduced-motion: reduce) { .osf-d { animation: none; } .osf-n { transition: none; } }
 </style><style>[hidden]{display:none !important}</style></head><body>
+
+<section id="welcome" role="dialog" aria-modal="true" aria-labelledby="wc-h">
+  <div class="wc">
+    <div class="wc-top"><span class="wc-logo">CN</span>Cat Nolasco &middot; People Operations</div>
+    <div class="wc-badge">&#10024; A thank you, in visuals</div>
+    <h1 id="wc-h">Dear <em>Jenn</em>, thank you for such a <em>great</em> conversation.</h1>
+    <p class="wc-lede">I really enjoyed meeting you and talking with you. I have been thinking a lot about what we discussed, and I have been putting my thoughts and reflections into visuals so you can see what I would bring to ATG.</p>
+    <p class="wc-lede">There is no pressure to look at all of it. Open one card, skim for five minutes, or save it for later. Whatever is useful, I hope it adds to our conversation.</p>
+    <button type="button" class="wc-cta" id="wc-go">Click here to see it <span class="ar">&rarr;</span></button>
+    <p class="wc-note">Or jump straight to one part:</p>
+    <div class="wc-cards">
+      <button type="button" class="wc-card" data-wc="fit"><div class="r1"><span class="n">1</span><span class="dots">&bull;&bull;&bull;&bull;</span></div><div class="ic">&#129517;</div><h3>My experience and fit</h3><p>Where I have done this work, and how it connects to the role.</p><div class="gt">Open this &rarr;</div></button>
+      <article class="wc-card"><div class="r1"><span class="n">2</span><span class="dots">&bull;&bull;&bull;&bull;</span></div><div class="ic">&#129302;</div><h3>How I use AI, safely</h3><p>Three real builds, an AI People Team of ten agents, and the BRD process, with a person always approving.</p><div class="wc-agents" role="list" aria-label="The ten AI People Team agents"><span title="Onboarding agent" aria-label="Onboarding agent">👋</span><span title="Offboarding agent" aria-label="Offboarding agent">🚪</span><span title="Benefits agent" aria-label="Benefits agent">💙</span><span title="Payroll agent" aria-label="Payroll agent">💵</span><span title="Engagement agent" aria-label="Engagement agent">😊</span><span title="Immigration agent" aria-label="Immigration agent">🌍</span><span title="Leave agent" aria-label="Leave agent">🗓️</span><span title="Compliance agent" aria-label="Compliance agent">🛡️</span><span title="AskPeople agent" aria-label="AskPeople agent">📥</span><span title="Insights agent" aria-label="Insights agent">📊</span></div><div class="gt wc-two"><button type="button" data-wc="aibuilds">AI builds &rarr;</button><button type="button" data-wc="agents">Meet the 10 agents &rarr;</button></div></article>
+      <button type="button" class="wc-card" data-wc="experience"><div class="r1"><span class="n">3</span><span class="dots">&bull;&bull;&bull;&bull;</span></div><div class="ic">&#128155;</div><h3>Employee and new hire experience</h3><p>Ideas for the whole employee journey, plus tappable new hire and manager apps.</p><div class="gt">Open this &rarr;</div></button>
+    </div>
+    <div class="wc-strip">
+      <div><span class="e">&#9201;&#65039;</span><b>Skim in 5 minutes</b><span class="d">Or take it slower, your call</span></div>
+      <div><span class="e">&#129517;</span><b>Start anywhere</b><span class="d">Every section stands on its own</span></div>
+      <div><span class="e">&#128274;</span><b>Public information only</b><span class="d">Samples and ideas are labeled</span></div>
+    </div>
+    <p class="wc-sign">Thank you again, Cat</p>
+  </div>
+</section>
 
 <div class="hero">
   <div class="wrap">
@@ -896,7 +996,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
       <div class="tgrp" data-g="comp" hidden><button role="tab" id="t-calendar" aria-selected="false" data-tab="calendar">Compliance calendar</button><button role="tab" id="t-audit" aria-selected="false" data-tab="audit">Compliance audit</button><button role="tab" id="t-controls" aria-selected="false" data-tab="controls">Payroll and benefits controls</button></div>
       <div class="tgrp" data-g="sys" hidden><button role="tab" id="t-automation" aria-selected="false" data-tab="automation">Automation roadmap</button><button role="tab" id="t-askpeople" aria-selected="false" data-tab="askpeople">AskPeople portal</button><button role="tab" id="t-agents" aria-selected="false" data-tab="agents">AI People Team</button></div>
       <div class="tgrp" data-g="data" hidden><button role="tab" id="t-dashboard" aria-selected="false" data-tab="dashboard">People Ops dashboard</button><button role="tab" id="t-plan" aria-selected="false" data-tab="plan">Sample first 90 days</button><button role="tab" id="t-roadmap" aria-selected="false" data-tab="roadmap">Annual roadmap</button></div>
-      <div class="tgrp" data-g="exp" hidden><button role="tab" id="t-experience" aria-selected="false" data-tab="experience">Employee experience</button><button role="tab" id="t-newhire" aria-selected="false" data-tab="newhire">New hire app</button></div>
+      <div class="tgrp" data-g="exp" hidden><button role="tab" id="t-experience" aria-selected="false" data-tab="experience">Employee experience</button><button role="tab" id="t-newhire" aria-selected="false" data-tab="newhire">New hire app</button><button role="tab" id="t-manager" aria-selected="false" data-tab="manager">Manager app</button></div>
     </div>
   </nav>
 </div>
@@ -1131,6 +1231,42 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
       <div id="ag-org" role="group" aria-label="Ten AI agents that report to the People Ops lead"></div>
       <div id="ag-detail" style="margin-top:18px"></div>
     </div>
+<div class="card" id="osf-card">
+  <h3>From signed offer to day one</h3>
+  <p class="sub">What Joe does once a candidate signs, and what the agents pick up. Select a step. Joe keeps the human relationship and the offer terms, and one submitted form starts everything else.</p>
+  <div class="osf" id="osf">
+    <div class="osf-flow" id="osf-flow" role="group" aria-label="Steps from signed offer to day one"></div>
+    <div class="osf-d" id="osf-d" aria-live="polite"></div>
+    <div class="osf-3">
+      <div><b>Joe does</b>Submits the new hire on the action form, keeps the candidate warm, and handles the offer.</div>
+      <div><b>The agents do</b>Build checklists, send reminders, answer common questions, and report counts.</div>
+      <div class="no"><b>Never automated</b>Offer terms, pay, work authorization decisions, and any message that reaches the hire without a person approving it.</div>
+    </div>
+  </div>
+</div>
+<script>
+(function () {
+  var R = 'Joe', RC = 'Joe';
+  var S = [
+    { e: '\u{1F91D}', n: R === 'Joe' ? 'Joe: offer signed' : 'Recruiter: offer signed', w: 'Day 0', c: 'var(--ink)', s: 'Submit the new hire', do: 'Enters the new hire on the employee action form: name, start date, role, region, and manager. That single submission starts every step that follows.', sees: 'A confirmation and a status page that shows which steps are done and which are waiting.', dec: 'Offer terms stay between ' + R + ', the hiring manager, and the candidate. They are never typed into an agent.' },
+    { e: '\u{1F4CB}', n: 'Onboarding agent builds the plan', w: 'Day 0', c: 'var(--t3)', s: 'Checklist and reminders', do: 'Builds the day-one to day-30 checklist for the role and country, assigns each task to an owner, and starts the reminders.', sees: 'The checklist status for each task and owner, without any personal details.', dec: 'The People Ops lead reviews the checklist before it goes live.' },
+    { e: '\u{1F6C2}', n: 'Immigration agent checks right to work', w: 'Day 0 to 1', c: 'var(--s4)', s: 'Right-to-work steps', do: 'Builds the right-to-work checklist for the hire\'s country, such as the I-9 in the US or the UK check, and sets 90, 60, and 30 day expiry alerts.', sees: 'A simple status: on track or needs attention. Never the documents.', dec: 'A person in People Ops, with counsel where needed, handles every document and any work authorization question.' },
+    { e: '\u{1F4B5}', n: 'Payroll and Benefits agents get ready', w: 'Days 1 to 5', c: 'var(--accent)', s: 'Pay and plan set-up', do: 'Payroll gets the pre-payroll checklist for the entity. Benefits notes the eligibility date and schedules the enrollment reminder.', sees: 'That the tasks have owners and dates. ' + RC + ' does not see pay or plan details.', dec: 'The payroll and benefits owners approve the set-up.' },
+    { e: '✉️', n: 'Welcome note and week-one plan', w: '5 days before start', c: 'var(--t3)', s: 'The warm welcome', do: 'The Onboarding agent drafts a welcome note and a week-one agenda, and nudges IT, the manager, and the buddy about open tasks.', sees: 'The draft, so ' + R + ' can add a personal touch. ' + RC + ' stays the friendly voice the candidate already knows.', dec: 'The manager and ' + R + ' approve and send the note.' },
+    { e: '\u{1F4E5}', n: 'AskPeople agent handles questions', w: 'Any time', c: 'var(--s2)', s: 'Candidate questions', do: 'Answers common questions about start date, equipment, and pay dates from the approved handbook, and routes anything else to the right owner with a short summary.', sees: 'Fewer pings. Only questions about the offer or start date come back to ' + R + '.', dec: 'A person approves every reply that is not a standard handbook answer.' },
+    { e: '\u{1F4CA}', n: 'Insights agent shows the pattern', w: 'Weekly', c: 'var(--t1)', s: 'Counts, no names', do: 'Reports offer-signed to start-date time and checklist completion by step, as counts with no names.', sees: 'Where hires get stuck, so ' + R + ' and the CPO can fix the step rather than chase a person.', dec: 'People Ops reviews the report before it is shared.' }
+  ];
+  var sel = 0, flow = document.getElementById('osf-flow'), det = document.getElementById('osf-d'); if (!flow) return;
+  function esc(x) { return String(x).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+  function draw() {
+    flow.innerHTML = S.map(function (s, i) { return '<button type="button" class="osf-n" style="--oc:' + s.c + '" data-osf="' + i + '" aria-pressed="' + (i === sel) + '"><span class="t">' + esc(s.w) + '</span><span class="e">' + s.e + '</span><b>' + esc(s.n) + '</b><small>' + esc(s.s) + '</small></button>'; }).join('');
+    var s = S[sel]; det.style.setProperty('--oc', s.c);
+    det.innerHTML = '<div class="ttl"><span style="font-size:24px">' + s.e + '</span>' + esc(s.n) + '<span class="when">' + esc(s.w) + '</span></div><div><h4>What happens</h4><p>' + esc(s.do) + '</p></div><div><h4>What ' + esc(R) + ' sees</h4><p>' + esc(s.sees) + '</p></div><div class="dec"><b>A person decides:</b> ' + esc(s.dec) + '</div>';
+  }
+  flow.addEventListener('click', function (e) { var b = e.target.closest('[data-osf]'); if (b) { sel = +b.dataset.osf; draw(); var n = flow.querySelector('[data-osf="' + sel + '"]'); if (n) n.focus({ preventScroll: true }); } });
+  draw();
+})();
+</script>
     <div>
       <h3 style="margin-bottom:4px">How we communicate with them</h3>
       <p class="sub">Three ways in, and the same rule for all: a person reviews before anything reaches an employee or changes a record.</p>
@@ -1689,6 +1825,28 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
   </section>
 
 
+  <!-- MANAGER APP -->
+  <section class="panel" id="p-manager" role="tabpanel" aria-labelledby="t-manager" hidden>
+    <div>
+      <h2>Manager app: everything a manager needs to look after their team</h2>
+      <p class="sub">A second working prototype, built for the people who shape most of the employee experience. Pick a team type and how experienced the manager is, then tap through the phone. Approving, scheduling, and sending kudos all update the checklist and the People Ops view. Names and items are samples, and the same employee action form feeds it.</p>
+    </div>
+    <div class="nhctl">
+      <div><b>Team</b><div class="stages" id="mg-team" role="group" aria-label="Team type"></div></div>
+      <div><b>Manager</b><div class="stages" id="mg-exp" role="group" aria-label="Manager experience"></div></div>
+    </div>
+    <div class="nhwrap">
+      <div class="nhphone" id="mg-phone" aria-label="Manager app prototype"></div>
+      <div class="nhside">
+        <div class="card"><h3>Behind this screen</h3><div id="mg-behind"></div></div>
+        <div class="card"><h3>What People Ops sees</h3><p class="sub">Updates as you tap in the phone.</p><div id="mg-ops"></div></div>
+        <div class="card"><h3>How I would build it</h3><ul class="aplist" id="mg-build"></ul></div>
+        <div class="card"><h3>More ways to support managers</h3><p class="sub">Ideas I would test with a few managers first.</p><ul class="nhideas" id="mg-ideas"></ul></div>
+      </div>
+    </div>
+  </section>
+
+
   <!-- ROADMAP -->
   <section class="panel" id="p-roadmap" role="tabpanel" aria-labelledby="t-roadmap" hidden>
     <div>
@@ -1749,7 +1907,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
   function opt(vals, first) { return (first ? '<option value="">' + first + '</option>' : '') + vals.map(function (v) { return '<option>' + esc(v) + '</option>'; }).join(''); }
 
   // ---------- tabs ----------
-  var tabs = ['discovery', 'fit', 'calendar', 'automation', 'action', 'askpeople', 'agents', 'aibuilds', 'dashboard', 'audit', 'controls', 'record', 'plan', 'roadmap', 'experience', 'newhire', 'values'];
+  var tabs = ['discovery', 'fit', 'calendar', 'automation', 'action', 'askpeople', 'agents', 'aibuilds', 'dashboard', 'audit', 'controls', 'record', 'plan', 'roadmap', 'experience', 'newhire', 'manager', 'values'];
   function showTab(name) {
     if (tabs.indexOf(name) < 0) name = 'fit';
     tabs.forEach(function (t) {
@@ -1797,7 +1955,8 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
       plan: [['prop', PROPN], CONCEPT + LEGAL],
       roadmap: [['prop', PROPN], CONCEPT + SYN],
       experience: [['prop', PROPN], CONCEPT],
-      newhire: [['prop', PROPN], CONCEPT + ' Names and tasks are sample data.']
+      newhire: [['prop', PROPN], CONCEPT + ' Names and tasks are sample data.'],
+      manager: [['prop', PROPN], CONCEPT + ' Names, items, and approvals are sample data.']
     };
     Object.keys(K).forEach(function (k) {
       var p = $('p-' + k); if (!p) return;
@@ -1812,6 +1971,23 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
     if (sh) sh.addEventListener('click', function (e) { var b = e.target.closest('[data-go]'); if (b) { showTab(b.dataset.go); try { history.replaceState(null, '', '#' + b.dataset.go); } catch (x) {} window.scrollTo(0, 0); } });
   })();
   showTab((location.hash || '').replace('#', ''));
+  (function () {
+    var w = document.getElementById('welcome'); if (!w) return;
+    var prevOverflow = '';
+    function lock(on) { try { document.documentElement.style.overflow = on ? 'hidden' : ''; } catch (x) {} }
+    function closeW(tab) {
+      w.classList.add('out'); lock(false);
+      setTimeout(function () { w.hidden = true; }, 560);
+      if (tab) { try { history.replaceState(null, '', '#' + tab); } catch (x) {} showTab(tab); }
+      window.scrollTo(0, 0);
+    }
+    function openW() { w.hidden = false; void w.offsetWidth; w.classList.remove('out'); lock(true); w.scrollTop = 0; var b = document.getElementById('wc-go'); if (b) b.focus(); }
+    document.getElementById('wc-go').addEventListener('click', function () { closeW(''); });
+    w.addEventListener('click', function (e) { var c = e.target.closest('[data-wc]'); if (c) closeW(c.dataset.wc); });
+    var h = (location.hash || '').replace('#', '');
+    if (h === 'welcome') { openW(); } else if (h) { w.hidden = true; w.classList.add('out'); } else { lock(true); document.getElementById('wc-go').focus({ preventScroll: true }); }
+    window.addEventListener('hashchange', function () { if ((location.hash || '') === '#welcome') openW(); });
+  })();
   window.addEventListener('hashchange', function () { showTab((location.hash || '').replace('#', '')); });
 
   // ---------- calendar ----------
@@ -2823,6 +2999,138 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
     init(); render(); animate('in');
   })();
 
+  // ---------- manager app ----------
+  (function () {
+    function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+    var $ = function (id) { return document.getElementById(id); };
+    if (!$('mg-phone')) return;
+    var REDUCE = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var TEAMS = ['Local team', 'Cross-region team'], EXPS = ['New to managing', 'Experienced'];
+    var st = { t: 1, x: 0, s: 'home', p: -1, o: 4, sched: {}, kudos: {}, mt: {}, ag: {}, sent: {}, hire: {}, ap: {}, k: -1, q: -1, tix: false };
+    var TEAM = [
+      ['Maya Chen', 'Marketplace Operations', '\u{1F1FA}\u{1F1F8}', '\u{1F4C5}', 'Q4 goals check-in is due', 'Book a 30-minute goals check-in and write down two outcomes.', '#0077b6', 'MC'],
+      ['Tom Hughes', 'Customer Support', '\u{1F1EC}\u{1F1E7}', '\u{1F334}', 'Out of office Oct 20 to 24', 'Plan coverage before he leaves and say thanks when he is back.', '#1baf7a', 'TH'],
+      ['Elena Weber', 'Finance Operations', '\u{1F1E9}\u{1F1EA}', '\u{1F4DD}', 'Time off request waiting for you', 'Review the request. The system shows her balance and team coverage.', '#e87ba4', 'EW'],
+      ['Luis Ortega', 'Seller Success', '\u{1F1F2}\u{1F1FD}', '\u{1F389}', 'Two-year work anniversary on Friday', 'Send a personal note. Mention one thing he did this year.', '#eda100', 'LO'],
+      ['Sam Patel', 'Marketplace Operations', '\u{1F1EC}\u{1F1E7}', '\u{1F44B}', 'New hire, day 12', 'Hold a week-two check-in: what is clear, what is confusing, who else to meet.', '#4a3aa7', 'SP'],
+      ['Jo Rivera', 'Data and Reporting', '\u{1F1FA}\u{1F1F8}', '\u{1F331}', 'Asked about growth and promotion', 'Listen first, then loop in People Ops before promising anything about level or pay.', '#e34948', 'JR']
+    ];
+    function reg(i) { return st.t === 1 ? TEAM[i][2] : '\u{1F1FA}\u{1F1F8}'; }
+    var HIRE = [['Before day 1', 'Send a warm welcome note and the first-week plan'], ['Before day 1', 'Confirm laptop and accounts are ready with IT'], ['Before day 1', 'Pick a buddy from another team'], ['Week 1', 'Hold a welcome 1:1 and share how the team works'], ['Week 1', 'Introduce Sam to three key partners'], ['First 30 days', 'Agree on three goals for the first 90 days'], ['First 30 days', 'Day 30 check-in, and share feedback with People Ops']];
+    var AP = [
+      ['\u{1F3D6}\u{FE0F}', 'Time off: 5 days in December', 'Elena Weber', 'Balance 9 days. Two teammates are covering. Within policy.', true],
+      ['\u{1F9FE}', 'Expense: $84 team lunch', 'Luis Ortega', 'Within the team event budget and has a receipt.', true],
+      ['\u{1F4C8}', 'Role change: Jo Rivera', 'Jo Rivera', 'Level and pay changes go through the compensation review, so People Ops picks this up with you.', false],
+      ['\u{1F9D1}\u{200D}\u{1F4BC}', 'New role request: Marketplace Specialist', 'You', 'Needs budget approval from Finance. People Ops opens the requisition once it is cleared.', false]
+    ];
+    var KIT = [
+      ['\u{1F331}', 'Your first 30 days as a manager', 'Start here', ['Meet each person 1:1 in your first two weeks and ask how they like to work.', 'Agree on a weekly rhythm: one team meeting, one 1:1 each, and notes in one shared place.', 'Know where to go. People Ops handles pay, leave, and performance concerns with you.'], 'new'],
+      ['\u{1F30D}', 'Run a team across time zones', 'Cross-region', ['Rotate meeting times so the same region does not always take the early or late slot.', 'Write decisions down. Post a short recap for people who could not attend live.', 'Check the shared holiday calendar before you plan a deadline or a launch.'], 'cross'],
+      ['\u{1F5E3}\u{FE0F}', 'Give feedback that lands', 'Core skill', ['Describe the Situation, the Behavior, and the Impact. Skip guesses about intent.', 'Say it soon and in private. Ask for their view before you finish.', 'Agree on one next step, and follow up in the next 1:1.'], ''],
+      ['\u{1F91D}', 'Have a hard conversation', 'Core skill', ['Prepare two or three facts and the outcome you want. Keep to what you saw.', 'Tell People Ops early when it is about performance or conduct, before you meet.', 'Do not promise outcomes you do not control, such as pay or role changes.'], ''],
+      ['\u{1F3D6}\u{FE0F}', 'Time off and leave', 'Check with People Ops', ['Approve time off against policy and team coverage.', 'Do not ask for medical details. If someone mentions a health or family need, point them to People Ops.', 'Rules differ by country, so ask before you decide on leave.'], ''],
+      ['\u{1F4C8}', 'Performance and growth', 'Core skill', ['Set three clear goals with each person and check in on them every quarter.', 'Keep notes through the year so reviews are fair and specific.', 'Promotions and pay changes go through People Ops and a compensation review.'], ''],
+      ['\u{1F44B}', 'When someone is leaving', 'Check with People Ops', ['Tell People Ops as soon as you know so final pay, benefits notices, and access are ready.', 'Plan a handover and tell the team together.', 'Thank them well. Alumni are part of the team too.'], '']
+    ];
+    var QA = [['\u{1F912}', 'A team member told me they are unwell', 'Listen and be kind. Do not ask for medical details or a diagnosis. Point them to the leave and benefits information, and let People Ops know so they can help with next steps. Keep it private.'], ['\u{1F552}', 'Someone wants to change their hours', 'You can talk it through and check team coverage. Do not agree to a formal change yet. Send the request through the employee action form so People Ops checks the local rules.'], ['\u{1F4C8}', 'I want to promote someone', 'Write down the evidence and talk to People Ops first. Level and pay changes are reviewed together, and the employee should hear about it from you after approval.'], ['\u{1F4B5}', 'A team member asked about pay', 'Say you will find out, and ask People Ops for the pay range and policy. Do not share other people\'s pay.'], ['⚠\u{FE0F}', 'I have a concern about performance', 'Document specific examples, give clear feedback, and call People Ops early. They can help you plan the conversation and any support or next steps.']];
+    var IDEAS = [['\u{1F4D8}', 'Manager starter kit', 'A short playbook and a 30-60-90 plan for anyone new to managing. Watch: time to first confident 1:1.'], ['\u{1F9D1}‍\u{1F3EB}', 'Manager circles', 'Small groups across regions that meet monthly to swap what works. Watch: manager pulse score.'], ['\u{1F514}', 'Smart nudges', 'A weekly reminder for 1:1s, anniversaries, and probation check-ins. Watch: 1:1 cadence.'], ['\u{1F4CA}', 'Team pulse, in aggregate', 'A short quarterly team survey shown as team-level trends only, never individual answers. Watch: participation.'], ['\u{1F6E0}\u{FE0F}', 'Office hours', 'A monthly slot where People Ops answers manager questions live, in two time zones. Watch: ticket volume.'], ['\u{1F3C5}', 'Recognition prompts', 'A gentle nudge to thank someone each week. Watch: recognition sent per team.']];
+    function ring(p) { var c = 2 * Math.PI * 34; return '<svg class="nhring" viewBox="0 0 80 80" role="img" aria-label="' + p + ' percent complete"><circle class="bg" cx="40" cy="40" r="34"/><circle class="fg" cx="40" cy="40" r="34" stroke-dasharray="' + c.toFixed(1) + '" stroke-dashoffset="' + (c * (1 - p / 100)).toFixed(1) + '" transform="rotate(-90 40 40)"/><text x="40" y="45" text-anchor="middle">' + p + '%</text></svg>'; }
+    function tasks() { return [
+      ['Hold a check-in with Sam', 'Week two of onboarding', !!st.sched[4], 'sched4'],
+      ['Review Elena\'s time off request', 'In Approvals', st.ap[0] === 'approved' || st.ap[0] === 'declined', 'ap0'],
+      ['Send Luis an anniversary note', 'Two years on Friday', !!st.kudos[3], 'kudos3'],
+      ['Complete the Q4 goals check-in with Maya', 'Mark it done when it is booked', !!st.mt.q4, 'mt:q4'],
+      ['Read the updated handbook section', 'Takes about five minutes', !!st.mt.hb, 'mt:hb']
+    ]; }
+    function pct() { var t = tasks(); return Math.round(t.filter(function (x) { return x[2]; }).length / t.length * 100); }
+    var NAV = [['home', 'Home', '\u{1F3E0}'], ['team', 'My team', '\u{1F465}'], ['oneone', '1:1s', '\u{1F4AC}'], ['hire', 'New hire', '\u{1F44B}'], ['approvals', 'Approvals', '✅'], ['toolkit', 'Toolkit', '\u{1F9F0}']];
+    var AGENDA = ['How are you doing?', 'Priorities this week', 'Blockers I can clear', 'Feedback, both ways', 'Growth and what is next', 'Recognition'];
+    function screen() {
+      var h = '', p = pct(), T = tasks();
+      if (st.s === 'home') {
+        h = '<div class="nhhero">' + ring(p) + '<div><small>' + TEAMS[st.t] + '</small><b>Hi Alex \u{1F44B}</b><small>' + (st.x === 0 ? 'New manager &middot; 6 people' : '6 people &middot; ' + (st.t === 1 ? '3 countries' : 'one office')) + '</small></div></div>' +
+          '<div class="nhsec">This week</div>' + T.map(function (t, i) { return '<button class="nhtask' + (t[2] ? ' done' : '') + '" data-mt="' + i + '"><span class="nhbox">' + (t[2] ? '&#10003;' : '') + '</span><span><b>' + esc(t[0]) + '</b><span>' + esc(t[1]) + '</span></span></button>'; }).join('') +
+          '<div class="nhtiles"><button class="nhtile" data-mgo="team"><span class="nhe">\u{1F465}</span>My team<span>6 people</span></button><button class="nhtile" data-mgo="oneone"><span class="nhe">\u{1F4AC}</span>1:1s<span>Agenda builder</span></button><button class="nhtile" data-mgo="approvals"><span class="nhe">✅</span>Approvals<span>' + AP.filter(function (a, i) { return !st.ap[i]; }).length + ' waiting</span></button><button class="nhtile" data-mgo="toolkit"><span class="nhe">\u{1F9F0}</span>Toolkit<span>Guides and tips</span></button><button class="nhtile" data-mgo="hire"><span class="nhe">\u{1F44B}</span>New hire<span>Sam, day 12</span></button><button class="nhtile" data-mgo="ask"><span class="nhe">\u{1F4AC}</span>Ask People<span>Get an answer</span></button></div>';
+      } else if (st.s === 'team') {
+        h = '<h4>\u{1F465} My team</h4><div class="nhsub">Tap a person for a suggested next step. Private details never show here.</div>' + TEAM.map(function (m, i) {
+          var open = st.p === i;
+          return '<div class="nhper" style="grid-template-columns:36px 1fr auto"><span class="nhav" style="background:' + m[6] + '">' + m[7] + '</span><span><b>' + m[0] + ' ' + reg(i) + '</b><span>' + m[1] + '</span></span><button class="nhsm' + (open ? ' sent' : '') + '" data-mp="' + i + '">' + (open ? 'Close' : 'Open') + '</button></div><div class="nhsub" style="margin:-4px 0 0 4px">' + m[3] + ' ' + esc(m[4]) + '</div>' +
+            (open ? '<div class="nhans nhdyn in"><b>Suggested next step</b><span>' + esc(m[5]) + '</span><div class="acts" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px"><button class="nhlink' + (st.sched[i] ? ' on' : '') + '" data-ms="' + i + '">' + (st.sched[i] ? '✓ Check-in booked' : '\u{1F4C5} Book a check-in') + '</button><button class="nhlink' + (st.kudos[i] ? ' on' : '') + '" data-mk="' + i + '">' + (st.kudos[i] ? '✓ Kudos sent' : '\u{1F389} Send kudos') + '</button></div></div>' : '');
+        }).join('');
+      } else if (st.s === 'oneone') {
+        var m = TEAM[st.o], key = st.o, A = st.ag[key] || {};
+        h = '<h4>\u{1F4AC} 1:1 agenda</h4><div class="nhsub">Pick a person, choose topics, and send a shared agenda.</div><div class="nhcat" role="group" aria-label="Person">' + TEAM.map(function (x, i) { return '<button data-mo="' + i + '" aria-pressed="' + (i === st.o ? 'true' : 'false') + '">' + x[0].split(' ')[0] + '</button>'; }).join('') + '</div>' +
+          '<div class="nhsec">Topics for ' + m[0].split(' ')[0] + '</div>' + AGENDA.map(function (a, i) { var d = !!A[i]; return '<button class="nhtask' + (d ? ' done' : '') + '" data-ma="' + i + '"><span class="nhbox">' + (d ? '&#10003;' : '') + '</span><span><b>' + esc(a) + '</b></span></button>'; }).join('') +
+          '<div class="nhans"><b>Suggested opener</b><span>' + (key === 4 ? 'What has been clear so far, and what has been confusing?' : key === 5 ? 'What would you like to be doing a year from now?' : key === 3 ? 'What are you proudest of from this past year?' : 'What would make this week a good one for you?') + '</span></div>' +
+          '<button class="nhbtn' + (st.sent[key] ? ' pick on' : '') + '" data-msend="1">' + (st.sent[key] ? '✓ Agenda sent to ' + m[0].split(' ')[0] : 'Send shared agenda') + '</button>';
+      } else if (st.s === 'hire') {
+        var d0 = HIRE.filter(function (x, i) { return st.hire[i]; }).length;
+        h = '<h4>\u{1F44B} Welcoming Sam</h4><div class="nhsub">' + d0 + ' of ' + HIRE.length + ' manager steps done. IT and People Ops handle the rest.</div>';
+        ['Before day 1', 'Week 1', 'First 30 days'].forEach(function (g) { h += '<div class="nhsec">' + g + '</div>'; HIRE.forEach(function (x, i) { if (x[0] !== g) return; var d = !!st.hire[i]; h += '<button class="nhtask' + (d ? ' done' : '') + '" data-mh="' + i + '"><span class="nhbox">' + (d ? '&#10003;' : '') + '</span><span><b>' + esc(x[1]) + '</b></span></button>'; }); });
+        h += '<button class="nhlink" data-mgo="newhireapp">\u{1F4F1} See what Sam sees in the new hire app</button>';
+      } else if (st.s === 'approvals') {
+        h = '<h4>✅ Approvals</h4><div class="nhsub">Within-policy items you can decide here. The rest go to People Ops.</div><span class="nhflag">Sample items</span>' + AP.map(function (a, i) {
+          var r = st.ap[i];
+          return '<div class="nhans" style="display:grid;gap:4px"><b>' + a[0] + ' ' + esc(a[1]) + '</b><span>' + esc(a[2]) + ' &middot; ' + esc(a[3]) + '</span>' + (r ? '<div class="nhtick">' + (r === 'approved' ? 'Approved. The system updated the calendar and notified People Ops.' : r === 'declined' ? 'Declined. A note went to the employee and People Ops.' : 'Sent to People Ops. They will pick it up with you.') + '</div>' : '<div class="acts" style="display:flex;gap:6px;flex-wrap:wrap;margin-top:4px">' + (a[4] ? '<button class="nhlink on" data-map="' + i + ':approved">Approve</button><button class="nhlink" data-map="' + i + ':declined">Decline</button>' : '<button class="nhlink on" data-map="' + i + ':sent">Send to People Ops</button>') + '</div>') + '</div>';
+        }).join('');
+      } else if (st.s === 'toolkit') {
+        var order = KIT.map(function (k, i) { return i; }).filter(function (i) { var f = KIT[i][4]; return (f !== 'new' || st.x === 0) && (f !== 'cross' || st.t === 1); });
+        h = '<h4>\u{1F9F0} Manager toolkit</h4><div class="nhsub">Short, practical guides. Tap one to open it.</div>' + order.map(function (i) {
+          var k = KIT[i], open = st.k === i;
+          return '<div class="nhhb' + (open ? ' open' : '') + '"><button data-mk2="' + i + '" aria-expanded="' + (open ? 'true' : 'false') + '"><span>' + k[0] + '</span><span>' + esc(k[1]) + '<br><span style="font-weight:400;color:var(--muted);font-size:11px">' + esc(k[2]) + '</span></span><span class="ch">&rsaquo;</span></button><div class="bd"><div><ul style="margin:0;padding:0 12px 4px 34px;font-size:12px;color:var(--ink2);display:grid;gap:4px">' + k[3].map(function (b) { return '<li>' + esc(b) + '</li>'; }).join('') + '</ul><div class="acts" style="padding:6px 12px 12px 34px"><button class="nhlink" data-mgo="ask">\u{1F4AC} Ask People</button></div></div></div></div>';
+        }).join('');
+      } else {
+        h = '<h4>\u{1F4AC} Ask People</h4><div class="nhsub">Pick a situation for a quick, safe first step.</div><div class="nhq">' + QA.map(function (q, i) { return '<button data-mq="' + i + '" aria-pressed="' + (st.q === i ? 'true' : 'false') + '">' + q[0] + ' ' + q[1] + '</button>'; }).join('') + '</div>';
+        if (st.q >= 0) h += '<div class="nhans"><b>' + esc(QA[st.q][1]) + '</b><span>' + esc(QA[st.q][2]) + '</span>' + (st.tix ? '<div class="nhtick">Ticket AP-1071 created. A people team rep will reply within 4 business hours.</div>' : '<button class="nhbtn" data-mtix="1">Talk to a people team rep</button>') + '</div>';
+      }
+      return h;
+    }
+    function render() {
+      $('mg-team').innerHTML = TEAMS.map(function (x, i) { return '<button type="button" data-mt2="' + i + '" aria-pressed="' + (i === st.t ? 'true' : 'false') + '">' + x + '</button>'; }).join('');
+      $('mg-exp').innerHTML = EXPS.map(function (x, i) { return '<button type="button" data-mx="' + i + '" aria-pressed="' + (i === st.x ? 'true' : 'false') + '">' + x + '</button>'; }).join('');
+      var cur = st.s === 'ask' ? '' : st.s;
+      $('mg-phone').innerHTML = '<div class="nhbar"><span>9:41</span><span>Manager hub</span></div><div class="nhscr">' + screen() + '</div><div class="nhnav">' + NAV.map(function (n) { return '<button data-mgo="' + n[0] + '"' + (cur === n[0] ? ' aria-current="page"' : '') + '><span class="nhe">' + n[2] + '</span>' + n[1] + '</button>'; }).join('') + '</div>';
+      var B = { home: ['A pile of emails and forwarded reminders', 'The employee action form, the HRIS, and the compliance calendar', 'People Ops'], team: ['A spreadsheet of who reports to whom', 'The HRIS org chart, with private details hidden', 'People Ops'], oneone: ['Notes in different places and no shared agenda', 'Google Calendar and a shared doc per person', 'The manager'], hire: ['A manager checklist in a forwarded email', 'The same onboarding plan the new hire sees', 'People Ops and the manager'], approvals: ['Approval emails and chat messages', 'Policy rules and balances from the HRIS, with Finance and People Ops routing', 'People Ops and Finance'], toolkit: ['A long manager handbook few people read', 'Short guides reviewed by People Ops and Legal', 'People Ops'], ask: ['Questions sent to whoever the manager knows', 'The AskPeople queue, with agents answering non-PII topics', 'People Ops'] };
+      var b = B[st.s] || B.home;
+      $('mg-behind').innerHTML = '<dl class="nhbhd" style="margin:0"><div><dt>Replaces</dt><dd style="margin:0">' + b[0] + '</dd></div><div><dt>Fed by</dt><dd style="margin:0">' + b[1] + '</dd></div><div><dt>Owner</dt><dd style="margin:0">' + b[2] + '</dd></div></dl>';
+      var T = tasks(), d = T.filter(function (x) { return x[2]; }).length, pend = AP.filter(function (a, i) { return !st.ap[i]; }).length, sc = Object.keys(st.sched).length, ku = Object.keys(st.kudos).length, sn = Object.keys(st.sent).length;
+      $('mg-ops').innerHTML = '<div class="nhops"><div class="nhopsrow"><b>Manager tasks</b><div class="track"><div class="fill" style="width:' + pct() + '%"></div></div><span class="num">' + d + ' of ' + T.length + '</span></div>' +
+        '<div class="nhopsrow"><span>1:1s sent</span><div class="track"><div class="fill" style="width:' + Math.min(100, sn / 6 * 100) + '%"></div></div><span class="num">' + sn + ' of 6</span></div>' +
+        '<div class="nhopsrow"><span>Recognition</span><div class="track"><div class="fill" style="width:' + Math.min(100, ku / 6 * 100) + '%"></div></div><span class="num">' + ku + ' sent</span></div>' +
+        '<div class="nhsub" style="color:' + (pend ? 'var(--warn)' : 'var(--good)') + '">' + (pend ? '&#9650; ' + pend + ' approval' + (pend === 1 ? '' : 's') + ' waiting. A reminder goes to the manager after two days.' : '&#10003; No approvals waiting.') + '</div>' +
+        (sc ? '<div class="nhsub">' + sc + ' check-in' + (sc === 1 ? '' : 's') + ' booked this week.</div>' : '') + (st.tix ? '<div class="nhsub">1 new manager question in the AskPeople queue.</div>' : '') + '</div>';
+    }
+    function go(next) {
+      var sc = document.querySelector('#mg-phone .nhscr');
+      function paint() { render(); var n = document.querySelector('#mg-phone .nhscr'); if (n) { n.classList.add('in'); n.scrollTop = 0; } }
+      if (sc && !REDUCE) { sc.classList.add('out'); setTimeout(paint, 190); } else paint();
+    }
+    $('mg-build').innerHTML = ['It starts from the same employee action form and HRIS org chart, so managers never maintain a second list of people.', 'Approvals follow the policy rules and the four-approval change process, with People Ops and Finance picking up anything outside policy.', 'Agendas and notes live in Google Calendar and Docs, so nothing new to learn.', 'Private information such as leave reasons and health details never appears on a manager screen.', 'People Ops sees completion by manager and region, and uses it to decide where to offer more support.'].map(function (x) { return '<li>' + x + '</li>'; }).join('');
+    $('mg-ideas').innerHTML = IDEAS.map(function (x) { return '<li><span class="ie">' + x[0] + '</span><span><b>' + esc(x[1]) + '</b><span class="d">' + esc(x[2]) + '</span></span></li>'; }).join('');
+    $('p-manager').addEventListener('click', function (e) {
+      var b, swap = false;
+      if ((b = e.target.closest('button[data-mt2]'))) { st.t = +b.dataset.mt2; st.k = -1; swap = true; }
+      else if ((b = e.target.closest('button[data-mx]'))) { st.x = +b.dataset.mx; st.k = -1; swap = true; }
+      else if ((b = e.target.closest('button[data-mgo]'))) { var g = b.dataset.mgo; if (g === 'newhireapp') { location.hash = '#newhire'; return; } if (st.s === g) return; st.s = g; swap = true; }
+      else if ((b = e.target.closest('button[data-mt]'))) { var t = tasks()[+b.dataset.mt][3]; if (t === 'sched4') st.sched[4] = !st.sched[4]; else if (t === 'ap0') { st.s = 'approvals'; swap = true; } else if (t === 'kudos3') st.kudos[3] = !st.kudos[3]; else { var k = t.split(':')[1]; st.mt[k] = !st.mt[k]; } }
+      else if ((b = e.target.closest('button[data-mp]'))) { st.p = st.p === +b.dataset.mp ? -1 : +b.dataset.mp; }
+      else if ((b = e.target.closest('button[data-ms]'))) { st.sched[b.dataset.ms] = !st.sched[b.dataset.ms]; }
+      else if ((b = e.target.closest('button[data-mk]'))) { st.kudos[b.dataset.mk] = !st.kudos[b.dataset.mk]; }
+      else if ((b = e.target.closest('button[data-mo]'))) { st.o = +b.dataset.mo; }
+      else if ((b = e.target.closest('button[data-ma]'))) { var A = st.ag[st.o] || (st.ag[st.o] = {}); A[b.dataset.ma] = !A[b.dataset.ma]; }
+      else if ((b = e.target.closest('button[data-msend]'))) { st.sent[st.o] = !st.sent[st.o]; }
+      else if ((b = e.target.closest('button[data-mh]'))) { st.hire[b.dataset.mh] = !st.hire[b.dataset.mh]; }
+      else if ((b = e.target.closest('button[data-map]'))) { var pr = b.dataset.map.split(':'); st.ap[pr[0]] = pr[1]; }
+      else if ((b = e.target.closest('button[data-mk2]'))) { st.k = st.k === +b.dataset.mk2 ? -1 : +b.dataset.mk2; }
+      else if ((b = e.target.closest('button[data-mq]'))) { st.q = +b.dataset.mq; st.tix = false; }
+      else if ((b = e.target.closest('button[data-mtix]'))) { st.tix = true; }
+      else return;
+      var sc = document.querySelector('#mg-phone .nhscr'), top = sc ? sc.scrollTop : 0;
+      if (swap) go(); else { render(); var n = document.querySelector('#mg-phone .nhscr'); if (n) n.scrollTop = top; }
+    });
+    render();
+  })();
+
   // ---------- fit for the role ----------
   (function () {
     var TN = { discovery: 'Discovery questions', aibuilds: 'AI builds', askpeople: 'AskPeople portal', calendar: 'Compliance calendar', automation: 'Automation roadmap', action: 'Employee action form', agents: 'AI People Team', dashboard: 'People Ops dashboard', audit: 'Compliance audit', controls: 'Payroll and benefits controls', record: "Transformations I've led", plan: 'Sample first 90 days', roadmap: 'Annual roadmap', experience: 'Employee experience', values: 'Values in practice' };
@@ -3091,52 +3399,52 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
   // ---------- AI people team ----------
   (function () {
     var AG = [
-      { n: 'Onboarding', c: 'var(--t3)', rb: 'Related build: Onboarding Chatbot',
+      { n: 'Onboarding', sk: [["📋", "New hire checklist builder", "Builds the day-one to day-30 checklist by role and country.", "When the action form is submitted"], ["✉️", "Welcome note drafter", "Drafts a warm note with blanks for the manager to personalize.", "5 days before start"], ["🔔", "Pre-start reminders", "Nudges IT, the manager, and the buddy about open tasks.", "Daily until day one"], ["🧭", "Week-one agenda", "Builds a day-by-day first-week plan with the manager.", "3 days before start"], ["📈", "30-60-90 check-in kit", "Prepares questions and a short pulse for each milestone.", "Day 30, 60, and 90"]], c: 'var(--t3)', rb: 'Related build: Onboarding Chatbot',
         d: ['Builds the day-one and week-one checklist by role and country.', 'Reminds managers, IT, and the buddy before the start date.', 'Answers "what happens in week one" from the handbook.', 'Chases steps that are running late.'],
         w: ['Posts to a chat space for each start cohort.', 'Weekly digest to managers: what is done, what is open.', 'Linked to the action form for new hires.'],
         p: ['Checklist and email templates', 'Welcome-note drafts with blanks', 'Counts of steps done, no names', 'Handbook FAQ answers'],
         h: 'Offer terms, anything with personal details, and the final welcome note.' },
-      { n: 'Offboarding', c: 'var(--t4)', rb: 'Related builds: Multi-Agent Offboarding System, Exit Interview Analyzer',
+      { n: 'Offboarding', sk: [["✅", "Exit checklist builder", "Builds the checklist by country and type of exit.", "When an exit is entered"], ["🔐", "Access-removal tasks", "Creates IT tasks with the last day and timing.", "After approval"], ["💬", "Manager talk track", "Drafts talking points and a short FAQ for the manager.", "Before the announcement"], ["📦", "Equipment return tracker", "Sends reminders and tracks what has come back.", "After the last day"], ["🧩", "Exit theme summary", "Summarizes exit themes with names removed.", "Every quarter"]], c: 'var(--t4)', rb: 'Related builds: Multi-Agent Offboarding System, Exit Interview Analyzer',
         d: ['Builds the exit checklist by country and type of exit.', 'Creates access-removal tasks for IT with the last day.', 'Drafts manager talking points and a short FAQ.', 'Summarizes exit-interview themes with names removed.'],
         w: ['Tasks to IT, Payroll, and Benefits from the action form.', 'A restricted space, only for the people involved.', 'Quarterly theme summary to People leaders.'],
         p: ['Exit checklist templates', 'Access-removal timing reports, counts only', 'De-identified exit themes', 'Equipment return reminders'],
         h: 'Final pay, severance, and every message to the departing employee.' },
-      { n: 'Benefits', c: 'var(--accent)', rb: 'Related build: HR Policy RAG Chatbot',
+      { n: 'Benefits', sk: [["❓", "Plan Q&A", "Answers from the official plan summaries, with a source link.", "On request"], ["🗓️", "Open enrollment planner", "Builds the timeline and reminder plan.", "90 days before enrollment"], ["🌍", "Regional comms drafter", "Drafts local announcements for review.", "Each plan cycle"], ["🧮", "Carrier reconciliation checklist", "Flags gaps between the HRIS and carrier files.", "Monthly"], ["🆕", "New hire enrollment nudge", "Reminds eligible hires before their deadline.", "On the eligibility date"]], c: 'var(--accent)', rb: 'Related build: HR Policy RAG Chatbot',
         d: ['Answers plan questions from the official summaries.', 'Builds the open enrollment calendar and reminder plan.', 'Drafts regional communications.', 'Prepares the carrier reconciliation checklist and flags gaps.'],
         w: ['Employee questions in a help channel.', 'Monthly digest to Benefits and Finance.', 'Open enrollment reminders on the shared calendar.'],
         p: ['Plan FAQ answers', 'Enrollment calendars and communications', 'Participation rates, in total', 'Reconciliation templates'],
         h: 'Plan changes, claims, and any question about one person’s coverage.' },
-      { n: 'Payroll', c: 'var(--t1)', rb: '',
+      { n: 'Payroll', sk: [["🧾", "Pre-payroll checklist", "Builds the checklist for each entity.", "Every pay cycle"], ["⏰", "Cutoff and filing alerts", "Sends 60, 30, and 7 day reminders to owners.", "Daily"], ["🔍", "Variance question drafter", "Drafts questions from totals, never from individual pay.", "After each run"], ["🧮", "Tax reconciliation template", "Prepares the quarterly and year-end templates.", "Quarterly"], ["🏦", "Month-end close pack", "Lists the tie-outs between the HRIS, payroll, and Finance.", "Month end"]], c: 'var(--t1)', rb: '',
         d: ['Builds the pre-payroll checklist for each entity.', 'Keeps the cutoff and filing calendar with 60, 30, and 7 day alerts.', 'Drafts variance questions from totals.', 'Prepares tax reconciliation templates.'],
         w: ['Reminders in the payroll chat space.', 'Run-day summary to Finance.', 'Month-end checklist on a schedule.'],
         p: ['Cutoff and filing calendars', 'Run checklists', 'Total-level variances, no names', 'Reconciliation templates'],
         h: 'Releasing payroll and anything showing one person’s pay.' },
-      { n: 'Engagement', c: 'var(--t2)', rb: '',
+      { n: 'Engagement', sk: [["🎉", "Event planner", "Plans events from the idea library.", "Monthly"], ["☕", "Coffee roulette pairing", "Pairs people from an opt-in list.", "Monthly"], ["📝", "Pulse builder and summary", "Drafts questions and summarizes anonymous results.", "Quarterly"], ["🕐", "Time zone scheduler", "Finds a slot and rotates who takes the early or late one.", "Each invite"], ["🏆", "Recognition roundup", "Collects shout-outs for the town hall.", "Monthly"]], c: 'var(--t2)', rb: '',
         d: ['Plans virtual events from the idea library.', 'Pairs people for coffee roulette from an opt-in list.', 'Drafts pulse questions and summarizes anonymous results.', 'Schedules events across time zones, rotating the slot.'],
         w: ['Announcements in the company chat.', 'Monthly newsletter draft for review.', 'Results shared with minimum group sizes.'],
         p: ['Event plans and invitations', 'Survey themes, grouped', 'Newsletter drafts', 'Recognition prompts tied to values'],
         h: 'Survey thresholds, sensitive comments, and everything sent company-wide.' },
-      { n: 'Immigration', c: 'var(--s4)', rb: 'Related build: I-9 Compliance QA',
+      { n: 'Immigration', sk: [["🛂", "Right-to-work checklist", "Builds the checklist by country.", "At hire"], ["⏳", "Expiry alert rules", "Sets 90, 60, and 30 day alerts.", "Daily"], ["📖", "Process explainer", "Explains each step, such as the I-9 or the UK check.", "On request"], ["📨", "Counsel intake form", "Prepares a blank questionnaire for counsel.", "When needed"], ["🔎", "Audit readiness list", "Lists what to check, using counts only.", "Quarterly"]], c: 'var(--s4)', rb: 'Related build: I-9 Compliance QA',
         d: ['Builds right-to-work checklists by country.', 'Sets expiry-alert rules at 90, 60, and 30 days.', 'Explains each process step, such as the I-9 or the UK check.', 'Prepares a blank intake questionnaire for counsel.'],
         w: ['Alerts to HR Operations and counsel in a restricted space.', 'No documents are shared in chat.', 'Quarterly status counts to People leaders.'],
         p: ['Process guides and checklists', 'Alert rules and deadline tables', 'Counts by status', 'Counsel and vendor contact list'],
         h: 'Reviewing any document, deciding eligibility, and all counsel decisions.' },
-      { n: 'Leave', c: 'var(--s3)', rb: 'Related build: HR Policy RAG Chatbot',
+      { n: 'Leave', sk: [["🗺️", "Leave type explainer", "Explains leave types by jurisdiction from the policies.", "On request"], ["✅", "Eligibility checklist", "Builds the checklist for People Ops to confirm.", "When a leave is requested"], ["✍️", "Notice template drafter", "Drafts the required notices for review.", "After approval"], ["📈", "Rate and cap watcher", "Watches for changes such as the January refresh.", "Every year"], ["🔁", "Return-to-work checklist", "Prepares the steps before someone returns.", "Before the return date"]], c: 'var(--s3)', rb: 'Related build: HR Policy RAG Chatbot',
         d: ['Explains leave types by jurisdiction from the policies.', 'Builds the eligibility checklist.', 'Drafts notice templates.', 'Watches for rate and cap changes, such as the January refresh.'],
         w: ['Requests come in through the form, not chat.', 'Managers get general guidance only.', 'Rule-change alerts to HR Operations.'],
         p: ['Policy Q&A', 'Notice templates', 'Rule-change alerts', 'Leave volumes, in total'],
         h: 'Approvals, and all medical information, which stays with HR and the leave vendor.' },
-      { n: 'Compliance', c: '#0f8b8d', rb: 'Related build: Compliance Audit Assistant',
+      { n: 'Compliance', sk: [["📆", "Compliance calendar keeper", "Sends deadline reminders to the named owners.", "Weekly"], ["🧪", "Requirements comparison", "Compares record counts and training status to the list by country.", "Monthly"], ["🚩", "Gap flagger", "Flags a missing form, an overdue course, or a late filing.", "Weekly"], ["🗂️", "Evidence list builder", "Builds the list an auditor can follow, with a log of what was checked.", "Each audit"], ["📜", "Training completion tracker", "Shows completion by team, counts only.", "Monthly"]], c: '#0f8b8d', rb: 'Related build: Compliance Audit Assistant',
         d: ['Keeps the compliance calendar by country and sends deadline reminders to the named owners.', 'Compares record counts and training status against a requirements list by country.', 'Flags gaps such as a missing form, an overdue course, or a late filing.', 'Builds the evidence list an auditor can follow, with a log of what was checked.'],
         w: ['Weekly digest to HR Operations and the regional leads.', 'Alerts go to the owner of each line on the calendar.', 'Monthly status counts to People leaders, with no names.'],
         p: ['Compliance calendar and reminders', 'Requirements lists by country', 'Gap lists using counts and record IDs only', 'Audit evidence checklists and logs'],
         h: 'Judging whether a flag is a real gap, fixing the record or the process, and signing off on audit results.' },
-      { n: 'AskPeople', c: 'var(--s2)', rb: 'Front door, available 24/7. See the AskPeople portal page.',
+      { n: 'AskPeople', sk: [["📥", "Inbox reader and tagger", "Adds a priority tag and a topic tag to every new message.", "Every new message"], ["💡", "Answer from the handbook", "Answers common questions with a link to the source.", "Common questions"], ["🧭", "Tier 2 router", "Sends a short summary to the right owner so nobody asks twice.", "When it is not covered"], ["✍️", "Reply drafter", "Drafts replies for the team to approve.", "Each ticket"], ["📚", "Knowledge gap finder", "Turns repeated questions into handbook updates.", "Weekly"]], c: 'var(--s2)', rb: 'Front door, available 24/7. See the AskPeople portal page.',
         d: ['Reads each new message in the AskPeople inbox at any hour.', 'Answers common policy and process questions from the approved handbook and FAQ, with a link to the source.', 'Adds a priority tag (urgent, high, normal, or low) and a topic tag such as pay, benefits, leave, or I-9.', 'Routes tier 2 questions to the right owner on the team, with a short summary, so nobody has to ask again.', 'Drafts replies for the team to review on anything beyond an approved answer.'],
         w: ['Connects to the AskPeople inbox with access approved by IT and security.', 'Instant acknowledgment at any hour, with a clear expected reply time.', 'Tier 2 handoffs land in the owner\u2019s queue with the tags and summary attached.', 'Weekly digest of volumes, topics, and answer times to People leaders, with no names.'],
         p: ['Approved FAQ answers with source links', 'Priority and topic tags', 'Routing rules by topic and region', 'Volume and response-time counts'],
         h: 'Anything about one person\u2019s pay, health, leave, or immigration, every urgent or sensitive case, and every reply that is not an approved answer. Personal details are never repeated back; the case goes straight to a person.' },
-      { n: 'Insights', c: '#5b6b7e', rb: 'Serves leadership and the board.',
+      { n: 'Insights', sk: [["📊", "QBR pack builder", "Builds the pack from dashboard counts, with a plain summary.", "Quarterly"], ["🏛️", "Board request drafter", "Drafts requests and the People section from approved data.", "Each board cycle"], ["📣", "All Hands update drafter", "Drafts people news and milestones in the company voice.", "Before each All Hands"], ["🗓️", "Weekly and monthly reporting", "Produces the standard reporting set on a schedule.", "Weekly and monthly"], ["⏱️", "Date and deadline tracker", "Keeps QBR, board, and All Hands dates and deadlines.", "Weekly"]], c: '#5b6b7e', rb: 'Serves leadership and the board.',
         d: ['Builds the QBR pack from the dashboard counts, with a plain-language summary of what moved and why.', 'Drafts board meeting requests and the People section of board materials from approved data.', 'Drafts All Hands updates: people news, milestones, and what is changing, in the company voice.', 'Produces the weekly and monthly reporting set on a schedule.', 'Keeps the calendar of QBR, board, and All Hands dates and chases inputs from owners.'],
         w: ['Requests arrive in chat or from the calendar, with an audience and a due date.', 'Drafts go to the People Ops lead first, then to the executive owner.', 'Every number lists its source and calculation, so it can be checked.', 'Nothing is published or sent until a person approves it.'],
         p: ['Dashboard counts and trends', 'QBR and board templates', 'All Hands outlines and talking points', 'Report narratives with source notes'],
@@ -3166,11 +3474,11 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
         if (a.n === 'AskPeople' || a.n === 'Insights') return;
         o += '<div class="agcol" style="--ac:' + a.c + '"><div class="agzone' + (i === sel ? ' on' : '') + '"><button type="button" class="agc" data-i="' + i + '" aria-pressed="' + (i === sel ? 'true' : 'false') + '" aria-label="' + a.n + ' agent"><span class="agic"><svg viewBox="0 0 24 24" aria-hidden="true">' + ICO[a.n] + '</svg></span>' + a.n + '</button></div></div>';
       });
-      o += '</div></div>';
+      o += '</div><div class="agskbar"><span>\u2699\uFE0F <b>' + AG.reduce(function (t, x) { return t + (x.sk ? x.sk.length : 0); }, 0) + ' starter skills</b> already installed across ' + AG.length + ' agents</span><span>Each one prepares or tracks. A person approves.</span></div></div>';
       $('ag-org').innerHTML = o;
       var A = AG[sel];
       function ul(x) { return '<ul>' + x.map(function (t) { return '<li>' + esc(t) + '</li>'; }).join('') + '</ul>'; }
-      $('ag-detail').innerHTML = '<div class="agdetwrap" style="--ac:' + A.c + '"><div class="agtop"><h3>' + A.n + ' agent</h3>' + (A.rb ? '<span class="rb">' + esc(A.rb) + '</span>' : '') + '</div><div class="agdet"><div><h4>What it can do</h4>' + ul(A.d) + '</div><div><h4>How we communicate</h4>' + ul(A.w) + '</div><div><h4>Non-PII work it can take on</h4><div class="ftags">' + A.p.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div></div></div><div class="human"><b>A person decides:</b> ' + esc(A.h) + '</div></div>';
+      $('ag-detail').innerHTML = '<div class="agdetwrap" style="--ac:' + A.c + '"><div class="agtop"><h3>' + A.n + ' agent</h3>' + (A.rb ? '<span class="rb">' + esc(A.rb) + '</span>' : '') + '</div><div class="agdet"><div><h4>What it can do</h4>' + ul(A.d) + '</div><div><h4>How we communicate</h4>' + ul(A.w) + '</div><div><h4>Non-PII work it can take on</h4><div class="ftags">' + A.p.map(function (t) { return '<span>' + esc(t) + '</span>'; }).join('') + '</div></div></div>' + (A.sk ? '<div class="agsk"><h4>Starter skills already installed</h4><p>Repeatable workflows ' + esc(A.n) + ' can run from day one. Each draft or tracker goes to a person for review.</p><div class="agskg">' + A.sk.map(function (k) { return '<div class="agskc"><div class="sh1"><span class="sem" aria-hidden="true">' + k[0] + '</span><b>' + esc(k[1]) + '</b></div><p>' + esc(k[2]) + '</p><span class="run">Runs: ' + esc(k[3]) + '</span></div>'; }).join('') + '</div></div>' : '') + '<div class="human"><b>A person decides:</b> ' + esc(A.h) + '</div></div>';
     }
     function pick(e) { var b = e.target.closest('[data-i]'); if (b) { sel = +b.dataset.i; draw(); } }
     $('ag-org').addEventListener('click', function (e) { var b = e.target.closest('button[data-i]'); if (b) { sel = +b.dataset.i; var top = window.scrollY; draw(); var n = $('ag-org').querySelector('[data-i="' + sel + '"]'); if (n) n.focus({ preventScroll: true }); } });
