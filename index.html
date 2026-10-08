@@ -1283,12 +1283,12 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
     </div>
 <div class="card" id="osf-card">
   <h3>From signed offer to day one</h3>
-  <p class="sub">What Joe does once a candidate signs, and what the agents pick up. Select a step. Joe keeps the human relationship and the offer terms, and one submitted form starts everything else.</p>
+  <p class="sub">What the TA team does once a candidate signs, and what the agents pick up. Select a step. The TA team keeps the human relationship and the offer terms, and one submitted form starts everything else.</p>
   <div class="osf" id="osf">
     <div class="osf-flow" id="osf-flow" role="group" aria-label="Steps from signed offer to day one"></div>
     <div class="osf-d" id="osf-d" aria-live="polite"></div>
     <div class="osf-3">
-      <div><b>Joe does</b>Submits the new hire on the action form, keeps the candidate warm, and handles the offer.</div>
+      <div><b>The TA team does</b>Submits the new hire on the action form, keeps the candidate warm, and handles the offer.</div>
       <div><b>The agents do</b>Build checklists, send reminders, answer common questions, and report counts.</div>
       <div class="no"><b>Never automated</b>Offer terms, pay, work authorization decisions, and any message that reaches the hire without a person approving it.</div>
     </div>
@@ -1296,9 +1296,9 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
 </div>
 <script>
 (function () {
-  var R = 'Joe', RC = 'Joe';
+  var R = 'the TA team', RC = 'The TA team';
   var S = [
-    { e: '\u{1F91D}', n: R === 'Joe' ? 'Joe: offer signed' : 'Recruiter: offer signed', w: 'Day 0', c: 'var(--ink)', s: 'Submit the new hire', do: 'Enters the new hire on the employee action form: name, start date, role, region, and manager. That single submission starts every step that follows.', sees: 'A confirmation and a status page that shows which steps are done and which are waiting.', dec: 'Offer terms stay between ' + R + ', the hiring manager, and the candidate. They are never typed into an agent.' },
+    { e: '\u{1F91D}', n: 'TA team: offer signed', w: 'Day 0', c: 'var(--ink)', s: 'Submit the new hire', do: 'Enters the new hire on the employee action form: name, start date, role, region, and manager. That single submission starts every step that follows.', sees: 'A confirmation and a status page that shows which steps are done and which are waiting.', dec: 'Offer terms stay between ' + R + ', the hiring manager, and the candidate. They are never typed into an agent.' },
     { e: '\u{1F4CB}', n: 'Onboarding agent builds the plan', w: 'Day 0', c: 'var(--t3)', s: 'Checklist and reminders', do: 'Builds the day-one to day-30 checklist for the role and country, assigns each task to an owner, and starts the reminders.', sees: 'The checklist status for each task and owner, without any personal details.', dec: 'The People Ops lead reviews the checklist before it goes live.' },
     { e: '\u{1F6C2}', n: 'Immigration agent checks right to work', w: 'Day 0 to 1', c: 'var(--s4)', s: 'Right-to-work steps', do: 'Builds the right-to-work checklist for the hire\'s country, such as the I-9 in the US or the UK check, and sets 90, 60, and 30 day expiry alerts.', sees: 'A simple status: on track or needs attention. Never the documents.', dec: 'A person in People Ops, with counsel where needed, handles every document and any work authorization question.' },
     { e: '\u{1F4B5}', n: 'Payroll and Benefits agents get ready', w: 'Days 1 to 5', c: 'var(--accent)', s: 'Pay and plan set-up', do: 'Payroll gets the pre-payroll checklist for the entity. Benefits notes the eligibility date and schedules the enrollment reminder.', sees: 'That the tasks have owners and dates. ' + RC + ' does not see pay or plan details.', dec: 'The payroll and benefits owners approve the set-up.' },
