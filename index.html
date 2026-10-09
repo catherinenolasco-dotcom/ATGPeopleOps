@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>People Operations Experience and Sample Approaches</title>
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#14263a"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="ATG People Ops"><title>People Operations Experience and Sample Approaches</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Kalam:wght@400;700&display=swap');
 
@@ -1027,6 +1027,25 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
 @media (max-width: 900px) { .osf-flow { grid-template-columns: repeat(4, 1fr); } .osf-d { grid-template-columns: 1fr; } .osf-3 { grid-template-columns: 1fr; } .osf-n:not(:last-child)::after { display: none; } }
 @media (max-width: 520px) { .osf-flow { grid-template-columns: repeat(2, 1fr); } }
 @media (prefers-reduced-motion: reduce) { .osf-d { animation: none; } .osf-n { transition: none; } }
+
+/* Mobile app mode: bottom tab bar, compact sticky header, safe areas, touch sizing */
+@media (max-width: 760px) {
+  html { -webkit-tap-highlight-color: transparent; overscroll-behavior-y: none; }
+  body { padding-bottom: calc(76px + env(safe-area-inset-bottom)); -webkit-text-size-adjust: 100%; }
+  .tabwrap { position: sticky; top: 0; z-index: 60; padding-top: env(safe-area-inset-top); background: var(--navy); }
+  nav.tabs .tgroups { position: fixed; left: 0; right: 0; bottom: 0; z-index: 90; display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; overflow: visible; padding: 6px 4px calc(6px + env(safe-area-inset-bottom)); background: rgba(10,22,34,.96); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); border-top: 1px solid rgba(255,255,255,.14); }
+  nav.tabs .tgroups .tlabel { display: none; }
+  nav.tabs .tgroups button { font-size: 0; display: grid; justify-items: center; align-content: center; gap: 2px; min-height: 52px; padding: 4px 0; border: 0; border-radius: 14px; background: transparent; color: #9db3c3; }
+  nav.tabs .tgroups button::before { content: attr(data-ic); font-size: 21px; line-height: 1; filter: grayscale(.6); opacity: .8; transition: transform .15s; }
+  nav.tabs .tgroups button::after { content: attr(data-short); font: 600 10.5px var(--f-body); letter-spacing: .01em; }
+  nav.tabs .tgroups button[aria-pressed="true"] { background: rgba(58,160,220,.2); color: #fff; }
+  nav.tabs .tgroups button[aria-pressed="true"]::before { filter: none; opacity: 1; transform: translateY(-1px) scale(1.1); }
+  nav.tabs .tgroups button:active { transform: scale(.94); }
+  nav.tabs .tsubs { padding: 0 8px; }
+  nav.tabs .tgrp button { min-height: 46px; padding: 12px 6px; font-size: 13.5px; }
+  button, [role="tab"], .wc-card { touch-action: manipulation; }
+  input, select, textarea { font-size: 16px; }
+}
 </style><style>[hidden]{display:none !important}</style></head><body>
 
 <section id="welcome" role="dialog" aria-modal="true" aria-labelledby="wc-h">
@@ -1105,13 +1124,13 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
 <div class="tabwrap">
   <nav class="tabs" aria-label="Sections">
     <div class="tgroups" role="group" aria-label="Section groups">
-      <button type="button" data-g="me" aria-pressed="true">My experience</button>
-      <button type="button" data-g="disc" aria-pressed="false">Discovery questions</button>
+      <button type="button" data-g="me" data-ic="🧭" data-short="Me" aria-pressed="true">My experience</button>
+      <button type="button" data-g="disc" data-ic="❓" data-short="Ask" aria-pressed="false">Discovery questions</button>
       <span class="tlabel">Sample approaches<br>(optional)</span>
-      <button type="button" data-g="comp" aria-pressed="false">Compliance</button>
-      <button type="button" data-g="sys" aria-pressed="false">Systems and automation</button>
-      <button type="button" data-g="data" aria-pressed="false">Data and planning</button>
-      <button type="button" data-g="exp" aria-pressed="false">Employee experience</button>
+      <button type="button" data-g="comp" data-ic="🛡️" data-short="Comply" aria-pressed="false">Compliance</button>
+      <button type="button" data-g="sys" data-ic="⚙️" data-short="Systems" aria-pressed="false">Systems and automation</button>
+      <button type="button" data-g="data" data-ic="📊" data-short="Data" aria-pressed="false">Data and planning</button>
+      <button type="button" data-g="exp" data-ic="💙" data-short="People" aria-pressed="false">Employee experience</button>
     </div>
     <div class="tsubs" role="tablist" aria-label="Pages in this group">
       <div class="tgrp" data-g="me"><button role="tab" id="t-fit" aria-selected="true" data-tab="fit">Fit for the role</button><button role="tab" id="t-record" aria-selected="false" data-tab="record">Transformations I've led</button><button role="tab" id="t-action" aria-selected="false" data-tab="action">Employee action form</button><button role="tab" id="t-aibuilds" aria-selected="false" data-tab="aibuilds">AI builds</button><button role="tab" id="t-values" aria-selected="false" data-tab="values">Values in practice</button></div>
@@ -2139,7 +2158,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
     document.getElementById('wc-go').addEventListener('click', function () { closeW(''); });
     w.addEventListener('click', function (e) { var c = e.target.closest('[data-wc]'); if (c) closeW(c.dataset.wc); });
     var h = (location.hash || '').replace('#', '');
-    if (h === 'welcome') { openW(); } else if (h) { w.hidden = true; w.classList.add('out'); } else { lock(true); document.getElementById('wc-go').focus({ preventScroll: true }); }
+    if (h && h !== 'welcome') { try { history.replaceState(null, '', location.pathname + location.search); } catch (x) {} showTab('fit'); } lock(true); document.getElementById('wc-go').focus({ preventScroll: true });
     window.addEventListener('hashchange', function () { if ((location.hash || '') === '#welcome') openW(); });
   })();
   window.addEventListener('hashchange', function () { showTab((location.hash || '').replace('#', '')); });
