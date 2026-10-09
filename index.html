@@ -1046,6 +1046,34 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
   button, [role="tab"], .wc-card { touch-action: manipulation; }
   input, select, textarea { font-size: 16px; }
 }
+
+/* Side menu */
+.appbar, .mn { display: none; }
+@media (max-width: 760px) {
+  .appbar { display: flex; align-items: center; gap: 12px; padding: 8px 12px; background: var(--navy); border-bottom: 1px solid rgba(255,255,255,.12); }
+  .mn-btn { width: 44px; height: 44px; flex: none; display: grid; place-items: center; border-radius: 12px; border: 1px solid rgba(255,255,255,.25); background: rgba(255,255,255,.07); cursor: pointer; }
+  .mn-btn svg, .mn-x svg { width: 22px; height: 22px; stroke: #fff; fill: none; stroke-width: 2.2; stroke-linecap: round; }
+  .mn-title { min-width: 0; display: grid; line-height: 1.2; }
+  .mn-title small { font: 600 10.5px var(--f-body); letter-spacing: .1em; text-transform: uppercase; color: #8fd0f5; }
+  .mn-title b { font: 600 15.5px var(--f-body); color: #fff; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .mn { display: block; position: fixed; inset: 0; z-index: 2000; }
+  .mn[hidden] { display: none; }
+  .mn-scrim { position: absolute; inset: 0; background: rgba(2,10,18,.6); opacity: 0; transition: opacity .25s; }
+  .mn-panel { position: absolute; top: 0; bottom: 0; left: 0; width: min(86vw, 340px); background: #0f2133; color: #e9f1f7; display: flex; flex-direction: column; transform: translateX(-102%); transition: transform .28s cubic-bezier(.2,.8,.2,1); padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); box-shadow: 8px 0 40px rgba(0,0,0,.4); }
+  .mn.open .mn-scrim { opacity: 1; } .mn.open .mn-panel { transform: none; }
+  .mn-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; padding: 18px 16px 14px; border-bottom: 1px solid rgba(255,255,255,.12); }
+  .mn-head b { display: block; font: 700 16px var(--f-body); color: #fff; } .mn-head small { font: 400 12px var(--f-body); color: #9db3c3; }
+  .mn-x { width: 40px; height: 40px; border-radius: 12px; border: 0; background: rgba(255,255,255,.08); display: grid; place-items: center; cursor: pointer; flex: none; }
+  .mn-list { flex: 1; overflow-y: auto; padding: 8px 10px 14px; -webkit-overflow-scrolling: touch; }
+  .mn-sec { font: 600 10.5px var(--f-body); letter-spacing: .12em; text-transform: uppercase; color: #8fd0f5; padding: 16px 8px 6px; }
+  .mn-g { display: flex; align-items: center; gap: 10px; font: 700 13.5px var(--f-body); color: #cfe2ee; padding: 12px 8px 4px; }
+  .mn-g i { font-style: normal; font-size: 17px; }
+  .mn-it { display: block; width: 100%; text-align: left; font: 500 15px/1.25 var(--f-body); color: #e9f1f7; background: transparent; border: 0; border-radius: 12px; padding: 12px 12px 12px 36px; min-height: 46px; cursor: pointer; }
+  .mn-it:active { background: rgba(255,255,255,.1); }
+  .mn-it[aria-current="page"] { background: rgba(58,160,220,.22); color: #fff; font-weight: 600; }
+  .mn-welcome { margin: 0 12px 14px; padding: 12px; border-radius: 12px; border: 1px solid rgba(160,205,232,.35); background: transparent; color: #bfe3f7; font: 600 13.5px var(--f-body); cursor: pointer; }
+  nav.tabs .tgroups { display: grid; }
+}
 </style><style>[hidden]{display:none !important}</style></head><body>
 
 <section id="welcome" role="dialog" aria-modal="true" aria-labelledby="wc-h">
@@ -1122,6 +1150,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
 </div>
 
 <div class="tabwrap">
+  <div class="appbar"><button type="button" id="mn-open" class="mn-btn" aria-label="Open menu" aria-haspopup="dialog" aria-controls="mn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button><div class="mn-title"><small id="mn-grp">My experience</small><b id="mn-cur">Fit for the role</b></div></div>
   <nav class="tabs" aria-label="Sections">
     <div class="tgroups" role="group" aria-label="Section groups">
       <button type="button" data-g="me" data-ic="🧭" data-short="Me" aria-pressed="true">My experience</button>
@@ -2066,6 +2095,14 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
   <footer>Designed in the style of ATG's public website for this interview. It is a candidate's working sample, not an ATG document. Statutory dates and thresholds change and differ by entity and country, so each calendar item needs confirmation with ATG's advisors before it is relied on.</footer>
 </main>
 
+<div id="mn" class="mn" hidden role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="mn-scrim" data-mn-close></div>
+  <aside class="mn-panel" id="mn-panel">
+    <div class="mn-head"><div><b>ATG People Operations</b><small>Cat Nolasco, thoughts and approach</small></div><button type="button" class="mn-x" data-mn-close aria-label="Close menu"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div id="mn-list" class="mn-list"></div>
+    <button type="button" class="mn-welcome" id="mn-wc">Back to the welcome page</button>
+  </aside>
+</div>
 <script>
 (function () {
   // ---------- utils ----------
@@ -2088,7 +2125,7 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
     var hr = document.querySelector('.hero'); if (hr) hr.hidden = (name !== 'fit');
     var g = $('t-' + name).closest('.tgrp').dataset.g;
     document.querySelectorAll('nav.tabs .tgrp').forEach(function (d) { d.hidden = d.dataset.g !== g; });
-    document.querySelectorAll('nav.tabs .tgroups button').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.g === g ? 'true' : 'false'); });
+    document.querySelectorAll('nav.tabs .tgroups button').forEach(function (b) { b.setAttribute('aria-pressed', b.dataset.g === g ? 'true' : 'false'); });  try { window.scrollTo({ top: 0, left: 0, behavior: 'instant' }); } catch (x) { window.scrollTo(0, 0); }
   }
   document.querySelectorAll('nav.tabs .tgroups button').forEach(function (b) {
     b.addEventListener('click', function () {
@@ -3975,4 +4012,43 @@ footer { margin-top: 40px; font-size: 12px; color: var(--muted); max-width: 90ch
   draw(); load(false);
 })();
 </script>
+<script>
+(function () {
+  var mn = document.getElementById('mn'); if (!mn) return;
+  var list = document.getElementById('mn-list'), btn = document.getElementById('mn-open');
+  function build() {
+    var h = '', g;
+    document.querySelectorAll('nav.tabs .tgroups button[data-g]').forEach(function (gb, n) {
+      g = gb.dataset.g;
+      if (g === 'comp') h += '<div class="mn-sec">Sample approaches (optional)</div>';
+      h += '<div class="mn-g"><i>' + gb.dataset.ic + '</i>' + gb.textContent + '</div>';
+      document.querySelectorAll('nav.tabs .tgrp[data-g="' + g + '"] button[data-tab]').forEach(function (t) {
+        h += '<button type="button" class="mn-it" data-t="' + t.dataset.tab + '">' + t.textContent + '</button>';
+      });
+    });
+    list.innerHTML = h; mark();
+  }
+  function cur() { var s = document.querySelector('nav.tabs button[data-tab][aria-selected="true"]'); return s; }
+  function mark() {
+    var s = cur(); if (!s) return;
+    document.getElementById('mn-cur').textContent = s.textContent;
+    var gb = document.querySelector('nav.tabs .tgroups button[aria-pressed="true"]');
+    document.getElementById('mn-grp').textContent = gb ? gb.textContent : '';
+    list.querySelectorAll('.mn-it').forEach(function (b) { if (b.dataset.t === s.dataset.tab) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+  }
+  function open() { mn.hidden = false; void mn.offsetWidth; mn.classList.add('open'); document.documentElement.style.overflow = 'hidden'; mark(); var c = list.querySelector('[aria-current]'); if (c) c.scrollIntoView({ block: 'center' }); }
+  function close() { mn.classList.remove('open'); document.documentElement.style.overflow = ''; setTimeout(function () { mn.hidden = true; }, 280); btn.focus(); }
+  btn.addEventListener('click', open);
+  mn.addEventListener('click', function (e) {
+    if (e.target.closest('[data-mn-close]')) { close(); return; }
+    var it = e.target.closest('.mn-it');
+    if (it) { var t = document.getElementById('t-' + it.dataset.t); if (t) t.click(); mn.classList.remove('open'); document.documentElement.style.overflow = ''; setTimeout(function () { mn.hidden = true; }, 280); window.scrollTo(0, 0); }
+  });
+  document.getElementById('mn-wc').addEventListener('click', function () { mn.classList.remove('open'); mn.hidden = true; document.documentElement.style.overflow = ''; location.hash = 'welcome'; });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !mn.hidden) close(); });
+  new MutationObserver(mark).observe(document.querySelector('nav.tabs'), { subtree: true, attributes: true, attributeFilter: ['aria-selected', 'aria-pressed'] });
+  build();
+})();
+</script>
+
 </body></html>
